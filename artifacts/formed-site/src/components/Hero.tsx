@@ -78,7 +78,7 @@ export function Hero() {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <section className="relative w-full overflow-hidden text-white" style={{ height: "100dvh" }}>
+    <section id="hero" className="relative w-full overflow-hidden text-white" style={{ height: "100dvh" }}>
 
       {/* ── Video crossfade background ────────────────────────── */}
       <div className="absolute inset-0 z-0">
