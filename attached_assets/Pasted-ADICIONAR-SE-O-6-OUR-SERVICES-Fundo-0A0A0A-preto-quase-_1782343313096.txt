@@ -1,0 +1,57 @@
+ADICIONAR SEÇÃO 6 — OUR SERVICES
+Fundo: #0A0A0A (preto quase puro). Cor de texto padrão: branco.
+CABEÇALHO DA SEÇÃO
+
+Label "[04] OUR SERVICES": centralizado, 11px, letter-spacing 0.15em, cor #F5A623 (amarelo), weight 400
+Título "The areas we specialise in": centralizado, 52px, font-weight 300, cor branco, margin-bottom 80px
+
+LAYOUT GERAL
+A seção é composta por 4 serviços dispostos em layout ziguezague de 2 colunas. A largura total é dividida em 2 colunas. Os cards brancos e os blocos de texto alternam de lado a cada serviço. Existe uma linha horizontal fina (1px, rgba(255,255,255,0.12)) separando cada par de serviços.
+
+SERVIÇO [001] — Property Development
+Layout: texto à esquerda + foto à direita (centro)
+
+Card: fundo transparente (direto no fundo preto)
+"[001]": 11px, letter-spacing 0.12em, cor #F5A623, weight 400
+Título "Property Development": 32px, weight 500, branco
+Descrição: "End-to-end delivery of large-scale residential and mixed-use developments, from land acquisition through to final handover." — 15px, cor rgba(255,255,255,0.70), line-height 1.6
+Tags em linha: [LAND ACQUISITION] [FEASIBILITY STUDIES] [MASTERPLANNING] [RESIDENTIAL BUILDS]
+
+Cada tag: font-size 10px, letter-spacing 0.12em, cor #F5A623, weight 500, sem background, sem borda
+
+
+Foto: imagem de prédio moderno em P&B, largura ~280px, altura ~320px, object-fit cover, posicionada no centro entre as 2 colunas (sobreposta ao grid)
+
+
+SERVIÇO [002] — Design & Planning
+Layout: card branco à direita
+
+Card: fundo branco (#FFFFFF), padding 40px, largura ~420px
+"[002]": 11px, letter-spacing 0.12em, cor #F5A623
+Título "Design & Planning": 32px, weight 500, preto
+Descrição: "Collaborative design and planning services that balance creativity, compliance, and buildability at scale." — 15px, cor #555555
+Tags: [ARCHITECTURAL DESIGN] [PLANNING APPROVALS] [TECHNICAL DRAWINGS] [DESIGN COORDINATION] [COMPLIANCE] — 10px, letter-spacing 0.12em, cor #F5A623
+Foto: imagem de arquiteto/maquete, largura ~350px, altura ~250px, dentro do card abaixo das tags
+
+
+SERVIÇO [003] — Construction Management
+Layout: card branco à esquerda
+
+Card: fundo branco (#FFFFFF), padding 40px, largura ~420px
+"[003]": 11px, letter-spacing 0.12em, cor #F5A623
+Título "Construction Management": 32px, weight 500, preto
+Descrição: "Full oversight of construction phases to ensure projects are delivered on time, on budget, and to the highest standards." — 15px, cor #555555
+Tags: [SITE MANAGEMENT] [PROGRAMME CONTROL] [QUALITY ASSURANCE] [COST CONTROL]
+Foto: imagem de engenheiro/obra, dentro do card abaixo das tags
+
+
+SERVIÇO [004] — Infrastructure & Logistics
+Layout: texto à direita + foto à direita
+
+Fundo: transparente (preto)
+"[004]": 11px, letter-spacing 0.12em, cor #F5A623
+Título "Infrastructure & Logistics": 32px, weight 500, branco
+Descrição: "Delivery of essential infrastructure and logistics planning to support large residential and urban developments." — 15px, rgba(255,255,255,0.70)
+Tags: [ROADS & UTILITIES] [SITE LOGISTICS] [PHASING STRATEGY] [ACCESS PLANNING] [UTILITIES COORDINATION]
+Foto: imagem aérea de estrada/autoestrada, largura ~350px, height ~320px, à direita do texto
+Linha separadora fina no topo: 1px, rgba(255,255,255,0.12)
