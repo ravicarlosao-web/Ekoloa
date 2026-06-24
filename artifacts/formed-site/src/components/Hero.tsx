@@ -1,8 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 const VIDEOS = ["/hero1.mp4", "/hero2.mp4", "/hero3.mp4"];
-const SWITCH_INTERVAL = 5000; // switch every 5s (video is 4s, brief overlap)
+const SWITCH_INTERVAL = 5000;
+const CROSSFADE_DURATION = 1.8; // seconds
 
 function CornerCross({ style }: { style: React.CSSProperties }) {
   return (
@@ -33,22 +34,21 @@ export function Hero() {
   return (
     <section className="relative w-full overflow-hidden text-white" style={{ height: "100dvh" }}>
 
-      {/* ── Video slideshow background ────────────────────────── */}
+      {/* ── Video crossfade background ────────────────────────── */}
       <div className="absolute inset-0 z-0">
-        <AnimatePresence>
+        {VIDEOS.map((src, i) => (
           <motion.video
-            key={current}
-            src={VIDEOS[current]}
+            key={src}
+            src={src}
             autoPlay
             muted
+            loop
             playsInline
             className="absolute inset-0 w-full h-full object-cover object-center"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 1, ease: "easeInOut" }}
+            animate={{ opacity: i === current ? 1 : 0 }}
+            transition={{ duration: CROSSFADE_DURATION, ease: "easeInOut" }}
           />
-        </AnimatePresence>
+        ))}
         {/* Dark overlay */}
         <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.55)" }} />
       </div>
