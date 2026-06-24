@@ -82,11 +82,10 @@ function GridCell({
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       style={{
-        aspectRatio: "1 / 1",
+        height: 160,
         display: "flex",
-        alignItems: logo ? "flex-end" : "flex-start",
-        justifyContent: "flex-start",
-        padding: logo ? "0 0 24px 24px" : 0,
+        alignItems: "center",
+        justifyContent: "center",
         borderRight: CELL_BORDER,
         borderBottom: CELL_BORDER,
         transition: "background 0.3s ease, outline 0.3s ease",
