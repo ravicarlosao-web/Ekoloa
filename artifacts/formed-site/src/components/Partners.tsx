@@ -1,8 +1,6 @@
 import React, { useRef, useCallback } from "react";
 import { motion } from "framer-motion";
 
-// Partner logos — icon + name, repeated to fill 5×3 grid (15 cells)
-// Only row 2 (index 5–9) shows logos; rows 1 and 3 are empty.
 const PARTNERS = [
   {
     name: "Eightball",
@@ -28,7 +26,7 @@ const PARTNERS = [
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden>
         <circle cx="10" cy="10" r="9" stroke="#111111" strokeWidth="1.5" />
         <path d="M10 4 A6 6 0 0 1 16 10" stroke="#111111" strokeWidth="1.5" strokeLinecap="round" />
-        <path d="M10 10 m-2.5 0 a2.5 2.5 0 1 0 5 0 a2.5 2.5 0 1 0 -5 0" fill="#111111" />
+        <circle cx="10" cy="10" r="2.5" fill="#111111" />
       </svg>
     ),
   },
@@ -52,10 +50,12 @@ const PARTNERS = [
   },
 ];
 
+const CELL_BORDER = "0.5px solid rgba(180,180,180,0.4)";
+
 function GridCell({
-  children,
+  logo,
 }: {
-  children?: React.ReactNode;
+  logo?: (typeof PARTNERS)[number];
 }) {
   const cellRef = useRef<HTMLDivElement>(null);
 
@@ -82,18 +82,34 @@ function GridCell({
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       style={{
-        height: 160,
+        aspectRatio: "1 / 1",
         display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        borderRight: "1px solid #DDDDDD",
-        borderBottom: "1px solid #DDDDDD",
+        alignItems: logo ? "flex-end" : "flex-start",
+        justifyContent: "flex-start",
+        padding: logo ? "0 0 24px 24px" : 0,
+        borderRight: CELL_BORDER,
+        borderBottom: CELL_BORDER,
         transition: "background 0.3s ease, outline 0.3s ease",
         cursor: "default",
         boxSizing: "border-box",
       }}
     >
-      {children}
+      {logo && (
+        <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+          {logo.icon}
+          <span
+            style={{
+              fontSize: 17,
+              fontWeight: 500,
+              color: "#111111",
+              fontFamily: "'DM Sans', 'Inter', sans-serif",
+              whiteSpace: "nowrap",
+            }}
+          >
+            {logo.name}
+          </span>
+        </div>
+      )}
     </div>
   );
 }
@@ -147,46 +163,20 @@ export function Partners() {
         style={{
           display: "grid",
           gridTemplateColumns: "repeat(5, 1fr)",
-          borderTop: "1px solid #DDDDDD",
-          borderLeft: "1px solid #DDDDDD",
+          gridTemplateRows: "repeat(3, 1fr)",
+          borderTop: CELL_BORDER,
+          borderLeft: CELL_BORDER,
           width: "100%",
         }}
       >
-        {/* Row 1 — empty */}
-        {Array.from({ length: 5 }).map((_, i) => (
-          <GridCell key={`r1-${i}`} />
+        {/* Rows 1 & 2 — empty (10 cells) */}
+        {Array.from({ length: 10 }).map((_, i) => (
+          <GridCell key={`empty-${i}`} />
         ))}
 
-        {/* Row 2 — logos */}
+        {/* Row 3 — logos (5 cells) */}
         {PARTNERS.map((p, i) => (
-          <GridCell key={`r2-${i}`}>
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: 10,
-              }}
-            >
-              {p.icon}
-              <span
-                style={{
-                  fontSize: 16,
-                  fontWeight: 500,
-                  color: "#111111",
-                  letterSpacing: "-0.01em",
-                  fontFamily: "'DM Sans', 'Inter', sans-serif",
-                  whiteSpace: "nowrap",
-                }}
-              >
-                {p.name}
-              </span>
-            </div>
-          </GridCell>
-        ))}
-
-        {/* Row 3 — empty */}
-        {Array.from({ length: 5 }).map((_, i) => (
-          <GridCell key={`r3-${i}`} />
+          <GridCell key={`logo-${i}`} logo={p} />
         ))}
       </motion.div>
     </section>
