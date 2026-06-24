@@ -17,7 +17,7 @@ export function Navbar() {
         backgroundColor: isScrolled ? "rgba(235, 235, 235, 0.95)" : "rgba(0,0,0,0)",
         color: isScrolled ? "#111111" : "#FFFFFF"
       }}
-      className="fixed top-0 left-0 w-full z-50 px-8 py-6 flex items-center justify-between transition-colors duration-300 backdrop-blur-sm"
+      className="fixed top-0 left-0 w-full z-50 px-8 py-6 flex items-center justify-between transition-colors duration-300"
     >
       <div className="font-bold text-lg md:text-xl tracking-[0.15em]">
         FORMED®
