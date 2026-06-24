@@ -4,84 +4,278 @@ import processBg from "@/assets/images/process-card.jpg";
 
 export function Process() {
   return (
-    <section className="w-full bg-[#EBEBEB] text-[#111111] pb-24 md:pb-32 px-4 md:px-8">
-      {/* Header */}
-      <motion.div 
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
-        className="text-center mb-16"
-      >
-        <div className="text-[11px] font-semibold tracking-[0.2em] uppercase mb-6 opacity-60">
-          [02] OUR PROCESS
-        </div>
-        <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-[#0D0D0D]">
-          How you'll work with us
-        </h2>
-      </motion.div>
-
-      {/* Process Cards */}
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3">
-        
-        {/* Card 1 */}
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
+    <section
+      className="w-full overflow-hidden"
+      style={{ background: "#F0F0F0", paddingTop: 96, paddingBottom: 0 }}
+    >
+      {/* ── Section header ─────────────────────────────────── */}
+      <div className="text-center" style={{ marginBottom: 64, paddingLeft: 80, paddingRight: 80 }}>
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="bg-white h-[420px] md:h-[480px] p-8 md:p-12 flex flex-col justify-end border-r border-b md:border-b-0 border-[#CCCCCC]/50"
+          transition={{ duration: 0.7 }}
         >
-          <div className="text-[11px] font-semibold tracking-[0.2em] uppercase mb-4 opacity-50">
+          <div
+            style={{
+              fontSize: 11,
+              fontWeight: 400,
+              letterSpacing: "0.15em",
+              color: "#111111",
+              textTransform: "uppercase",
+              marginBottom: 20,
+            }}
+          >
+            [02] OUR PROCESS
+          </div>
+          <h2
+            style={{
+              fontSize: "clamp(36px, 3.8vw, 52px)",
+              fontWeight: 300,
+              lineHeight: 1.2,
+              color: "#111111",
+              letterSpacing: "-0.01em",
+              fontFamily: "'DM Sans', 'Inter', sans-serif",
+              margin: 0,
+            }}
+          >
+            How you'll work with us
+          </h2>
+        </motion.div>
+      </div>
+
+      {/* ── Staggered cards ────────────────────────────────── */}
+      <div
+        style={{
+          display: "flex",
+          alignItems: "flex-start",
+          width: "100%",
+        }}
+      >
+
+        {/* Card 1 — White */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, delay: 0 }}
+          style={{
+            flex: 1,
+            height: 480,
+            marginTop: 80,
+            background: "#FFFFFF",
+            position: "relative",
+            overflow: "hidden",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "flex-end",
+            padding: "48px 44px",
+          }}
+        >
+          {/* Subtle architectural texture overlay */}
+          <div
+            aria-hidden
+            style={{
+              position: "absolute",
+              inset: 0,
+              backgroundImage:
+                "repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(0,0,0,0.04) 39px, rgba(0,0,0,0.04) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(0,0,0,0.04) 39px, rgba(0,0,0,0.04) 40px)",
+              pointerEvents: "none",
+              opacity: 0.06,
+            }}
+          />
+          <div
+            style={{
+              fontSize: 10,
+              fontWeight: 500,
+              letterSpacing: "0.12em",
+              color: "#111111",
+              textTransform: "uppercase",
+              marginBottom: 16,
+            }}
+          >
             STEP [01]
           </div>
-          <h3 className="text-2xl font-bold mb-4">Discovery & Planning</h3>
-          <p className="text-sm text-[#111111]/70 leading-relaxed">
-            We work closely with you to understand your vision, assess feasibility, and create a comprehensive roadmap that ensures clarity from day one.
+          <h3
+            style={{
+              fontSize: 26,
+              fontWeight: 500,
+              color: "#111111",
+              lineHeight: 1.2,
+              marginBottom: 16,
+            }}
+          >
+            Discovery & Planning
+          </h3>
+          <p
+            style={{
+              fontSize: 14,
+              fontWeight: 400,
+              color: "#555555",
+              lineHeight: 1.6,
+              margin: 0,
+            }}
+          >
+            We begin by understanding your vision, requirements, and site
+            constraints to define a clear, achievable project plan.
           </p>
         </motion.div>
 
-        {/* Card 2 */}
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
+        {/* Card 2 — Dark with image */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="bg-[#2A2A2A] text-white h-[420px] md:h-[480px] relative overflow-hidden flex flex-col border-r border-b md:border-b-0 border-[#111111]/50"
+          transition={{ duration: 0.7, delay: 0.1 }}
+          style={{
+            flex: 1,
+            height: 560,
+            marginTop: 0,
+            position: "relative",
+            overflow: "hidden",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "flex-end",
+            padding: "48px 44px",
+          }}
         >
-          <div className="absolute top-0 left-0 w-full h-[55%]">
-            <img src={processBg} alt="Architecture Design" className="w-full h-full object-cover opacity-80" />
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#2A2A2A]" />
-          </div>
-          <div className="relative z-10 mt-auto p-8 md:p-12 flex flex-col justify-end h-full">
-            <div className="text-[11px] font-semibold tracking-[0.2em] uppercase mb-4 opacity-60">
+          {/* Background image */}
+          <img
+            src={processBg}
+            alt=""
+            aria-hidden
+            style={{
+              position: "absolute",
+              inset: 0,
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              objectPosition: "center",
+            }}
+          />
+          {/* Dark overlay */}
+          <div
+            aria-hidden
+            style={{
+              position: "absolute",
+              inset: 0,
+              background: "rgba(0,0,0,0.65)",
+            }}
+          />
+          {/* Content */}
+          <div style={{ position: "relative", zIndex: 1 }}>
+            <div
+              style={{
+                fontSize: 10,
+                fontWeight: 500,
+                letterSpacing: "0.12em",
+                color: "#ffffff",
+                textTransform: "uppercase",
+                marginBottom: 16,
+              }}
+            >
               STEP [02]
             </div>
-            <h3 className="text-2xl font-bold mb-4">Design & Delivery</h3>
-            <p className="text-sm text-white/70 leading-relaxed">
-              Our expert team executes the plan with precision, managing every detail of the construction process to ensure quality and compliance.
+            <h3
+              style={{
+                fontSize: 26,
+                fontWeight: 500,
+                color: "#ffffff",
+                lineHeight: 1.2,
+                marginBottom: 16,
+              }}
+            >
+              Design & Delivery
+            </h3>
+            <p
+              style={{
+                fontSize: 14,
+                fontWeight: 400,
+                color: "rgba(255,255,255,0.75)",
+                lineHeight: 1.6,
+                margin: 0,
+              }}
+            >
+              Our teams manage every stage of construction with precision,
+              transparency, and a focus on quality and efficiency.
             </p>
           </div>
         </motion.div>
 
-        {/* Card 3 */}
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
+        {/* Card 3 — Yellow */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="bg-[#F5A81C] text-black h-[420px] md:h-[480px] p-8 md:p-12 flex flex-col justify-end"
+          transition={{ duration: 0.7, delay: 0.2 }}
+          style={{
+            flex: 1,
+            height: 520,
+            marginTop: 20,
+            background: "#F5A623",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "flex-end",
+            padding: "48px 44px",
+          }}
         >
-          <div className="text-[11px] font-semibold tracking-[0.2em] uppercase mb-4 opacity-70">
+          <div
+            style={{
+              fontSize: 10,
+              fontWeight: 500,
+              letterSpacing: "0.12em",
+              color: "#111111",
+              textTransform: "uppercase",
+              marginBottom: 16,
+            }}
+          >
             STEP [03]
           </div>
-          <h3 className="text-2xl font-bold mb-4">Launch & Support</h3>
-          <p className="text-sm text-black/80 leading-relaxed mb-8">
-            We deliver the finished property ready for market, providing ongoing support to ensure your long-term success.
+          <h3
+            style={{
+              fontSize: 26,
+              fontWeight: 500,
+              color: "#111111",
+              lineHeight: 1.2,
+              marginBottom: 16,
+            }}
+          >
+            Launch & Support
+          </h3>
+          <p
+            style={{
+              fontSize: 14,
+              fontWeight: 400,
+              color: "#333333",
+              lineHeight: 1.6,
+              marginBottom: 36,
+            }}
+          >
+            We hand over a completed development and remain a trusted partner
+            as your project moves into its next phase.
           </p>
-          <button className="self-start px-6 py-3 border border-black text-black text-xs font-bold tracking-[0.1em] uppercase hover:bg-black hover:text-[#F5A81C] transition-colors">
-            START YOUR PROJECT
-          </button>
+          <div>
+            <button
+              style={{
+                background: "#FFFFFF",
+                color: "#111111",
+                fontSize: 11,
+                fontWeight: 600,
+                letterSpacing: "0.12em",
+                padding: "14px 28px",
+                border: "none",
+                borderRadius: 0,
+                textTransform: "uppercase",
+                cursor: "pointer",
+                outline: "none",
+                transition: "opacity 0.2s",
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.85")}
+              onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
+            >
+              START YOUR PROJECT
+            </button>
+          </div>
         </motion.div>
 
       </div>

@@ -1,0 +1,44 @@
+Corrija a seção "Our Process" (3 cards: branco, escuro, amarelo):
+TÍTULO DA SEÇÃO
+
+Label "[02] OUR PROCESS": centralizado, font-size 11px, letter-spacing 0.15em, cor #111111
+Título "How you'll work with us": font-size 52px, font-weight 300–400 (light/regular), centralizado, cor #111111
+
+LAYOUT DOS 3 CARDS — EFEITO ESCALONADO (STAGGERED)
+Os cards NÃO devem ter a mesma altura nem alinhar pelo topo. Aplicar assim:
+
+Card 1 (branco): altura ~480px, margin-top 80px (começa mais baixo)
+Card 2 (escuro): altura ~560px, margin-top 0 (o mais alto, âncora visual)
+Card 3 (amarelo): altura ~520px, margin-top 20px
+Os 3 cards ficam lado a lado sem gap, ocupando 100% da largura
+
+CARD 1 — BRANCO (Discovery & Planning)
+
+Background: branco (#FFFFFF) com imagem de textura arquitetônica muito suave em overlay (opacity ~0.06), ou usar background-image de um pattern sutil
+Label "STEP [01]": font-size 10px, letter-spacing 0.12em, font-weight 500, cor #111111
+Título "Discovery & Planning": font-size 26px, font-weight 500, cor #111111
+Texto: "We begin by understanding your vision, requirements, and site constraints to define a clear, achievable project plan." — font-size 14px, cor #555555, line-height 1.6
+Conteúdo posicionado no terço inferior do card (padding-top grande ~200px)
+
+CARD 2 — ESCURO (Design & Delivery)
+
+Background: imagem de prédio/construção com overlay escuro rgba(0,0,0,0.65)
+Label "STEP [02]": font-size 10px, letter-spacing 0.12em, cor branco
+Título "Design & Delivery": font-size 26px, font-weight 500, cor branco
+Texto: "Our teams manage every stage of construction with precision, transparency, and a focus on quality and efficiency." — font-size 14px, cor rgba(255,255,255,0.75), line-height 1.6
+Conteúdo posicionado no terço inferior do card
+
+CARD 3 — AMARELO (Launch & Support)
+
+Background: #F5A623 (amarelo âmbar sólido)
+Label "STEP [03]": font-size 10px, letter-spacing 0.12em, cor #111111
+Título "Launch & Support": font-size 26px, font-weight 500, cor #111111
+Texto: "We hand over a completed development and remain a trusted partner as your project moves into its next phase." — font-size 14px, cor #333333, line-height 1.6
+Botão "START YOUR PROJECT":
+
+Background: #FFFFFF (branco sólido)
+Cor do texto: #111111 (preto)
+Font-size: 11px, letter-spacing 0.12em, font-weight 600
+Padding: 14px 28px
+Border-radius: 0 (quadrado)
+SEM outline/border visível
