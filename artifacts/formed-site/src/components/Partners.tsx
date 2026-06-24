@@ -127,8 +127,8 @@ function GridCell({
 }
 
 const COLS = 5;
-const ROWS = 2;
-const LOGO_ROW = 0; // 0-indexed — first row (logos), second row empty
+const ROWS = 3;
+const LOGO_ROW = 1; // 0-indexed — middle row
 
 export function Partners() {
   return (
