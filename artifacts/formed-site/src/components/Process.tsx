@@ -6,7 +6,7 @@ export function Process() {
   return (
     <section
       className="w-full overflow-hidden"
-      style={{ background: "#F0F0F0", paddingTop: 96 }}
+      style={{ background: "#F0F0F0", paddingTop: 96, paddingBottom: 80 }}
     >
       {/* ── Section header ─────────────────────────────────── */}
       <motion.div
