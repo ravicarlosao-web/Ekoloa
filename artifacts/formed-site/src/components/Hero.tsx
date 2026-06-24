@@ -4,75 +4,117 @@ import heroBg from "@/assets/images/hero-bg.jpg";
 
 export function Hero() {
   return (
-    <section className="relative w-full h-[100dvh] flex flex-col justify-end bg-[#1a1a1a] overflow-hidden text-white">
+    <section className="relative w-full h-[100dvh] flex flex-col bg-[#111] overflow-hidden text-white">
       {/* Background Image & Overlay */}
       <div className="absolute inset-0 z-0">
-        <img src={heroBg} alt="Construction Site" className="w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-black/55" />
+        <img
+          src={heroBg}
+          alt="Construction Site"
+          className="w-full h-full object-cover object-center"
+        />
+        {/* Dark overlay — stronger on left, slightly lighter on right to reveal bg */}
+        <div className="absolute inset-0 bg-black/65" />
       </div>
 
-      {/* Main Content */}
-      <div className="relative z-10 w-full h-full flex flex-col pt-[40dvh] px-8 md:px-16 lg:px-24">
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
+      {/* Content wrapper — fills full height */}
+      <div className="relative z-10 flex flex-col h-full w-full">
+
+        {/* ── Upper block: label + headline ─────────────────────── */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="max-w-4xl"
+          transition={{ duration: 0.9, delay: 0.15, ease: [0.25, 0.1, 0.25, 1] }}
+          className="flex flex-col justify-end flex-1 px-10 md:px-16 lg:px-20 pb-12"
         >
-          <div className="text-[11px] font-semibold tracking-[0.2em] uppercase mb-6 opacity-90">
-            // CONSTRUCTION & DEVELOPMENT
-          </div>
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] tracking-tight">
+          {/* Breadcrumb label */}
+          <p className="text-[11px] font-semibold tracking-[0.22em] uppercase text-white/80 mb-5">
+            // CONSTRUCTION &amp; DEVELOPMENT
+          </p>
+
+          {/* Main headline */}
+          <h1
+            className="font-bold leading-[1.05] tracking-tight text-white"
+            style={{ fontSize: "clamp(44px, 5.5vw, 78px)", maxWidth: "78%" }}
+          >
             Crafting the next generation of properties and communities
           </h1>
         </motion.div>
-      </div>
 
-      {/* Bottom Cards */}
-      <div className="relative z-20 flex flex-col md:flex-row w-full mt-auto md:absolute md:bottom-0 md:left-0 md:right-0">
-        {/* Left Yellow Card */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="bg-[#F5A81C] text-black p-8 md:w-[400px] relative shrink-0"
-        >
-          {/* Corner Brackets */}
-          <div className="absolute top-4 left-4 w-4 h-4 border-t border-l border-black/30" />
-          <div className="absolute top-4 right-4 w-4 h-4 border-t border-r border-black/30" />
-          <div className="absolute bottom-4 left-4 w-4 h-4 border-b border-l border-black/30" />
-          <div className="absolute bottom-4 right-4 w-4 h-4 border-b border-r border-black/30" />
+        {/* ── Bottom info strip ──────────────────────────────────── */}
+        <div className="flex w-full items-stretch">
 
-          <div className="text-[11px] font-semibold tracking-[0.2em] uppercase mb-8 opacity-80">
-            [01] LATEST UPDATE
-          </div>
-          <h3 className="text-xl md:text-2xl font-bold leading-snug mb-12">
-            Designing Apartment Developments for Long-Term Value
-          </h3>
-          <a href="#" className="inline-flex items-center text-[11px] font-bold tracking-[0.1em] uppercase hover:opacity-70 transition-opacity">
-            READ MORE ——&rarr;
-          </a>
-        </motion.div>
+          {/* Left spacer — empty dark area (~27% wide) */}
+          <div className="hidden lg:block" style={{ width: "27%" }} />
 
-        {/* Right Transparent Card */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="p-8 md:px-12 flex-grow bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end"
-        >
-          <div className="max-w-md">
-            <div className="text-[11px] font-semibold tracking-[0.2em] uppercase mb-4 opacity-80 text-white">
+          {/* ── Yellow card ──────────────────────────────────────── */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.45, ease: [0.25, 0.1, 0.25, 1] }}
+            className="relative bg-[#F5A81C] text-black flex-shrink-0"
+            style={{ width: "clamp(260px, 28%, 340px)", padding: "32px 36px 36px" }}
+          >
+            {/* Corner brackets — extend 10px OUTSIDE the card */}
+            {/* Top-left */}
+            <span className="absolute pointer-events-none"
+              style={{ top: -10, left: -10, width: 22, height: 22,
+                borderTop: "1.5px solid #F5A81C", borderLeft: "1.5px solid #F5A81C" }} />
+            {/* Top-right */}
+            <span className="absolute pointer-events-none"
+              style={{ top: -10, right: -10, width: 22, height: 22,
+                borderTop: "1.5px solid #F5A81C", borderRight: "1.5px solid #F5A81C" }} />
+            {/* Bottom-left */}
+            <span className="absolute pointer-events-none"
+              style={{ bottom: -10, left: -10, width: 22, height: 22,
+                borderBottom: "1.5px solid #F5A81C", borderLeft: "1.5px solid #F5A81C" }} />
+            {/* Bottom-right */}
+            <span className="absolute pointer-events-none"
+              style={{ bottom: -10, right: -10, width: 22, height: 22,
+                borderBottom: "1.5px solid #F5A81C", borderRight: "1.5px solid #F5A81C" }} />
+
+            <p className="text-[10px] font-semibold tracking-[0.22em] uppercase text-black/70 mb-6">
+              [01] LATEST UPDATE
+            </p>
+            <h3 className="font-bold leading-snug mb-10" style={{ fontSize: "clamp(18px, 1.5vw, 22px)" }}>
+              Designing Apartment Developments for Long-Term Value
+            </h3>
+            <a
+              href="#"
+              className="inline-flex items-center gap-2 text-[11px] font-bold tracking-[0.18em] uppercase text-black hover:opacity-60 transition-opacity duration-200"
+            >
+              READ MORE &nbsp;——&rarr;
+            </a>
+          </motion.div>
+
+          {/* Middle flex spacer */}
+          <div className="flex-1 hidden lg:block" />
+
+          {/* ── Work With Us ─────────────────────────────────────── */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+            className="flex flex-col justify-end text-white"
+            style={{ width: "clamp(280px, 32%, 400px)", padding: "32px 36px 36px" }}
+          >
+            <p className="text-[10px] font-semibold tracking-[0.22em] uppercase text-white/60 mb-4">
               [02] WORK WITH US
-            </div>
-            <p className="text-lg md:text-xl font-medium mb-8 text-white/90">
+            </p>
+            <p className="font-medium text-white/90 mb-8 leading-snug"
+              style={{ fontSize: "clamp(16px, 1.3vw, 20px)" }}>
               Partner with Formed to bring your next development to life
             </p>
-            <button className="px-6 py-3 border border-white text-white text-xs font-bold tracking-[0.1em] uppercase hover:bg-white hover:text-black transition-colors">
-              START YOUR PROJECT
-            </button>
-          </div>
-        </motion.div>
+            <div>
+              <button className="px-6 py-3 border border-white text-white text-[11px] font-bold tracking-[0.18em] uppercase hover:bg-white hover:text-black transition-colors duration-200">
+                START YOUR PROJECT
+              </button>
+            </div>
+          </motion.div>
+
+          {/* Right edge pad */}
+          <div style={{ width: "clamp(20px, 4%, 60px)" }} />
+        </div>
+        {/* bottom strip end */}
       </div>
     </section>
   );
