@@ -185,7 +185,6 @@ export function Partners() {
         style={{
           display: "grid",
           gridTemplateColumns: `repeat(${COLS}, 1fr)`,
-          border: LINE,
           width: "100%",
           boxSizing: "border-box",
         }}
