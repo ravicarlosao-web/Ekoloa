@@ -2,7 +2,7 @@ import React, { useRef, useCallback } from "react";
 import { motion } from "framer-motion";
 
 const SECTION_BG = "#EFEFEF";
-const GRID_LINE = "rgba(180,180,180,0.45)";
+const LINE = "0.5px solid rgba(160,160,160,0.45)";
 
 const PARTNERS = [
   {
@@ -53,26 +53,35 @@ const PARTNERS = [
   },
 ];
 
-function GridCell({ logo }: { logo?: (typeof PARTNERS)[number] }) {
+function GridCell({
+  logo,
+  isLastCol,
+  isLastRow,
+}: {
+  logo?: (typeof PARTNERS)[number];
+  isLastCol?: boolean;
+  isLastRow?: boolean;
+}) {
   const cellRef = useRef<HTMLDivElement>(null);
 
-  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
-    const el = cellRef.current;
-    if (!el) return;
-    const rect = el.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width) * 100;
-    const y = ((e.clientY - rect.top) / rect.height) * 100;
-    el.style.background = `radial-gradient(circle at ${x}% ${y}%, rgba(245,166,35,0.22) 0%, ${SECTION_BG} 70%)`;
-    el.style.outline = `1px solid #F5A623`;
-    el.style.zIndex = "1";
-  }, []);
+  const handleMouseMove = useCallback(
+    (e: React.MouseEvent<HTMLDivElement>) => {
+      const el = cellRef.current;
+      if (!el) return;
+      const rect = el.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
+      el.style.background = `radial-gradient(circle at ${x}% ${y}%, rgba(245,166,35,0.22) 0%, ${SECTION_BG} 70%)`;
+      el.style.boxShadow = "inset 0 0 0 1px #F5A623";
+    },
+    []
+  );
 
   const handleMouseLeave = useCallback(() => {
     const el = cellRef.current;
     if (!el) return;
     el.style.background = SECTION_BG;
-    el.style.outline = "none";
-    el.style.zIndex = "0";
+    el.style.boxShadow = "none";
   }, []);
 
   return (
@@ -81,16 +90,20 @@ function GridCell({ logo }: { logo?: (typeof PARTNERS)[number] }) {
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       style={{
-        /* Square cells via aspect-ratio; clamp keeps them reasonable on large screens */
-        aspectRatio: "1 / 1",
-        maxHeight: 210,
+        height: 160,
         background: SECTION_BG,
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        position: "relative",
+        /* Right border on every cell; bottom border on every cell.
+           Container supplies the top and left outer edges.
+           Last column gets no extra right (container right covers it via border).
+           Last row gets no extra bottom (container bottom covers it). */
+        borderRight: isLastCol ? "none" : LINE,
+        borderBottom: isLastRow ? "none" : LINE,
         transition: "background 0.25s ease",
         cursor: "default",
+        boxSizing: "border-box",
       }}
     >
       {logo && (
@@ -112,6 +125,10 @@ function GridCell({ logo }: { logo?: (typeof PARTNERS)[number] }) {
     </div>
   );
 }
+
+const COLS = 5;
+const ROWS = 3;
+const LOGO_ROW = 1; // 0-indexed — middle row
 
 export function Partners() {
   return (
@@ -158,10 +175,8 @@ export function Partners() {
         </h2>
       </motion.div>
 
-      {/* ── 5×3 grid ─────────────────────────────────────────
-          Technique: gap:1px + background on wrapper = crisp
-          closed grid lines on all four sides, no missing edges.
-      ──────────────────────────────────────────────────────── */}
+      {/* ── Grid: outer border closes all 4 edges;
+              inner lines are border-right / border-bottom on each cell ── */}
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
@@ -169,29 +184,26 @@ export function Partners() {
         transition={{ duration: 0.6, delay: 0.2 }}
         style={{
           display: "grid",
-          gridTemplateColumns: "repeat(5, 1fr)",
-          gridTemplateRows: "repeat(3, auto)",
-          gap: "1px",
-          background: GRID_LINE,   /* gap colour = line colour */
-          border: `1px solid ${GRID_LINE}`, /* outer border closes all 4 edges */
+          gridTemplateColumns: `repeat(${COLS}, 1fr)`,
+          border: LINE,
           width: "100%",
           boxSizing: "border-box",
         }}
       >
-        {/* Row 1 — empty */}
-        {Array.from({ length: 5 }).map((_, i) => (
-          <GridCell key={`r1-${i}`} />
-        ))}
-
-        {/* Row 2 — logos (middle row) */}
-        {PARTNERS.map((p, i) => (
-          <GridCell key={`r2-${i}`} logo={p} />
-        ))}
-
-        {/* Row 3 — empty */}
-        {Array.from({ length: 5 }).map((_, i) => (
-          <GridCell key={`r3-${i}`} />
-        ))}
+        {Array.from({ length: ROWS }).flatMap((_, row) =>
+          Array.from({ length: COLS }).map((_, col) => {
+            const logo =
+              row === LOGO_ROW ? PARTNERS[col % PARTNERS.length] : undefined;
+            return (
+              <GridCell
+                key={`${row}-${col}`}
+                logo={logo}
+                isLastCol={col === COLS - 1}
+                isLastRow={row === ROWS - 1}
+              />
+            );
+          })
+        )}
       </motion.div>
     </section>
   );
