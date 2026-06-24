@@ -2,7 +2,14 @@ import React, { useRef, useCallback } from "react";
 import { motion } from "framer-motion";
 
 const SECTION_BG = "#EFEFEF";
-const LINE = "0.5px solid rgba(160,160,160,0.45)";
+const LINE_COLOR = "rgba(160,160,160,0.5)";
+const LINE_FADE = `linear-gradient(to bottom, transparent, ${LINE_COLOR} 30%, ${LINE_COLOR} 70%, transparent)`;
+const LINE_FADE_H = `linear-gradient(to right, transparent, ${LINE_COLOR} 30%, ${LINE_COLOR} 70%, transparent)`;
+
+const COLS = 7;          // 5 logo cols + 1 empty col each side
+const LOGO_COLS = [1, 2, 3, 4, 5];
+const ROWS = 3;
+const LOGO_ROW = 1;
 
 const PARTNERS = [
   {
@@ -55,12 +62,12 @@ const PARTNERS = [
 
 function GridCell({
   logo,
-  isLastCol,
-  isLastRow,
+  col,
+  row,
 }: {
   logo?: (typeof PARTNERS)[number];
-  isLastCol?: boolean;
-  isLastRow?: boolean;
+  col: number;
+  row: number;
 }) {
   const cellRef = useRef<HTMLDivElement>(null);
 
@@ -84,6 +91,14 @@ function GridCell({
     el.style.boxShadow = "none";
   }, []);
 
+  // Edge detection for gradient lines
+  const isLastCol = col === COLS - 1;
+  const isLastRow = row === ROWS - 1;
+  // Vertical lines on outer edges get a fade (col 0's right border and col COLS-2's right border)
+  const rightLineIsEdge = col === 0 || col === COLS - 2;
+  // Horizontal lines on outer edges get a horizontal fade (row 0's bottom and row ROWS-2's bottom)
+  const bottomLineIsEdge = row === 0 || row === ROWS - 2;
+
   return (
     <div
       ref={cellRef}
@@ -95,17 +110,44 @@ function GridCell({
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        /* Right border on every cell; bottom border on every cell.
-           Container supplies the top and left outer edges.
-           Last column gets no extra right (container right covers it via border).
-           Last row gets no extra bottom (container bottom covers it). */
-        borderRight: isLastCol ? "none" : LINE,
-        borderBottom: isLastRow ? "none" : LINE,
+        position: "relative",
         transition: "background 0.25s ease",
         cursor: "default",
-        boxSizing: "border-box",
       }}
     >
+      {/* Right border line */}
+      {!isLastCol && (
+        <div
+          aria-hidden
+          style={{
+            position: "absolute",
+            right: 0,
+            top: 0,
+            bottom: 0,
+            width: "0.5px",
+            background: rightLineIsEdge ? LINE_FADE : LINE_COLOR,
+            pointerEvents: "none",
+          }}
+        />
+      )}
+
+      {/* Bottom border line */}
+      {!isLastRow && (
+        <div
+          aria-hidden
+          style={{
+            position: "absolute",
+            bottom: 0,
+            left: 0,
+            right: 0,
+            height: "0.5px",
+            background: bottomLineIsEdge ? LINE_FADE_H : LINE_COLOR,
+            pointerEvents: "none",
+          }}
+        />
+      )}
+
+      {/* Logo */}
       {logo && (
         <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
           {logo.icon}
@@ -125,11 +167,6 @@ function GridCell({
     </div>
   );
 }
-
-const COLS = 7;          // 5 logo cols + 1 empty col each side
-const LOGO_COLS = [1, 2, 3, 4, 5]; // inner 5 columns get logos
-const ROWS = 3;
-const LOGO_ROW = 1; // 0-indexed — middle row
 
 export function Partners() {
   return (
@@ -176,8 +213,7 @@ export function Partners() {
         </h2>
       </motion.div>
 
-      {/* ── Grid: outer border closes all 4 edges;
-              inner lines are border-right / border-bottom on each cell ── */}
+      {/* ── Grid ────────────────────────────────────────────── */}
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
@@ -187,7 +223,6 @@ export function Partners() {
           display: "grid",
           gridTemplateColumns: `repeat(${COLS}, 1fr)`,
           width: "100%",
-          boxSizing: "border-box",
         }}
       >
         {Array.from({ length: ROWS }).flatMap((_, row) =>
@@ -201,8 +236,8 @@ export function Partners() {
               <GridCell
                 key={`${row}-${col}`}
                 logo={logo}
-                isLastCol={col === COLS - 1}
-                isLastRow={row === ROWS - 1}
+                col={col}
+                row={row}
               />
             );
           })
