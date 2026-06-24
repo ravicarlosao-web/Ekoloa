@@ -1,0 +1,38 @@
+ADICIONAR SEÇÃO 5 — OUR PARTNERS
+Adicionar uma nova seção após a seção Our Process, com fundo #EFEFEF.
+TÍTULO DA SEÇÃO
+
+Label "[03] OUR PARTNERS": centralizado, font-size 11px, letter-spacing 0.15em, weight 400, cor #111111
+Título: "We collaborate with trusted partners to develop high-quality projects that are built to last."
+Font-size: 52px, font-weight 300, text-align center, cor #111111, line-height 1.2
+Padding inferior do título até a grid: 60px
+
+GRID DE LOGOS — PARCEIROS
+Uma grelha de 5 colunas × 3 linhas com linhas divisórias finas (1px solid #DDDDDD) criando células quadradas. A grelha ocupa 100% da largura da página.
+
+Cada célula tem altura de ~160px
+Os logos ficam centralizados dentro de cada célula (horizontal e verticalmente)
+Logos a usar (repetidos para preencher a grid): Eightball, Codecraft_, CoreOS — com ícone à esquerda do nome
+Font-size dos logos: 16px, font-weight 500, cor #111111
+Apenas as células da linha do meio (linha 2) contêm os logos visíveis. As linhas 1 e 3 ficam vazias (apenas as linhas da grid aparecem).
+
+EFEITO HOVER — LUZ POR CÉLULA
+Quando o mouse passa sobre qualquer célula da grid:
+
+Aplicar um glow/radial gradient amarelo-dourado centrado no cursor dentro da célula:
+cssbackground: radial-gradient(circle at center, rgba(245, 166, 35, 0.25) 0%, transparent 70%);
+
+Adicionar uma borda amarela fina (1px solid #F5A623) na célula em hover
+Transição suave: transition: all 0.3s ease
+O efeito deve seguir o cursor dentro da célula usando JavaScript (mousemove event), atualizando a posição do radial-gradient dinamicamente:
+javascriptcell.addEventListener('mousemove', (e) => {
+  const rect = cell.getBoundingClientRect();
+  const x = ((e.clientX - rect.left) / rect.width) * 100;
+  const y = ((e.clientY - rect.top) / rect.height) * 100;
+  cell.style.background = `radial-gradient(circle at ${x}% ${y}%, rgba(245,166,35,0.25) 0%, transparent 70%)`;
+  cell.style.border = '1px solid #F5A623';
+});
+cell.addEventListener('mouseleave', () => {
+  cell.style.background = 'transparent';
+  cell.style.border = '';
+});
