@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 const VIDEOS = ["/hero1.mp4", "/hero2.mp4", "/hero3.mp4"];
 const SWITCH_INTERVAL = 5000;
-const CROSSFADE_DURATION = 1.8; // seconds
+const CROSSFADE_S = 1.5;
 
 function CornerCross({ style }: { style: React.CSSProperties }) {
   return (
@@ -22,13 +22,38 @@ function CornerCross({ style }: { style: React.CSSProperties }) {
 
 export function Hero() {
   const [current, setCurrent] = useState(0);
-  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
 
+  // On mount: start first video, pause others
   useEffect(() => {
-    timerRef.current = setInterval(() => {
+    videoRefs.current.forEach((v, i) => {
+      if (!v) return;
+      if (i === 0) { v.play().catch(() => {}); }
+      else { v.pause(); v.currentTime = 0; }
+    });
+  }, []);
+
+  // When current changes: play new, pause old after crossfade
+  useEffect(() => {
+    videoRefs.current.forEach((v, i) => {
+      if (!v) return;
+      if (i === current) {
+        v.currentTime = 0;
+        v.play().catch(() => {});
+      } else {
+        // Pause after crossfade completes so it doesn't consume GPU
+        const t = setTimeout(() => { v.pause(); }, CROSSFADE_S * 1000);
+        return () => clearTimeout(t);
+      }
+    });
+  }, [current]);
+
+  // Auto-advance
+  useEffect(() => {
+    const timer = setInterval(() => {
       setCurrent((prev) => (prev + 1) % VIDEOS.length);
     }, SWITCH_INTERVAL);
-    return () => { if (timerRef.current) clearInterval(timerRef.current); };
+    return () => clearInterval(timer);
   }, []);
 
   return (
@@ -37,16 +62,19 @@ export function Hero() {
       {/* ── Video crossfade background ────────────────────────── */}
       <div className="absolute inset-0 z-0">
         {VIDEOS.map((src, i) => (
-          <motion.video
+          <video
             key={src}
+            ref={(el) => { videoRefs.current[i] = el; }}
             src={src}
-            autoPlay
             muted
-            loop
             playsInline
+            preload="auto"
             className="absolute inset-0 w-full h-full object-cover object-center"
-            animate={{ opacity: i === current ? 1 : 0 }}
-            transition={{ duration: CROSSFADE_DURATION, ease: "easeInOut" }}
+            style={{
+              opacity: i === current ? 1 : 0,
+              transition: `opacity ${CROSSFADE_S}s ease-in-out`,
+              willChange: "opacity",
+            }}
           />
         ))}
         {/* Dark overlay */}
