@@ -1,60 +1,159 @@
 import React from "react";
 import { motion } from "framer-motion";
 
+const stats = [
+  {
+    number: "15+",
+    description: "Years of experience delivering complex property developments",
+  },
+  {
+    number: "132",
+    description: "Residential and mixed-use projects successfully completed",
+  },
+  {
+    number: "37K+",
+    description: "Homes built to support growing communities worldwide",
+  },
+];
+
 export function About() {
   return (
-    <section className="w-full bg-[#EBEBEB] text-[#111111] py-24 md:py-32 px-8 md:px-16 lg:px-24">
+    <section
+      className="relative w-full overflow-hidden"
+      style={{ background: "#F0F0F0", padding: "96px 80px 80px" }}
+    >
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-16 lg:gap-24">
-        
-        {/* Left Column */}
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
+
+        {/* ── Left: label + headline ─────────────────────────── */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
           className="lg:w-3/5"
         >
-          <div className="text-[11px] font-semibold tracking-[0.2em] uppercase mb-8 opacity-60">
+          <div
+            style={{
+              fontSize: 11,
+              fontWeight: 400,
+              letterSpacing: "0.15em",
+              color: "#111111",
+              textTransform: "uppercase",
+              marginBottom: 32,
+            }}
+          >
             [01] ABOUT US
           </div>
-          <h2 className="text-4xl md:text-5xl lg:text-[52px] font-bold leading-[1.1] tracking-tight text-[#0D0D0D]">
-            From concept to completion, We deliver small and large scale property developments with a focus on high quality, efficiency, and impact.
+          <h2
+            style={{
+              fontSize: "clamp(36px, 3.8vw, 52px)",
+              fontWeight: 300,
+              lineHeight: 1.2,
+              letterSpacing: "-0.01em",
+              color: "#111111",
+              fontFamily: "'DM Sans', 'Inter', sans-serif",
+              margin: 0,
+            }}
+          >
+            From concept to completion, We deliver small and large scale
+            property developments with a focus on high quality, efficiency,
+            and impact.
           </h2>
         </motion.div>
 
-        {/* Right Column (Stats) */}
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
+        {/* ── Right: stats ───────────────────────────────────── */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.2 }}
+          transition={{ duration: 0.8, delay: 0.15 }}
           className="lg:w-2/5 flex flex-col"
         >
-          {/* Stat 1 */}
-          <div className="pb-8 border-b border-[#CCCCCC]">
-            <div className="text-5xl md:text-6xl font-bold mb-2 text-[#0D0D0D]">15+</div>
-            <p className="text-sm font-medium text-[#111111]/70 leading-relaxed max-w-xs">
-              Years of experience delivering complex property developments
-            </p>
-          </div>
-          
-          {/* Stat 2 */}
-          <div className="py-8 border-b border-[#CCCCCC]">
-            <div className="text-5xl md:text-6xl font-bold mb-2 text-[#0D0D0D]">132</div>
-            <p className="text-sm font-medium text-[#111111]/70 leading-relaxed max-w-xs">
-              Residential and mixed-use projects successfully completed
-            </p>
-          </div>
-
-          {/* Stat 3 */}
-          <div className="pt-8">
-            <div className="text-5xl md:text-6xl font-bold mb-2 text-[#0D0D0D]">37K+</div>
-            <p className="text-sm font-medium text-[#111111]/70 leading-relaxed max-w-xs">
-              Square meters of property developed across all projects
-            </p>
-          </div>
+          {stats.map((stat, i) => (
+            <div
+              key={stat.number}
+              style={{
+                paddingTop: i === 0 ? 0 : 28,
+                paddingBottom: i === stats.length - 1 ? 0 : 28,
+                borderTop: i === 0 ? "none" : "1px solid #DDDDDD",
+              }}
+            >
+              <div
+                style={{
+                  fontSize: 52,
+                  fontWeight: 400,
+                  color: "#111111",
+                  lineHeight: 1,
+                  marginBottom: 10,
+                  fontFamily: "'DM Sans', 'Inter', sans-serif",
+                }}
+              >
+                {stat.number}
+              </div>
+              <p
+                style={{
+                  fontSize: 14,
+                  fontWeight: 400,
+                  color: "#555555",
+                  lineHeight: 1.4,
+                  margin: 0,
+                  maxWidth: 280,
+                }}
+              >
+                {stat.description}
+              </p>
+            </div>
+          ))}
         </motion.div>
+      </div>
 
+      {/* ── Bottom-left year tag ────────────────────────────── */}
+      <div
+        style={{
+          position: "absolute",
+          bottom: 28,
+          left: 80,
+          fontSize: 11,
+          letterSpacing: "0.1em",
+          color: "#555555",
+          fontWeight: 400,
+        }}
+      >
+        [2018 – 2026]
+      </div>
+
+      {/* ── Bottom-centre decorative crosses ───────────────── */}
+      <div
+        style={{
+          position: "absolute",
+          bottom: 28,
+          left: "50%",
+          transform: "translateX(-50%)",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: 6,
+          opacity: 0.8,
+          userSelect: "none",
+          pointerEvents: "none",
+        }}
+        aria-hidden
+      >
+        {/* Row 1: 1 cross */}
+        <div style={{ display: "flex", gap: 20 }}>
+          <span style={{ fontSize: 18, color: "#F5A623", lineHeight: 1 }}>+</span>
+        </div>
+        {/* Row 2: 2 crosses */}
+        <div style={{ display: "flex", gap: 20 }}>
+          <span style={{ fontSize: 18, color: "#F5A623", lineHeight: 1 }}>+</span>
+          <span style={{ fontSize: 18, color: "#F5A623", lineHeight: 1 }}>+</span>
+        </div>
+        {/* Row 3: 3 crosses */}
+        <div style={{ display: "flex", gap: 20 }}>
+          <span style={{ fontSize: 18, color: "#F5A623", lineHeight: 1 }}>+</span>
+          <span style={{ fontSize: 18, color: "#F5A623", lineHeight: 1 }}>+</span>
+          <span style={{ fontSize: 18, color: "#F5A623", lineHeight: 1 }}>+</span>
+        </div>
       </div>
     </section>
   );
