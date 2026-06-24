@@ -127,8 +127,8 @@ function GridCell({
 }
 
 const COLS = 5;
-const ROWS = 2;
-const LOGO_ROW = 1; // 0-indexed — bottom row, empty row above
+const ROWS = 3;
+const LOGO_ROW = 1; // 0-indexed — middle row
 
 export function Partners() {
   return (
@@ -198,7 +198,7 @@ export function Partners() {
                 key={`${row}-${col}`}
                 logo={logo}
                 isLastCol={col === COLS - 1}
-                isLastRow={row === ROWS - 1}
+                isLastRow={row >= ROWS - 2}
               />
             );
           })
