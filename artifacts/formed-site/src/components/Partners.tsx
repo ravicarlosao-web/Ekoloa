@@ -1,15 +1,7 @@
-import React, { useRef, useCallback } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 
 const SECTION_BG = "#EFEFEF";
-const LINE_COLOR = "rgba(160,160,160,0.5)";
-const LINE_FADE = `linear-gradient(to bottom, transparent, ${LINE_COLOR} 30%, ${LINE_COLOR} 70%, transparent)`;
-const LINE_FADE_H = `linear-gradient(to right, transparent, ${LINE_COLOR} 30%, ${LINE_COLOR} 70%, transparent)`;
-
-const COLS = 7;          // 5 logo cols + 1 empty col each side
-const LOGO_COLS = [1, 2, 3, 4, 5];
-const ROWS = 3;
-const LOGO_ROW = 1;
 
 const PARTNERS = [
   {
@@ -60,113 +52,9 @@ const PARTNERS = [
   },
 ];
 
-function GridCell({
-  logo,
-  col,
-  row,
-}: {
-  logo?: (typeof PARTNERS)[number];
-  col: number;
-  row: number;
-}) {
-  const cellRef = useRef<HTMLDivElement>(null);
-
-  const handleMouseMove = useCallback(
-    (e: React.MouseEvent<HTMLDivElement>) => {
-      const el = cellRef.current;
-      if (!el) return;
-      const rect = el.getBoundingClientRect();
-      const x = ((e.clientX - rect.left) / rect.width) * 100;
-      const y = ((e.clientY - rect.top) / rect.height) * 100;
-      el.style.background = `radial-gradient(circle at ${x}% ${y}%, rgba(245,166,35,0.22) 0%, ${SECTION_BG} 70%)`;
-      el.style.boxShadow = "inset 0 0 0 1px #F5A623";
-    },
-    []
-  );
-
-  const handleMouseLeave = useCallback(() => {
-    const el = cellRef.current;
-    if (!el) return;
-    el.style.background = SECTION_BG;
-    el.style.boxShadow = "none";
-  }, []);
-
-  const isFirstCol = col === 0;
-  const isLastCol  = col === COLS - 1;
-  const isFirstRow = row === 0;
-  const isLastRow  = row === ROWS - 1;
-
-  return (
-    <div
-      ref={cellRef}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      style={{
-        height: 160,
-        background: SECTION_BG,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        position: "relative",
-        transition: "background 0.25s ease",
-        cursor: "default",
-      }}
-    >
-      {/* Outer LEFT edge — gradient vertical fade */}
-      {isFirstCol && (
-        <div aria-hidden style={{ position:"absolute", left:0, top:0, bottom:0, width:"0.5px", background: LINE_FADE, pointerEvents:"none" }} />
-      )}
-
-      {/* Inner + outer RIGHT edge */}
-      {!isLastCol && (
-        <div aria-hidden style={{ position:"absolute", right:0, top:0, bottom:0, width:"0.5px",
-          background: isLastCol ? "none" : LINE_COLOR,   // all internal right borders solid
-          pointerEvents:"none" }} />
-      )}
-      {/* Outer RIGHT edge — gradient vertical fade */}
-      {isLastCol && (
-        <div aria-hidden style={{ position:"absolute", right:0, top:0, bottom:0, width:"0.5px", background: LINE_FADE, pointerEvents:"none" }} />
-      )}
-
-      {/* Outer TOP edge — gradient horizontal fade */}
-      {isFirstRow && (
-        <div aria-hidden style={{ position:"absolute", top:0, left:0, right:0, height:"0.5px", background: LINE_FADE_H, pointerEvents:"none" }} />
-      )}
-
-      {/* Inner BOTTOM borders — solid */}
-      {!isLastRow && (
-        <div aria-hidden style={{ position:"absolute", bottom:0, left:0, right:0, height:"0.5px", background: LINE_COLOR, pointerEvents:"none" }} />
-      )}
-
-      {/* Outer BOTTOM edge — gradient horizontal fade */}
-      {isLastRow && (
-        <div aria-hidden style={{ position:"absolute", bottom:0, left:0, right:0, height:"0.5px", background: LINE_FADE_H, pointerEvents:"none" }} />
-      )}
-
-      {/* Logo */}
-      {logo && (
-        <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-          {logo.icon}
-          <span
-            style={{
-              fontSize: 17,
-              fontWeight: 500,
-              color: "#111111",
-              fontFamily: "'DM Sans', 'Inter', sans-serif",
-              whiteSpace: "nowrap",
-            }}
-          >
-            {logo.name}
-          </span>
-        </div>
-      )}
-    </div>
-  );
-}
-
 export function Partners() {
   return (
-    <section style={{ background: SECTION_BG, paddingTop: 96 }}>
+    <section style={{ background: SECTION_BG, paddingTop: 96, paddingBottom: 96 }}>
       {/* ── Header ──────────────────────────────────────────── */}
       <motion.div
         initial={{ opacity: 0, y: 16 }}
@@ -209,35 +97,50 @@ export function Partners() {
         </h2>
       </motion.div>
 
-      {/* ── Grid ────────────────────────────────────────────── */}
+      {/* ── Logos row ───────────────────────────────────────── */}
       <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
+        initial={{ opacity: 0, y: 12 }}
+        whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6, delay: 0.2 }}
         style={{
-          display: "grid",
-          gridTemplateColumns: `repeat(${COLS}, 1fr)`,
-          width: "100%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: 64,
+          flexWrap: "wrap",
+          paddingLeft: 80,
+          paddingRight: 80,
         }}
       >
-        {Array.from({ length: ROWS }).flatMap((_, row) =>
-          Array.from({ length: COLS }).map((_, col) => {
-            const logoIndex = LOGO_COLS.indexOf(col);
-            const logo =
-              row === LOGO_ROW && logoIndex !== -1
-                ? PARTNERS[logoIndex % PARTNERS.length]
-                : undefined;
-            return (
-              <GridCell
-                key={`${row}-${col}`}
-                logo={logo}
-                col={col}
-                row={row}
-              />
-            );
-          })
-        )}
+        {PARTNERS.map((p, i) => (
+          <div
+            key={i}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: 10,
+              opacity: 0.85,
+              transition: "opacity 0.2s ease",
+              cursor: "default",
+            }}
+            onMouseEnter={(e) => (e.currentTarget.style.opacity = "1")}
+            onMouseLeave={(e) => (e.currentTarget.style.opacity = "0.85")}
+          >
+            {p.icon}
+            <span
+              style={{
+                fontSize: 17,
+                fontWeight: 500,
+                color: "#111111",
+                fontFamily: "'DM Sans', 'Inter', sans-serif",
+                whiteSpace: "nowrap",
+              }}
+            >
+              {p.name}
+            </span>
+          </div>
+        ))}
       </motion.div>
     </section>
   );
