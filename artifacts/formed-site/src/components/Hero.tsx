@@ -23,38 +23,59 @@ function CornerCross({ style }: { style: React.CSSProperties }) {
 export function Hero() {
   const [current, setCurrent] = useState(0);
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
+  const transitioning = useRef(false);
+  const currentRef = useRef(0);
 
-  // On mount: start first video, pause others
+  // Keep currentRef in sync
+  useEffect(() => { currentRef.current = current; }, [current]);
+
+  const advance = () => {
+    if (transitioning.current) return;
+    transitioning.current = true;
+    const next = (currentRef.current + 1) % VIDEOS.length;
+    // Pre-roll next video so it's ready
+    const nextVid = videoRefs.current[next];
+    if (nextVid) {
+      nextVid.currentTime = 0;
+      nextVid.play().catch(() => {});
+    }
+    setCurrent(next);
+    // After crossfade, pause the old video and reset flag
+    setTimeout(() => {
+      const old = videoRefs.current[currentRef.current === next
+        ? (next + VIDEOS.length - 1) % VIDEOS.length
+        : currentRef.current];
+      if (old) { old.pause(); old.currentTime = 0; }
+      transitioning.current = false;
+    }, CROSSFADE_S * 1000 + 100);
+  };
+
+  // Start first video; attach timeupdate listener to trigger early crossfade
   useEffect(() => {
     videoRefs.current.forEach((v, i) => {
       if (!v) return;
       if (i === 0) { v.play().catch(() => {}); }
-      else { v.pause(); v.currentTime = 0; }
+      else { v.pause(); }
     });
-  }, []);
 
-  // When current changes: play new, pause old after crossfade
-  useEffect(() => {
-    videoRefs.current.forEach((v, i) => {
-      if (!v) return;
-      if (i === current) {
-        v.currentTime = 0;
-        v.play().catch(() => {});
-      } else {
-        // Pause after crossfade completes so it doesn't consume GPU
-        const t = setTimeout(() => { v.pause(); }, CROSSFADE_S * 1000);
-        return () => clearTimeout(t);
+    const handleTimeUpdate = () => {
+      const v = videoRefs.current[currentRef.current];
+      if (!v || !v.duration) return;
+      const remaining = v.duration - v.currentTime;
+      if (remaining <= CROSSFADE_S + 0.1) {
+        advance();
       }
-    });
-  }, [current]);
+    };
 
-  // Auto-advance
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % VIDEOS.length);
-    }, SWITCH_INTERVAL);
-    return () => clearInterval(timer);
-  }, []);
+    // Attach listener to all videos (only fires meaningfully on the active one)
+    const cleanup = videoRefs.current.map((v) => {
+      if (!v) return () => {};
+      v.addEventListener("timeupdate", handleTimeUpdate);
+      return () => v.removeEventListener("timeupdate", handleTimeUpdate);
+    });
+
+    return () => cleanup.forEach((fn) => fn());
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <section className="relative w-full overflow-hidden text-white" style={{ height: "100dvh" }}>
