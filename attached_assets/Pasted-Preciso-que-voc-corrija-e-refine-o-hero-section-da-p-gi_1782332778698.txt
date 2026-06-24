@@ -1,0 +1,77 @@
+Preciso que você corrija e refine o hero section da página para ficar idêntico à referência visual. Aqui estão todas as especificações detalhadas:
+
+🔤 TIPOGRAFIA — TÍTULO PRINCIPAL
+
+Font-weight: 300 ou 400 (fino/light), NÃO use bold ou 700+
+Font-size: aproximadamente 72px a 80px no desktop
+Line-height: 1.1
+Cor: branco puro (#FFFFFF)
+Texto em 2 linhas: "Crafting the next generation of" / "properties and communities"
+Fonte sugerida: Inter ou DM Sans com weight 300
+
+🔤 SUBTÍTULO "// CONSTRUCTION & DEVELOPMENT"
+
+Font-size: 11px–12px
+Letter-spacing: 0.15em a 0.2em (bem espaçado)
+Font-weight: 400
+Cor: branco
+Posicionado acima do título com margin-bottom de ~12px
+
+🖼️ HERO BACKGROUND — SLIDESHOW
+O hero deve ter um slideshow automático que alterna entre imagens de construção/obras urbanas. As imagens devem cobrir 100% da largura e altura do hero (object-fit: cover). Sobre cada imagem, aplique um overlay escuro: background: rgba(0, 0, 0, 0.55) para garantir legibilidade do texto. As imagens mudam suavemente com fade transition de ~1s, a cada ~5 segundos.
+📐 LAYOUT DO HERO
+
+Altura do hero: 100vh
+O conteúdo (subtítulo + título) fica posicionado no terço superior-esquerdo, com padding-left de ~80px e padding-top de ~120px
+Uma linha horizontal fina (1px, branco com opacity 0.2) divide o hero horizontalmente, separando a parte superior (título) da parte inferior (cards)
+Uma linha vertical fina (1px, branco com opacity 0.2) existe no lado direito da área do card amarelo
+
+🟡 CARD "[01] LATEST UPDATE" — card amarelo
+
+Fundo: #F5A623 ou #FFC107 (amarelo âmbar sólido)
+Sem borda/outline — fundo sólido
+Padding: 32px
+Largura: ~380px
+Posicionado na metade inferior do hero, levemente centralizado (offset para a direita do centro)
+Label "[01] LATEST UPDATE": font-size 10px, letter-spacing 0.15em, cor preta, font-weight 500
+Título do card: font-size 22px, font-weight 600, cor preta, line-height 1.3
+"READ MORE →": font-size 11px, letter-spacing 0.1em, cor preta, com seta simples "→" (não usar traço duplo "——→")
+O card tem pequenas marcas de cruz/cruzeta douradas nos 4 cantos (decoração: linhas finas de ~12px formando um "+")
+
+🔲 SEÇÃO "[02] WORK WITH US" — lado direito
+
+Posicionada no canto inferior direito do hero
+Label "[02] WORK WITH US": font-size 10px, letter-spacing 0.15em, cor branco, font-weight 500
+Texto: "Partner with Formed to bring your next development to life" — font-size 18px, cor branco, font-weight 400
+Botão "START YOUR PROJECT":
+
+Background: branco (#FFFFFF)
+Cor do texto: preto (#000000)
+Font-size: 11px, letter-spacing 0.12em, font-weight 600
+Padding: 14px 28px
+Sem border-radius (bordas retas/quadradas)
+Sem sombra
+
+
+
+🔝 NAVBAR
+
+Background: transparente (não sólido)
+Logo "FORMED ®": branco, font-weight 700, font-size ~16px, canto superior esquerdo
+Menu hamburguer (≡): canto superior direito, cor branca, sem background
+Padding horizontal da navbar: ~80px dos lados
+
+📏 GRID / LINHAS DECORATIVAS
+
+Existem linhas finas verticais e horizontais no fundo do hero (tipo grid architectural), com opacity muito baixa (~0.15), cor branca ou dourada
+Essas linhas criam uma sensação de planta técnica/blueprint
+
+
+Resumo dos problemas a corrigir no estado atual:
+
+Font-weight do título está muito bold — mudar para 300 ou 400
+O card amarelo deve ter fundo sólido, não só borda
+O botão "START YOUR PROJECT" deve ter fundo branco com texto preto
+"READ MORE" deve usar "→" simples, não "——→"
+O hero background deve ser um slideshow com fade, não imagem estática
+Adicionar overlay escuro consistente sobre as imagens do slideshow

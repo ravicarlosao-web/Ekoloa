@@ -1,120 +1,244 @@
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import heroBg from "@/assets/images/hero-bg.jpg";
+import projectImg from "@/assets/images/project-1.jpg";
+import processImg from "@/assets/images/process-card.jpg";
+
+const SLIDES = [heroBg, projectImg, processImg];
+const SLIDE_DURATION = 5000;
+const FADE_DURATION = 1;
+
+function CornerCross({ style }: { style: React.CSSProperties }) {
+  return (
+    <span
+      className="absolute pointer-events-none"
+      style={style}
+      aria-hidden
+    >
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+        <line x1="7" y1="0" x2="7" y2="14" stroke="#F5A623" strokeWidth="1.2" />
+        <line x1="0" y1="7" x2="14" y2="7" stroke="#F5A623" strokeWidth="1.2" />
+      </svg>
+    </span>
+  );
+}
 
 export function Hero() {
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % SLIDES.length);
+    }, SLIDE_DURATION);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
-    <section className="relative w-full h-[100dvh] flex flex-col bg-[#111] overflow-hidden text-white">
-      {/* Background Image & Overlay */}
+    <section className="relative w-full overflow-hidden text-white" style={{ height: "100dvh" }}>
+
+      {/* ── Slideshow background ──────────────────────────────── */}
       <div className="absolute inset-0 z-0">
-        <img
-          src={heroBg}
-          alt="Construction Site"
-          className="w-full h-full object-cover object-center"
-        />
-        {/* Dark overlay — stronger on left, slightly lighter on right to reveal bg */}
-        <div className="absolute inset-0 bg-black/65" />
+        <AnimatePresence>
+          <motion.img
+            key={current}
+            src={SLIDES[current]}
+            alt=""
+            className="absolute inset-0 w-full h-full object-cover object-center"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: FADE_DURATION, ease: "easeInOut" }}
+          />
+        </AnimatePresence>
+        {/* Dark overlay */}
+        <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.55)" }} />
       </div>
 
-      {/* Content wrapper — fills full height */}
+      {/* ── Architectural grid lines ──────────────────────────── */}
+      <div className="absolute inset-0 z-[1] pointer-events-none" aria-hidden>
+        {/* Vertical lines */}
+        {[27, 55, 73].map((pct) => (
+          <div
+            key={pct}
+            className="absolute top-0 bottom-0"
+            style={{ left: `${pct}%`, width: 1, background: "rgba(255,255,255,0.12)" }}
+          />
+        ))}
+        {/* Horizontal line — divides title area from card area */}
+        <div
+          className="absolute left-0 right-0"
+          style={{ top: "58%", height: 1, background: "rgba(255,255,255,0.15)" }}
+        />
+      </div>
+
+      {/* ── Content wrapper ───────────────────────────────────── */}
       <div className="relative z-10 flex flex-col h-full w-full">
 
-        {/* ── Upper block: label + headline ─────────────────────── */}
+        {/* Upper block: label + headline */}
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.15, ease: [0.25, 0.1, 0.25, 1] }}
-          className="flex flex-col justify-end flex-1 px-10 md:px-16 lg:px-20 pb-12"
+          style={{ paddingTop: 120, paddingLeft: 80, paddingRight: 80 }}
         >
-          {/* Breadcrumb label */}
-          <p className="text-[11px] font-semibold tracking-[0.22em] uppercase text-white/80 mb-5">
+          {/* "// CONSTRUCTION & DEVELOPMENT" */}
+          <p
+            className="uppercase text-white"
+            style={{
+              fontSize: 11,
+              fontWeight: 400,
+              letterSpacing: "0.18em",
+              marginBottom: 14,
+              opacity: 0.85,
+            }}
+          >
             // CONSTRUCTION &amp; DEVELOPMENT
           </p>
 
-          {/* Main headline */}
+          {/* Main headline — weight 300 (light) */}
           <h1
-            className="font-bold leading-[1.05] tracking-tight text-white"
-            style={{ fontSize: "clamp(44px, 5.5vw, 78px)", maxWidth: "78%" }}
+            className="text-white"
+            style={{
+              fontSize: "clamp(48px, 5.6vw, 80px)",
+              fontWeight: 300,
+              lineHeight: 1.08,
+              letterSpacing: "-0.01em",
+              maxWidth: "75%",
+            }}
           >
             Crafting the next generation of properties and communities
           </h1>
         </motion.div>
 
-        {/* ── Bottom info strip ──────────────────────────────────── */}
+        {/* Flex spacer pushes cards to bottom */}
+        <div className="flex-1" />
+
+        {/* ── Bottom info strip ─────────────────────────────────── */}
         <div className="flex w-full items-stretch">
 
-          {/* Left spacer — empty dark area (~27% wide) */}
-          <div className="hidden lg:block" style={{ width: "27%" }} />
+          {/* Left spacer (~27%) */}
+          <div className="hidden lg:block" style={{ flexShrink: 0, width: "27%" }} />
 
-          {/* ── Yellow card ──────────────────────────────────────── */}
+          {/* ── Yellow card ───────────────────────────────────── */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.45, ease: [0.25, 0.1, 0.25, 1] }}
-            className="relative bg-[#F5A81C] text-black flex-shrink-0"
-            style={{ width: "clamp(260px, 28%, 340px)", padding: "32px 36px 36px" }}
+            transition={{ duration: 0.8, delay: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
+            className="relative text-black flex-shrink-0"
+            style={{
+              background: "#F5A623",
+              width: "clamp(280px, 29%, 390px)",
+              padding: "32px 36px 36px",
+            }}
           >
-            {/* Corner brackets — extend 10px OUTSIDE the card */}
-            {/* Top-left */}
-            <span className="absolute pointer-events-none"
-              style={{ top: -10, left: -10, width: 22, height: 22,
-                borderTop: "1.5px solid #F5A81C", borderLeft: "1.5px solid #F5A81C" }} />
-            {/* Top-right */}
-            <span className="absolute pointer-events-none"
-              style={{ top: -10, right: -10, width: 22, height: 22,
-                borderTop: "1.5px solid #F5A81C", borderRight: "1.5px solid #F5A81C" }} />
-            {/* Bottom-left */}
-            <span className="absolute pointer-events-none"
-              style={{ bottom: -10, left: -10, width: 22, height: 22,
-                borderBottom: "1.5px solid #F5A81C", borderLeft: "1.5px solid #F5A81C" }} />
-            {/* Bottom-right */}
-            <span className="absolute pointer-events-none"
-              style={{ bottom: -10, right: -10, width: 22, height: 22,
-                borderBottom: "1.5px solid #F5A81C", borderRight: "1.5px solid #F5A81C" }} />
+            {/* Corner cross marks (+) — 4 corners */}
+            <CornerCross style={{ top: -7, left: -7 }} />
+            <CornerCross style={{ top: -7, right: -7 }} />
+            <CornerCross style={{ bottom: -7, left: -7 }} />
+            <CornerCross style={{ bottom: -7, right: -7 }} />
 
-            <p className="text-[10px] font-semibold tracking-[0.22em] uppercase text-black/70 mb-6">
+            <p
+              className="uppercase"
+              style={{
+                fontSize: 10,
+                fontWeight: 500,
+                letterSpacing: "0.15em",
+                color: "rgba(0,0,0,0.65)",
+                marginBottom: 20,
+              }}
+            >
               [01] LATEST UPDATE
             </p>
-            <h3 className="font-bold leading-snug mb-10" style={{ fontSize: "clamp(18px, 1.5vw, 22px)" }}>
+            <h3
+              style={{
+                fontSize: 22,
+                fontWeight: 600,
+                lineHeight: 1.3,
+                color: "#000",
+                marginBottom: 36,
+              }}
+            >
               Designing Apartment Developments for Long-Term Value
             </h3>
             <a
               href="#"
-              className="inline-flex items-center gap-2 text-[11px] font-bold tracking-[0.18em] uppercase text-black hover:opacity-60 transition-opacity duration-200"
+              className="inline-flex items-center gap-2 uppercase hover:opacity-60 transition-opacity duration-200"
+              style={{
+                fontSize: 11,
+                fontWeight: 500,
+                letterSpacing: "0.1em",
+                color: "#000",
+                textDecoration: "none",
+              }}
             >
-              READ MORE &nbsp;——&rarr;
+              READ MORE &nbsp;&rarr;
             </a>
           </motion.div>
 
           {/* Middle flex spacer */}
           <div className="flex-1 hidden lg:block" />
 
-          {/* ── Work With Us ─────────────────────────────────────── */}
+          {/* ── Work With Us ────────────────────────────────────── */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+            transition={{ duration: 0.8, delay: 0.55, ease: [0.25, 0.1, 0.25, 1] }}
             className="flex flex-col justify-end text-white"
-            style={{ width: "clamp(280px, 32%, 400px)", padding: "32px 36px 36px" }}
+            style={{
+              width: "clamp(280px, 30%, 420px)",
+              padding: "32px 40px 36px",
+            }}
           >
-            <p className="text-[10px] font-semibold tracking-[0.22em] uppercase text-white/60 mb-4">
+            <p
+              className="uppercase"
+              style={{
+                fontSize: 10,
+                fontWeight: 500,
+                letterSpacing: "0.15em",
+                color: "rgba(255,255,255,0.6)",
+                marginBottom: 14,
+              }}
+            >
               [02] WORK WITH US
             </p>
-            <p className="font-medium text-white/90 mb-8 leading-snug"
-              style={{ fontSize: "clamp(16px, 1.3vw, 20px)" }}>
+            <p
+              style={{
+                fontSize: 18,
+                fontWeight: 400,
+                lineHeight: 1.45,
+                color: "rgba(255,255,255,0.9)",
+                marginBottom: 28,
+              }}
+            >
               Partner with Formed to bring your next development to life
             </p>
             <div>
-              <button className="px-6 py-3 border border-white text-white text-[11px] font-bold tracking-[0.18em] uppercase hover:bg-white hover:text-black transition-colors duration-200">
+              <button
+                style={{
+                  background: "#FFFFFF",
+                  color: "#000000",
+                  fontSize: 11,
+                  fontWeight: 600,
+                  letterSpacing: "0.12em",
+                  padding: "14px 28px",
+                  border: "none",
+                  borderRadius: 0,
+                  textTransform: "uppercase",
+                  cursor: "pointer",
+                  transition: "opacity 0.2s",
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.85")}
+                onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
+              >
                 START YOUR PROJECT
               </button>
             </div>
           </motion.div>
 
-          {/* Right edge pad */}
-          <div style={{ width: "clamp(20px, 4%, 60px)" }} />
+          {/* Right edge */}
+          <div style={{ flexShrink: 0, width: "clamp(20px, 3%, 60px)" }} />
         </div>
-        {/* bottom strip end */}
+
       </div>
     </section>
   );
