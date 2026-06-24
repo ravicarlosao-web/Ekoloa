@@ -1,12 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import heroBg from "@/assets/images/hero-bg.jpg";
-import projectImg from "@/assets/images/project-1.jpg";
-import processImg from "@/assets/images/process-card.jpg";
-
-const SLIDES = [heroBg, projectImg, processImg];
-const SLIDE_DURATION = 5000;
-const FADE_DURATION = 1;
+import React from "react";
+import { motion } from "framer-motion";
 
 function CornerCross({ style }: { style: React.CSSProperties }) {
   return (
@@ -24,32 +17,19 @@ function CornerCross({ style }: { style: React.CSSProperties }) {
 }
 
 export function Hero() {
-  const [current, setCurrent] = useState(0);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % SLIDES.length);
-    }, SLIDE_DURATION);
-    return () => clearInterval(timer);
-  }, []);
-
   return (
     <section className="relative w-full overflow-hidden text-white" style={{ height: "100dvh" }}>
 
-      {/* ── Slideshow background ──────────────────────────────── */}
+      {/* ── Video background ─────────────────────────────────── */}
       <div className="absolute inset-0 z-0">
-        <AnimatePresence>
-          <motion.img
-            key={current}
-            src={SLIDES[current]}
-            alt=""
-            className="absolute inset-0 w-full h-full object-cover object-center"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: FADE_DURATION, ease: "easeInOut" }}
-          />
-        </AnimatePresence>
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover object-center"
+          src="/hero.mp4"
+        />
         {/* Dark overlay */}
         <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.55)" }} />
       </div>
