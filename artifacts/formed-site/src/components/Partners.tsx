@@ -91,13 +91,10 @@ function GridCell({
     el.style.boxShadow = "none";
   }, []);
 
-  // Edge detection for gradient lines
-  const isLastCol = col === COLS - 1;
-  const isLastRow = row === ROWS - 1;
-  // Vertical lines on outer edges get a fade (col 0's right border and col COLS-2's right border)
-  const rightLineIsEdge = col === 0 || col === COLS - 2;
-  // Horizontal lines on outer edges get a horizontal fade (row 0's bottom and row ROWS-2's bottom)
-  const bottomLineIsEdge = row === 0 || row === ROWS - 2;
+  const isFirstCol = col === 0;
+  const isLastCol  = col === COLS - 1;
+  const isFirstRow = row === 0;
+  const isLastRow  = row === ROWS - 1;
 
   return (
     <div
@@ -115,36 +112,35 @@ function GridCell({
         cursor: "default",
       }}
     >
-      {/* Right border line */}
-      {!isLastCol && (
-        <div
-          aria-hidden
-          style={{
-            position: "absolute",
-            right: 0,
-            top: 0,
-            bottom: 0,
-            width: "0.5px",
-            background: rightLineIsEdge ? LINE_FADE : LINE_COLOR,
-            pointerEvents: "none",
-          }}
-        />
+      {/* Outer LEFT edge — gradient vertical fade */}
+      {isFirstCol && (
+        <div aria-hidden style={{ position:"absolute", left:0, top:0, bottom:0, width:"0.5px", background: LINE_FADE, pointerEvents:"none" }} />
       )}
 
-      {/* Bottom border line */}
+      {/* Inner + outer RIGHT edge */}
+      {!isLastCol && (
+        <div aria-hidden style={{ position:"absolute", right:0, top:0, bottom:0, width:"0.5px",
+          background: isLastCol ? "none" : LINE_COLOR,   // all internal right borders solid
+          pointerEvents:"none" }} />
+      )}
+      {/* Outer RIGHT edge — gradient vertical fade */}
+      {isLastCol && (
+        <div aria-hidden style={{ position:"absolute", right:0, top:0, bottom:0, width:"0.5px", background: LINE_FADE, pointerEvents:"none" }} />
+      )}
+
+      {/* Outer TOP edge — gradient horizontal fade */}
+      {isFirstRow && (
+        <div aria-hidden style={{ position:"absolute", top:0, left:0, right:0, height:"0.5px", background: LINE_FADE_H, pointerEvents:"none" }} />
+      )}
+
+      {/* Inner BOTTOM borders — solid */}
       {!isLastRow && (
-        <div
-          aria-hidden
-          style={{
-            position: "absolute",
-            bottom: 0,
-            left: 0,
-            right: 0,
-            height: "0.5px",
-            background: bottomLineIsEdge ? LINE_FADE_H : LINE_COLOR,
-            pointerEvents: "none",
-          }}
-        />
+        <div aria-hidden style={{ position:"absolute", bottom:0, left:0, right:0, height:"0.5px", background: LINE_COLOR, pointerEvents:"none" }} />
+      )}
+
+      {/* Outer BOTTOM edge — gradient horizontal fade */}
+      {isLastRow && (
+        <div aria-hidden style={{ position:"absolute", bottom:0, left:0, right:0, height:"0.5px", background: LINE_FADE_H, pointerEvents:"none" }} />
       )}
 
       {/* Logo */}
