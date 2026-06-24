@@ -1,0 +1,20 @@
+uploads = []
+generated = []
+
+[[outputs]]
+id = "FXK83uYRuzLy9WdnWOsZE"
+uri = "file://artifacts/formed-site/src/assets/images/hero-bg.jpg"
+type = "image"
+title = "aerial overhead construction site industrial dark toned"
+
+[[outputs]]
+id = "C5_6-FT-iEqosNPBBrWea"
+uri = "file://artifacts/formed-site/src/assets/images/project-1.jpg"
+type = "image"
+title = "modern glass concrete apartment building against blue sky"
+
+[[outputs]]
+id = "SrmEbrixhQ05fcvFZ_XKZ"
+uri = "file://artifacts/formed-site/src/assets/images/process-card.jpg"
+type = "image"
+title = "dark architectural building modern facade"
