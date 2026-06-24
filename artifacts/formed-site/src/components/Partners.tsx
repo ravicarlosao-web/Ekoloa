@@ -126,7 +126,8 @@ function GridCell({
   );
 }
 
-const COLS = 5;
+const COLS = 7;          // 5 logo cols + 1 empty col each side
+const LOGO_COLS = [1, 2, 3, 4, 5]; // inner 5 columns get logos
 const ROWS = 3;
 const LOGO_ROW = 1; // 0-indexed — middle row
 
@@ -191,14 +192,17 @@ export function Partners() {
       >
         {Array.from({ length: ROWS }).flatMap((_, row) =>
           Array.from({ length: COLS }).map((_, col) => {
+            const logoIndex = LOGO_COLS.indexOf(col);
             const logo =
-              row === LOGO_ROW ? PARTNERS[col % PARTNERS.length] : undefined;
+              row === LOGO_ROW && logoIndex !== -1
+                ? PARTNERS[logoIndex % PARTNERS.length]
+                : undefined;
             return (
               <GridCell
                 key={`${row}-${col}`}
                 logo={logo}
                 isLastCol={col === COLS - 1}
-                isLastRow={row >= ROWS - 2}
+                isLastRow={row === ROWS - 1}
               />
             );
           })
