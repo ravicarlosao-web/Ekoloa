@@ -1,0 +1,28 @@
+Agora entendo perfeitamente! Comparando as imagens:
+Diferenças — Our Process (Referência vs Atual):
+1. Altura dos cards — na referência os cards são muito mais altos (quase 100vh), com o conteúdo no terço inferior. No atual são baixos e compactos, parecendo cards normais.
+2. Efeito escalonado (staggered) — na referência o card branco começa mais abaixo, o card escuro começa mais acima (é o mais alto), o card amarelo fica no meio. No atual todos alinham pelo topo uniformemente.
+3. Card escuro — imagem — na referência a imagem do prédio ocupa todo o card do topo ao fundo, com o texto sobre ela na parte inferior. No atual a imagem fica só na metade superior, texto separado embaixo.
+4. Textura no card branco — na referência há um padrão arquitetônico/planta em baixíssima opacidade. No atual está presente mas muito fraco ou ausente.
+5. Font-weight dos títulos dos steps — referência usa 400–500, atual parece correto aqui.
+
+Prompt para o Replit (apenas Seção 3):
+
+
+Corrija apenas a seção Our Process — os 3 cards precisam de alterações estruturais de layout:
+ESTRUTURA DOS CARDS
+Os 3 cards devem ficar lado a lado sem gap, ocupando 100% da largura da página. Cada card deve ter altura mínima de 580px a 620px. O conteúdo (label STEP, título, texto) deve ficar no terço inferior de cada card, usando justify-content: flex-end ou padding-top grande (~280px a 320px).
+EFEITO ESCALONADO — ALTURAS DIFERENTES
+Os cards NÃO devem ter a mesma altura nem o mesmo ponto de início. Aplicar via margin-top negativo ou posicionamento relativo:
+
+Card 1 (branco): height 520px, margin-top 80px — começa mais baixo
+Card 2 (escuro): height 620px, margin-top 0 — o mais alto, âncora visual, começa mais acima que os outros
+Card 3 (amarelo): height 560px, margin-top 40px — altura intermediária
+
+O resultado visual é que os topos dos 3 cards ficam em alturas diferentes, criando um efeito de degraus.
+CARD 2 ESCURO — IMAGEM FULL HEIGHT
+A imagem de fundo do card escuro deve cobrir 100% da altura e largura do card (background-size: cover, background-position: center). O texto fica sobre a imagem com overlay rgba(0,0,0,0.60). NÃO separar imagem e texto em blocos distintos — é um único div com background-image.
+CARD 1 — TEXTURA
+O card branco deve ter um SVG pattern ou imagem de planta arquitetônica em opacity: 0.07 como background decorativo, cobrindo todo o card.
+LINHAS DECORATIVAS FINAS
+Acima de cada card, adicionar uma linha vertical fina (1px, cor #F5A623, altura ~40px) que funciona como conector visual entre o título da seção e os cards.
