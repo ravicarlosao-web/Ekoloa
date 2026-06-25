@@ -5,6 +5,7 @@ import { Process } from "@/components/Process";
 import { Partners } from "@/components/Partners";
 import { Services } from "@/components/Services";
 import { Testimonials } from "@/components/Testimonials";
+import { Faqs } from "@/components/Faqs";
 import { Projects } from "@/components/Projects";
 import { Footer } from "@/components/Footer";
 
@@ -19,6 +20,7 @@ export default function HomePage() {
       <Partners />
       <Services />
       <Testimonials />
+      <Faqs />
       <Footer />
     </main>
   );

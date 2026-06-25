@@ -1,0 +1,42 @@
+ADICIONAR SEÇÃO 8 — FAQS
+Fundo: #EFEFEF. Layout de 2 colunas divididas ao meio por uma linha vertical fina.
+COLUNA ESQUERDA (~35% da largura)
+
+Label "[06] FAQS": 11px, letter-spacing 0.15em, weight 400, cor #111111, margin-bottom 16px
+Título "Answering your questions": font-size 48px, font-weight 300, cor #111111, line-height 1.2
+Margin-top: 32px após o título
+Subtítulo "STILL LOOKING FOR ANSWERS?": font-size 10px, letter-spacing 0.15em, weight 500, cor #111111
+Texto: "Get in touch via our contact form and we'll help you answer them" — font-size 14px, cor #555555, line-height 1.6, margin-top 8px
+Botão "GET IN TOUCH": margin-top 24px
+
+Barra vertical amarela à esquerda: 4px × 100% de altura do botão, cor #F5A623
+Texto: fundo branco, padding 14px 28px, font-size 11px, letter-spacing 0.12em, weight 600, cor #111111, border-radius 0
+O botão e a barra ficam lado a lado (display flex, gap 0)
+
+
+
+COLUNA DIREITA (~65% da largura)
+Accordion de perguntas. Cada item separado por linha horizontal fina (1px, #DDDDDD).
+Perguntas:
+
+"What types of projects does Formed specialise in?"
+"Does Formed manage projects from start to finish?"
+"How does Formed ensure projects stay on time and on budget?"
+"Where does Formed operate?"
+"How does Formed approach sustainability and compliance?"
+"How can we start a project with Formed?"
+
+Estilo de cada item:
+
+Padding: 28px 0
+Texto da pergunta: font-size 17px, font-weight 400, cor #111111
+Ícone "+" à direita: font-size 20px, cor #F5A623, weight 300
+Linha divisória: 1px solid #DDDDDD no topo de cada item
+Comportamento: ao clicar no "+" abre a resposta abaixo com animação suave (max-height transition 0.3s ease), ícone muda de "+" para "×"
+Resposta expandida: font-size 14px, cor #555555, line-height 1.7, padding-bottom 20px
+
+LINHAS DECORATIVAS
+
+Linha vertical fina (1px, #DDDDDD) separando as 2 colunas, altura total da seção
+Duas linhas verticais finas adicionais no lado direito da coluna direita (efeito grid sutil, opacity 0.4)
+Cruzes decorativas "+" em amarelo (#F5A623) no canto direito, font-size 14px, opacity 0.6
