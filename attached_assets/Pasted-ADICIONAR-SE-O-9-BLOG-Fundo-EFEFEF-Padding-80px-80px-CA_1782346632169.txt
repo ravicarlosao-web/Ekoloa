@@ -1,0 +1,51 @@
+ADICIONAR SEÇÃO 9 — BLOG
+Fundo: #EFEFEF. Padding: 80px 80px.
+CABEÇALHO DA SEÇÃO
+Layout em linha, esquerda e direita:
+
+Esquerda:
+
+Label "[07] BLOG": 11px, letter-spacing 0.15em, weight 400, cor #F5A623
+Título "Latest News & Updates": font-size 52px, font-weight 300, cor #111111, margin-top 8px
+
+
+Direita (alinhado ao fundo do título):
+
+Link "VIEW ALL NEWS →": font-size 11px, letter-spacing 0.12em, weight 500, cor #111111, sem underline, seta simples "→"
+
+
+
+GRID DE ARTIGOS — LAYOUT ASSIMÉTRICO
+3 colunas, mas com proporções diferentes:
+
+Coluna 1 (artigo destaque): largura ~50% da página
+Coluna 2: largura ~25%
+Coluna 3: largura ~25%
+
+Margin-top entre cabeçalho e grid: 48px
+ARTIGO 1 — DESTAQUE (coluna larga)
+
+Imagem: ocupa 100% da largura da coluna, altura ~420px, object-fit cover. Imagem de arquitetura minimalista P&B (escadas brancas, geometria)
+Abaixo da imagem, linha fina separadora: 1px solid #DDDDDD
+Título: "Designing Apartment Developments for Long-Term Value" — font-size 22px, font-weight 400, cor #111111, margin-top 20px
+Data: "[OCT 29, 2025]" — font-size 10px, letter-spacing 0.12em, cor #F5A623, weight 400, margin-top 10px
+
+ARTIGOS 2 e 3 — COLUNA DIREITA (empilhados verticalmente)
+Os 2 artigos ficam na coluna direita, um em cima do outro com gap de 32px.
+Artigo 2:
+
+Imagem: 100% da largura da coluna, altura ~220px, object-fit cover. Imagem de prédio moderno com varandas e plantas
+Título: "Managing Large-Scale Construction Projects Effectively" — font-size 18px, font-weight 400, cor #111111, margin-top 16px
+Data: "[18 OCT 2025]" — 10px, letter-spacing 0.12em, cor #F5A623
+
+Artigo 3:
+
+Imagem: 100% da largura da coluna, altura ~220px, object-fit cover. Imagem de estrutura arquitetônica amarela/dourada
+Título: "The Rise of Mixed-Use Developments in Urban Areas" — font-size 18px, font-weight 400, cor #111111, margin-top 16px
+Data: "[18 OCT 2025]" — 10px, letter-spacing 0.12em, cor #F5A623
+
+HOVER NOS CARDS
+
+Ao passar o mouse sobre qualquer artigo: imagem faz scale(1.03) suave com transition: transform 0.4s ease dentro de um container com overflow: hidden
+Título muda de cor para #F5A623 com transition: color 0.2s ease
+Cursor: pointer
