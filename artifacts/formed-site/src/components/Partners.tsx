@@ -98,11 +98,7 @@ export function Partners() {
       </motion.div>
 
       {/* ── Logos row ───────────────────────────────────────── */}
-      <motion.div
-        initial={{ opacity: 0, y: 12 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6, delay: 0.2 }}
+      <div
         style={{
           display: "flex",
           alignItems: "center",
@@ -114,13 +110,16 @@ export function Partners() {
         }}
       >
         {PARTNERS.map((p, i) => (
-          <div
+          <motion.div
             key={i}
+            initial={{ opacity: 0, y: 14 }}
+            whileInView={{ opacity: 0.85, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 + i * 0.09, ease: "easeOut" }}
             style={{
               display: "flex",
               alignItems: "center",
               gap: 10,
-              opacity: 0.85,
               transition: "opacity 0.2s ease",
               cursor: "default",
             }}
@@ -139,9 +138,9 @@ export function Partners() {
             >
               {p.name}
             </span>
-          </div>
+          </motion.div>
         ))}
-      </motion.div>
+      </div>
     </section>
   );
 }

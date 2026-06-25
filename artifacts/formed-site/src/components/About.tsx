@@ -1,6 +1,8 @@
 import React from "react";
 import { motion } from "framer-motion";
 
+const EASE: [number, number, number, number] = [0.25, 0.1, 0.25, 1];
+
 const stats = [
   {
     number: "15+",
@@ -62,16 +64,14 @@ export function About() {
         </motion.div>
 
         {/* ── Right: stats ───────────────────────────────────── */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.15 }}
-          className="lg:w-2/5 flex flex-col"
-        >
+        <div className="lg:w-2/5 flex flex-col">
           {stats.map((stat, i) => (
-            <div
+            <motion.div
               key={stat.number}
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 + i * 0.12, ease: EASE }}
               style={{
                 paddingTop: i === 0 ? 0 : 28,
                 paddingBottom: i === stats.length - 1 ? 0 : 28,
@@ -102,9 +102,9 @@ export function About() {
               >
                 {stat.description}
               </p>
-            </div>
+            </motion.div>
           ))}
-        </motion.div>
+        </div>
       </div>
 
       {/* ── Bottom-left year tag ────────────────────────────── */}

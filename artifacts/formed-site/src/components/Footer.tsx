@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { motion } from "framer-motion";
 
 function NavLink({ href, children }: { href: string; children: React.ReactNode }) {
   const [hovered, setHovered] = useState(false);
@@ -66,7 +67,12 @@ export function Footer() {
         }}
       >
         {/* Left block — logo + address */}
-        <div style={{ flex: "0 0 30%", display: "flex", flexDirection: "column", justifyContent: "space-between", minHeight: 260 }}>
+        <motion.div
+          initial={{ opacity: 0, x: -24 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
+          style={{ flex: "0 0 30%", display: "flex", flexDirection: "column", justifyContent: "space-between", minHeight: 260 }}>
           <div
             style={{
               fontSize: 28,
@@ -91,10 +97,14 @@ export function Footer() {
             London W1J 7PY,<br />
             United Kingdom
           </div>
-        </div>
+        </motion.div>
 
         {/* Right block — 3-column grid */}
-        <div
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, delay: 0.1, ease: [0.25, 0.1, 0.25, 1] }}
           style={{
             flex: "1 1 70%",
             display: "grid",
@@ -103,40 +113,48 @@ export function Footer() {
           }}
         >
           {/* SOCIAL */}
-          <div
-            style={{
-              padding: 32,
-              borderRight: "1px solid rgba(255,255,255,0.12)",
-            }}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.18 }}
+            style={{ padding: 32, borderRight: "1px solid rgba(255,255,255,0.12)" }}
           >
             <div style={colLabel}>SOCIAL</div>
             <NavLink href="#">Instagram</NavLink>
             <NavLink href="#">Twitter</NavLink>
             <NavLink href="#">LinkedIn</NavLink>
             <NavLink href="#">TikTok</NavLink>
-          </div>
+          </motion.div>
 
           {/* QUICK LINKS */}
-          <div
-            style={{
-              padding: 32,
-              borderRight: "1px solid rgba(255,255,255,0.12)",
-            }}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.28 }}
+            style={{ padding: 32, borderRight: "1px solid rgba(255,255,255,0.12)" }}
           >
             <div style={colLabel}>QUICK LINKS</div>
             <NavLink href="#">About</NavLink>
             <NavLink href="#">Projects</NavLink>
             <NavLink href="#">Blog</NavLink>
             <NavLink href="#">Contact</NavLink>
-          </div>
+          </motion.div>
 
           {/* CONTACT */}
-          <div style={{ padding: 32 }}>
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.38 }}
+            style={{ padding: 32 }}
+          >
             <div style={colLabel}>CONTACT</div>
             <NavLink href="mailto:hello@formed.com">hello@formed.com</NavLink>
             <NavLink href="tel:+13055550145">(305) 555-0145</NavLink>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
 
       {/* ── Lower zone ─────────────────────────────────────────── */}

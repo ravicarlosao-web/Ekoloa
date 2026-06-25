@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import { Menu } from "lucide-react";
 
 export function Navbar() {
@@ -23,7 +24,10 @@ export function Navbar() {
   const color = dark ? "#111111" : "#ffffff";
 
   return (
-    <nav
+    <motion.nav
+      initial={{ opacity: 0, y: -18 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
       className="fixed top-0 left-0 w-full z-50 flex items-center justify-between"
       style={{ padding: "24px 80px" }}
     >
@@ -47,6 +51,6 @@ export function Navbar() {
           style={{ color, transition: "color 0.35s ease" }}
         />
       </button>
-    </nav>
+    </motion.nav>
   );
 }

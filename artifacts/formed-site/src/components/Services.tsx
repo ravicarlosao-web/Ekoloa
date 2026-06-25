@@ -6,6 +6,20 @@ import heroBg from "@/assets/images/hero-bg.jpg";
 
 const DIVIDER = "1px solid rgba(255,255,255,0.12)";
 
+const fadeUp = (delay = 0) => ({
+  initial: { opacity: 0, y: 24 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true },
+  transition: { duration: 0.7, delay, ease: [0.25, 0.1, 0.25, 1] as [number, number, number, number] },
+});
+
+const fadeX = (x: number, delay = 0) => ({
+  initial: { opacity: 0, x },
+  whileInView: { opacity: 1, x: 0 },
+  viewport: { once: true },
+  transition: { duration: 0.75, delay, ease: [0.25, 0.1, 0.25, 1] as [number, number, number, number] },
+});
+
 function Tag({ label }: { label: string }) {
   return (
     <span
@@ -46,10 +60,7 @@ export function Services() {
 
       {/* ── Header ───────────────────────────────────────── */}
       <motion.div
-        initial={{ opacity: 0, y: 16 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.7 }}
+        {...fadeUp(0)}
         style={{ textAlign: "center", marginBottom: 80, paddingLeft: 80, paddingRight: 80 }}
       >
         <div style={{ fontSize: 11, fontWeight: 400, letterSpacing: "0.15em", color: "#F5A623", textTransform: "uppercase", marginBottom: 20 }}>
@@ -60,16 +71,9 @@ export function Services() {
         </h2>
       </motion.div>
 
-      {/* ── Service 001 — text left, image center-right ───── */}
-      <motion.div
-        initial={{ opacity: 0, y: 24 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.7 }}
-        style={{ display: "flex", alignItems: "center", padding: "72px 80px", gap: 0, position: "relative", borderTop: DIVIDER }}
-      >
-        {/* Text — left half */}
-        <div style={{ flex: 1, paddingRight: 80 }}>
+      {/* ── Service 001 — text left, image right ───── */}
+      <div style={{ display: "flex", alignItems: "center", padding: "72px 80px", gap: 0, position: "relative", borderTop: DIVIDER }}>
+        <motion.div {...fadeX(-28, 0)} style={{ flex: 1, paddingRight: 80 }}>
           <ServiceLabel index="001" />
           <h3 style={{ fontSize: 32, fontWeight: 500, color: "#ffffff", lineHeight: 1.2, marginBottom: 20 }}>
             Property Development
@@ -80,27 +84,16 @@ export function Services() {
           <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
             {["LAND ACQUISITION","FEASIBILITY STUDIES","MASTERPLANNING","RESIDENTIAL BUILDS"].map(t => <Tag key={t} label={t} />)}
           </div>
-        </div>
-
-        {/* Image — right half, slightly inset */}
-        <div style={{ flexShrink: 0, width: 280, height: 340 }}>
+        </motion.div>
+        <motion.div {...fadeX(28, 0.1)} style={{ flexShrink: 0, width: 280, height: 340 }}>
           <img src={projectImg} alt="Property development" style={{ width: "100%", height: "100%", objectFit: "cover", filter: "grayscale(100%)" }} />
-        </div>
-      </motion.div>
+        </motion.div>
+      </div>
 
       {/* ── Service 002 — white card right ───────────────── */}
-      <motion.div
-        initial={{ opacity: 0, y: 24 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.7 }}
-        style={{ display: "flex", alignItems: "stretch", padding: "72px 80px", gap: 0, borderTop: DIVIDER }}
-      >
-        {/* Left spacer */}
+      <div style={{ display: "flex", alignItems: "stretch", padding: "72px 80px", gap: 0, borderTop: DIVIDER }}>
         <div style={{ flex: 1 }} />
-
-        {/* White card — right half */}
-        <div style={{ width: 480, background: "#ffffff", padding: "40px 40px 36px" }}>
+        <motion.div {...fadeX(32, 0)} style={{ width: 480, background: "#ffffff", padding: "40px 40px 36px" }}>
           <ServiceLabel index="002" />
           <h3 style={{ fontSize: 32, fontWeight: 500, color: "#111111", lineHeight: 1.2, marginBottom: 20 }}>
             Design & Planning
@@ -112,19 +105,12 @@ export function Services() {
             {["ARCHITECTURAL DESIGN","PLANNING APPROVALS","TECHNICAL DRAWINGS","DESIGN COORDINATION","COMPLIANCE"].map(t => <Tag key={t} label={t} />)}
           </div>
           <img src={processImg} alt="Design & planning" style={{ width: "100%", height: 200, objectFit: "cover", display: "block" }} />
-        </div>
-      </motion.div>
+        </motion.div>
+      </div>
 
       {/* ── Service 003 — white card left ────────────────── */}
-      <motion.div
-        initial={{ opacity: 0, y: 24 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.7 }}
-        style={{ display: "flex", alignItems: "stretch", padding: "72px 80px", gap: 0, borderTop: DIVIDER }}
-      >
-        {/* White card — left half */}
-        <div style={{ width: 480, background: "#ffffff", padding: "40px 40px 36px" }}>
+      <div style={{ display: "flex", alignItems: "stretch", padding: "72px 80px", gap: 0, borderTop: DIVIDER }}>
+        <motion.div {...fadeX(-32, 0)} style={{ width: 480, background: "#ffffff", padding: "40px 40px 36px" }}>
           <ServiceLabel index="003" />
           <h3 style={{ fontSize: 32, fontWeight: 500, color: "#111111", lineHeight: 1.2, marginBottom: 20 }}>
             Construction Management
@@ -136,22 +122,13 @@ export function Services() {
             {["SITE MANAGEMENT","PROGRAMME CONTROL","QUALITY ASSURANCE","COST CONTROL"].map(t => <Tag key={t} label={t} />)}
           </div>
           <img src={heroBg} alt="Construction management" style={{ width: "100%", height: 200, objectFit: "cover", display: "block" }} />
-        </div>
-
-        {/* Right spacer */}
+        </motion.div>
         <div style={{ flex: 1 }} />
-      </motion.div>
+      </div>
 
       {/* ── Service 004 — text left, image right ─────────── */}
-      <motion.div
-        initial={{ opacity: 0, y: 24 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.7 }}
-        style={{ display: "flex", alignItems: "center", padding: "72px 80px", gap: 0, borderTop: DIVIDER }}
-      >
-        {/* Text — left half */}
-        <div style={{ flex: 1, paddingRight: 80 }}>
+      <div style={{ display: "flex", alignItems: "center", padding: "72px 80px", gap: 0, borderTop: DIVIDER }}>
+        <motion.div {...fadeX(-28, 0)} style={{ flex: 1, paddingRight: 80 }}>
           <ServiceLabel index="004" />
           <h3 style={{ fontSize: 32, fontWeight: 500, color: "#ffffff", lineHeight: 1.2, marginBottom: 20 }}>
             Infrastructure & Logistics
@@ -162,13 +139,11 @@ export function Services() {
           <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
             {["ROADS & UTILITIES","SITE LOGISTICS","PHASING STRATEGY","ACCESS PLANNING","UTILITIES COORDINATION"].map(t => <Tag key={t} label={t} />)}
           </div>
-        </div>
-
-        {/* Image — right */}
-        <div style={{ flexShrink: 0, width: 350, height: 320 }}>
+        </motion.div>
+        <motion.div {...fadeX(28, 0.1)} style={{ flexShrink: 0, width: 350, height: 320 }}>
           <img src={processImg} alt="Infrastructure" style={{ width: "100%", height: "100%", objectFit: "cover", filter: "grayscale(100%)" }} />
-        </div>
-      </motion.div>
+        </motion.div>
+      </div>
 
     </section>
   );
