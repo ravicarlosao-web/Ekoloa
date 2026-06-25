@@ -1,0 +1,70 @@
+ALTERAR CONTEÚDO — SEÇÃO OUR SERVICES (FUNDO PRETO)
+CABEÇALHO
+
+Label: substituir [04] OUR SERVICES por [04] AS NOSSAS ÁREAS
+Título: substituir por "As áreas em que atuamos"
+
+
+SERVIÇO [001] — lado esquerdo, fundo preto
+
+Número: manter [001]
+Título: substituir por "Desenvolvimento Humano & Liderança"
+Descrição: substituir por:
+
+"Fortalecemos competências individuais e liderança no sector público, promovendo práticas éticas, responsáveis e orientadas ao serviço das comunidades."
+Tags: substituir por:
+
+[CAPACITAÇÃO INDIVIDUAL] [LIDERANÇA PÚBLICA] [IDENTIDADE INTRÍNSECA] [CULTURA INSTITUCIONAL]
+Imagem: substituir por foto de formação/workshop/liderança africana (pesquisar no Unsplash: "african leadership training workshop")
+
+
+SERVIÇO [002] — card branco, lado direito
+
+Número: manter [002]
+Título: substituir por "Educação, Cultura & Conhecimento"
+Descrição: substituir por:
+
+"Promovemos a educação e a cultura como vectores estratégicos de desenvolvimento social, apoiando programas educativos e culturais de interesse público."
+Tags: substituir por:
+
+[PROGRAMAS EDUCATIVOS] [VALORIZAÇÃO CULTURAL] [CAPACITAÇÃO CIDADÃ] [CONHECIMENTO ESTRUTURADO]
+Imagem: substituir por foto de educação/cultura em Angola ou África (pesquisar: "education community africa")
+
+
+SERVIÇO [003] — card branco, lado esquerdo
+
+Número: manter [003]
+Título: substituir por "Desenvolvimento Organizacional"
+Descrição: substituir por:
+
+"Apoiamos órgãos governamentais e instituições no fortalecimento das suas capacidades organizacionais, liderança e eficiência através do Programa MESS."
+Tags: substituir por:
+
+[PROGRAMA MESS] [GESTÃO ESTRATÉGICA] [COORDENAÇÃO INSTITUCIONAL] [DESEMPENHO ORGANIZACIONAL]
+Imagem: substituir por foto de reunião institucional/governamental africana (pesquisar: "african government institutional meeting")
+
+
+ADICIONAR SERVIÇO [004] — lado direito, fundo preto
+
+Número: [004]
+Título: "Impacto Social & Sustentabilidade"
+Descrição:
+
+"Concebemos e implementamos projectos sociais alinhados com políticas públicas nacionais e com os Objectivos de Desenvolvimento Sustentável (ODS)."
+Tags:
+
+[PROJECTOS SOCIAIS] [ODS] [POLÍTICAS PÚBLICAS] [SUSTENTABILIDADE]
+Imagem: foto de comunidade/impacto social em Angola (pesquisar: "social impact community development angola")
+
+
+ADICIONAR SERVIÇO [005] — card branco, lado esquerdo
+
+Número: [005]
+Título: "Governança & Cooperação Institucional"
+Descrição:
+
+"Reforçamos a governação pública, a transparência e a cooperação interinstitucional, promovendo responsabilidade e resultados consistentes para a sociedade."
+Tags:
+
+[SIGIS] [MONITORIZAÇÃO] [COOPERAÇÃO INTERINSTITUCIONAL] [TRANSPARÊNCIA]
+Imagem: foto de cooperação institucional/governança (pesquisar: "institutional cooperation governance africa")
