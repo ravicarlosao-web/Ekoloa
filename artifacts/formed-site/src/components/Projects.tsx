@@ -217,7 +217,7 @@ export function Projects() {
           alignItems: "center",
           padding: "80px 0",
           position: "relative",
-          zIndex: 1,
+          zIndex: 15,
         }}
       >
         <a
