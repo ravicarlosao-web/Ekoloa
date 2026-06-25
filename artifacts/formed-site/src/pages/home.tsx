@@ -25,7 +25,7 @@ export default function HomePage() {
         Once this wrapper scrolls out, Process is gone and the rest of the page is normal.
       */}
       <div style={{ position: "relative" }}>
-        <div style={{ position: "sticky", top: 0, zIndex: 0 }}>
+        <div style={{ position: "sticky", top: 0, zIndex: 0, minHeight: "100vh" }}>
           <Process />
         </div>
         <Projects />
