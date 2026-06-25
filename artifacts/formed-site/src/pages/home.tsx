@@ -2,7 +2,6 @@ import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
 import { About } from "@/components/About";
 import { Process } from "@/components/Process";
-import { Partners } from "@/components/Partners";
 import { Services } from "@/components/Services";
 import { Testimonials } from "@/components/Testimonials";
 import { Faqs } from "@/components/Faqs";
@@ -32,7 +31,6 @@ export default function HomePage() {
         <Projects />
       </div>
 
-      <Partners />
       <Services />
       <Testimonials />
       <Faqs />
