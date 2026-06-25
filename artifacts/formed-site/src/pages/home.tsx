@@ -18,13 +18,19 @@ export default function HomePage() {
       <Hero />
       <About />
 
-      {/* Methodology scrolls normally — JS watches its bottom edge */}
-      <div className="section-methodology" style={{ position: "relative", zIndex: 1 }}>
-        <Process />
+      {/*
+        Bounded wrapper — scopes the sticky to this region only.
+        Process: sticky z-index 5 — stays visible and covers the blank portfolio wrapper
+                 while the user scrolls through it. Portfolio rises on top (z-index 10).
+        Projects: 4×100vh wrapper. JS triggers only when the wrapper itself
+                  reaches the viewport top (i.e. after the 100vh Process section).
+      */}
+      <div style={{ position: "relative" }}>
+        <div style={{ position: "sticky", top: 0, height: "100vh", overflow: "hidden", zIndex: 5 }}>
+          <Process />
+        </div>
+        <Projects />
       </div>
-
-      {/* Portfolio rises from below only after methodology fully exits the screen */}
-      <Projects />
 
       <Partners />
       <Services />

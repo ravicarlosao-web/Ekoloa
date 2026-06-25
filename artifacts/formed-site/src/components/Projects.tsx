@@ -34,23 +34,22 @@ export function Projects() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const methodology = document.querySelector(".section-methodology") as HTMLElement;
       const wrapper = wrapperRef.current;
       const container = containerRef.current;
-      if (!methodology || !wrapper || !container) return;
+      if (!wrapper || !container) return;
 
-      const methodologyBottom = methodology.getBoundingClientRect().bottom;
+      const wrapperTop = wrapper.getBoundingClientRect().top;
+      const wrapperHeight = wrapper.offsetHeight;
       const vh = window.innerHeight;
 
-      // Phase 1 — methodology still visible: keep portfolio fully hidden below screen
-      if (methodologyBottom > 0) {
+      // Phase 1 — wrapper hasn't reached viewport top yet (Process sticky still covering):
+      // keep portfolio hidden below screen
+      if (wrapperTop > 0) {
         container.style.transform = "translateY(100%)";
         return;
       }
 
-      // Phase 2 — methodology has exited: drive portfolio entry + internal slides
-      const wrapperTop = wrapper.getBoundingClientRect().top;
-      const wrapperHeight = wrapper.offsetHeight;
+      // Phase 2 — wrapper has reached top: drive portfolio entry + internal slides
 
       // Entry: bring the sticky container from translateY(100%) → translateY(0%)
       const containerEntry = Math.max(0, Math.min(1, -wrapperTop / vh));
