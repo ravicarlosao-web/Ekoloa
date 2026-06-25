@@ -1,15 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 
-const IMAGES = [
-  "https://images.unsplash.com/photo-1531545514256-b1400bc00f31?w=1920&q=80",
-  "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=1920&q=80",
-  "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1920&q=80",
-  "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=1920&q=80",
-];
-
+const VIDEOS = ["/hero1.mp4", "/hero2.mp4", "/hero3.mp4"];
 const SWITCH_INTERVAL = 5000;
-const CROSSFADE_S = 1.4;
+const CROSSFADE_S = 1.5;
 
 function CornerCross({ style }: { style: React.CSSProperties }) {
   return (
@@ -24,26 +18,69 @@ function CornerCross({ style }: { style: React.CSSProperties }) {
 
 export function Hero() {
   const [current, setCurrent] = useState(0);
-  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
+  const transitioning = useRef(false);
+  const currentRef = useRef(0);
+
+  useEffect(() => { currentRef.current = current; }, [current]);
+
+  const advance = () => {
+    if (transitioning.current) return;
+    transitioning.current = true;
+    const next = (currentRef.current + 1) % VIDEOS.length;
+    const nextVid = videoRefs.current[next];
+    if (nextVid) {
+      nextVid.currentTime = 0;
+      nextVid.play().catch(() => {});
+    }
+    setCurrent(next);
+    setTimeout(() => {
+      const old = videoRefs.current[currentRef.current === next
+        ? (next + VIDEOS.length - 1) % VIDEOS.length
+        : currentRef.current];
+      if (old) { old.pause(); old.currentTime = 0; }
+      transitioning.current = false;
+    }, CROSSFADE_S * 1000 + 100);
+  };
 
   useEffect(() => {
-    timerRef.current = setInterval(() => {
-      setCurrent((c) => (c + 1) % IMAGES.length);
-    }, SWITCH_INTERVAL);
-    return () => { if (timerRef.current) clearInterval(timerRef.current); };
-  }, []);
+    videoRefs.current.forEach((v, i) => {
+      if (!v) return;
+      if (i === 0) { v.play().catch(() => {}); }
+      else { v.pause(); }
+    });
+
+    const handleTimeUpdate = () => {
+      const v = videoRefs.current[currentRef.current];
+      if (!v || !v.duration) return;
+      const remaining = v.duration - v.currentTime;
+      if (remaining <= CROSSFADE_S + 0.1) advance();
+    };
+
+    const cleanup = videoRefs.current.map((v) => {
+      if (!v) return () => {};
+      v.addEventListener("timeupdate", handleTimeUpdate);
+      return () => v.removeEventListener("timeupdate", handleTimeUpdate);
+    });
+
+    return () => cleanup.forEach((fn) => fn());
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <section id="hero" className="relative w-full overflow-hidden text-white" style={{ height: "100dvh" }}>
 
-      {/* ── Image crossfade background ─────────────────────── */}
+      {/* ── Video crossfade background ─────────────────────── */}
       <div className="absolute inset-0 z-0">
-        {IMAGES.map((src, i) => (
-          <div
+        {VIDEOS.map((src, i) => (
+          <video
             key={src}
-            className="absolute inset-0 bg-center bg-cover"
+            ref={(el) => { videoRefs.current[i] = el; }}
+            src={src}
+            muted
+            playsInline
+            preload="auto"
+            className="absolute inset-0 w-full h-full object-cover object-center"
             style={{
-              backgroundImage: `url(${src})`,
               opacity: i === current ? 1 : 0,
               transition: `opacity ${CROSSFADE_S}s ease-in-out`,
               willChange: "opacity",
@@ -67,30 +104,6 @@ export function Hero() {
           className="absolute left-0 right-0"
           style={{ top: "58%", height: 1, background: "rgba(255,255,255,0.15)" }}
         />
-      </div>
-
-      {/* ── Slide indicator dots ──────────────────────────── */}
-      <div
-        className="absolute z-10 flex gap-2"
-        style={{ bottom: 28, right: 40 }}
-        aria-hidden
-      >
-        {IMAGES.map((_, i) => (
-          <button
-            key={i}
-            onClick={() => setCurrent(i)}
-            style={{
-              width: i === current ? 22 : 7,
-              height: 7,
-              borderRadius: 4,
-              background: i === current ? "#F5A623" : "rgba(255,255,255,0.45)",
-              border: "none",
-              cursor: "pointer",
-              padding: 0,
-              transition: "width 0.35s ease, background 0.35s ease",
-            }}
-          />
-        ))}
       </div>
 
       {/* ── Content wrapper ────────────────────────────────── */}
