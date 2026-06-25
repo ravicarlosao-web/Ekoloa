@@ -1,0 +1,74 @@
+Perfeito! Aqui está o prompt:
+
+
+ALTERAR CONTEÚDO — SEÇÃO TESTIMONIALS
+CABEÇALHO
+
+Label: substituir [05] TESTIMONIALS por [05] TESTEMUNHOS
+Título: substituir por:
+
+"Apoiamos as nossas instituições parceiras em cada etapa, gerando impacto real, mensurável e sustentável."
+
+
+LINHA 1 — CARDS (da esquerda para a direita):
+Card branco 1:
+
+Citação: "A Ekoloa trouxe clareza estratégica à nossa organização. A abordagem estruturada e ética transformou a forma como tomamos decisões institucionais."
+Nome: CARLOS MANUEL
+Cargo: DIRECTOR EXECUTIVO, INSTITUTO NACIONAL
+
+Card branco 2:
+
+Citação: "O diagnóstico institucional realizado pela Ekoloa foi determinante para identificarmos fragilidades e avançarmos com um plano de governança sólido."
+Nome: ANA FERREIRA
+Cargo: GESTORA DE PROGRAMAS, ORGANISMO PÚBLICO
+
+Card amarelo 1 (estatística):
+
+Número: 95%
+Descrição: "Taxa de satisfação institucional alcançada nos programas de governança implementados"
+Logo rodapé: ⬡ Ekoloa
+
+Card branco 3:
+
+Citação: "Do planeamento à implementação, a Ekoloa foi um parceiro confiável e proativo num programa de impacto social de múltiplas fases."
+Nome: JOAQUIM SANTOS
+Cargo: COORDENADOR DE PROJECTO, MINISTÉRIO
+
+Card amarelo 2 (estatística):
+
+Número: +120
+Descrição: "Instituições e líderes apoiados em programas de desenvolvimento organizacional e governança"
+Logo rodapé: ⬡ Ekoloa
+
+
+LINHA 2 — CARDS:
+Card preto 1 (estatística):
+
+Número: 6+
+Descrição: "Anos de atuação em governança consciente e transformação institucional em Angola"
+Logo rodapé: ⬡ Ekoloa
+
+Card branco 4:
+
+Citação: "A Ekoloa trouxe estrutura e rigor a um programa exigente, superando consistentemente as nossas expectativas em termos de impacto."
+Nome: MARTA LOPES
+Cargo: DIRECTORA DE OPERAÇÕES, ORGANIZAÇÃO SOCIAL
+
+Card amarelo 3 (estatística):
+
+Número: 3
+Descrição: "Metodologias próprias desenvolvidas para transformação institucional e impacto social sustentável"
+Logo rodapé: ⬡ Ekoloa
+
+Card branco 5:
+
+Citação: "A capacidade da Ekoloa de articular desenvolvimento humano com governança institucional distingue-a de qualquer outra organização com que colaborámos."
+Nome: PEDRO NKOSI
+Cargo: LÍDER INSTITUCIONAL, SECTOR PÚBLICO
+
+Card preto 2 (estatística):
+
+Número: 100%
+Descrição: "Taxa de aprovação nos processos de certificação SIGIS acompanhados pela Ekoloa"
+Logo rodapé: ⬡ Ekoloa
