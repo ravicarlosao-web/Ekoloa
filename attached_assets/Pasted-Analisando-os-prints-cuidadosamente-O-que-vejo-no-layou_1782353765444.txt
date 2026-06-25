@@ -1,0 +1,86 @@
+Analisando os prints cuidadosamente:
+O que vejo no layout original:
+Layout: Fundo escuro full-screen com imagem de fundo desfocada/transparente atrás de tudo. A imagem pequena fica à direita como destaque visual. O texto fica à esquerda.
+Efeito de scroll: É um sticky scroll — o card atual fica fixo/imóvel enquanto o próximo sobe por baixo e o substitui. Não é scroll normal.
+
+Sobre a tua pergunta — secção vs página:
+Tens razão. Alguns conteúdos da Ekoloa são ricos demais para uma secção. A minha sugestão:
+Manter como SECÇÃO na homepage:
+
+Portfólio/Projetos (versão resumida, 3 projetos)
+Método 2I's (versão resumida)
+
+Criar como PÁGINAS separadas:
+
+/impacto-ekoloa — Portfólio completo de projetos
+/metodologia — Método 2I's detalhado
+/sigis — Certificação SIGIS completa
+/cooperacao — Cooperação governamental
+/causa-social — Causa Social Ekoloa
+/sobre-nos — Quem Somos completo
+
+
+Aqui está o prompt corrigido para a secção de portfólio:
+
+
+ALTERAR SECÇÃO PORTFÓLIO — LAYOUT E CONTEÚDO
+LAYOUT — CORRIGIR ESTRUTURA VISUAL
+Cada projecto ocupa 100% da viewport (100vh). O layout de cada card é:
+
+Fundo: imagem de fundo full-screen com blur moderado (filter: blur(3px), transform: scale(1.05)) + overlay escuro rgba(0,0,0,0.70). A imagem cobre toda a tela mas desfocada.
+Imagem destaque: versão nítida e sem blur da mesma imagem, posicionada à direita, tamanho fixo ~420px × 480px, sem border-radius, como elemento visual principal
+Texto: posicionado à esquerda, padding-left 80px
+
+EFEITO DE SCROLL — STICKY
+Implementar com position: sticky ou IntersectionObserver:
+
+O card actual fica completamente imóvel (position: sticky; top: 0)
+O card seguinte sobe por baixo empurrando o anterior para cima
+NÃO usar fade nem slide lateral — é puramente vertical com o anterior ficando fixo
+Cada secção tem height: 100vh e position: sticky; top: 0
+
+css.project-item {
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  z-index: auto; /* incrementar por projecto */
+}
+.project-item:nth-child(1) { z-index: 1; }
+.project-item:nth-child(2) { z-index: 2; }
+.project-item:nth-child(3) { z-index: 3; }
+CONTEÚDO — 3 PROJECTOS
+PROJECTO [001]
+
+Fundo + imagem destaque: foto de formação/liderança em África (pesquisar: "leadership training africa community")
+Label: PROJECTO [001]
+Título: "Consciência Individual à Transformação Sistémica"
+PERÍODO: Jan 2026 – Em curso
+ÂMBITO: Desenvolvimento Intrínseco & Governança
+ÁREA: Impacto Social & Desenvolvimento Humano
+Link: VER PROJECTO COMPLETO ——→
+
+PROJECTO [002]
+
+Fundo + imagem destaque: foto de workshop institucional/capacitação (pesquisar: "institutional workshop governance africa")
+Label: PROJECTO [002]
+Título: "Desenvolvimento Intrínseco como Base da Transformação Social"
+PERÍODO: Fev 2026 – Em curso
+ÂMBITO: Metodologia 2I's & Impacto Mensurável
+ÁREA: Governança Consciente & Organizações
+Link: VER PROJECTO COMPLETO ——→
+
+PROJECTO [003]
+
+Fundo + imagem destaque: foto de reunião estratégica governamental (pesquisar: "strategic meeting government africa")
+Label: PROJECTO [003]
+Título: "Método 2I's como Motor de Impacto Sustentável"
+PERÍODO: Fev 2026 – Em curso
+ÂMBITO: Metodologias Próprias Ekoloa
+ÁREA: Governança & Cooperação Institucional
+Link: VER PROJECTO COMPLETO ——→
+
+BOTÃO FINAL
+Após os 3 projectos, fora do sticky, adicionar:
+
+"VER TODO O IMPACTO EKOLOA →"
+Cor: #F5A623, font-size 11px, letter-spacing 0.15em, sem fundo, sem borda

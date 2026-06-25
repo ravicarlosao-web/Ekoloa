@@ -1,64 +1,169 @@
 import React from "react";
-import { motion } from "framer-motion";
-import projectImg from "@/assets/images/project-1.jpg";
+
+const projects = [
+  {
+    label: "PROJECTO [001]",
+    title: "Consciência Individual à Transformação Sistémica",
+    period: "Jan 2026 – Em curso",
+    scope: "Desenvolvimento Intrínseco & Governança",
+    area: "Impacto Social & Desenvolvimento Humano",
+    image: "https://images.unsplash.com/photo-1529390079861-591de354faf5?w=1200&q=80",
+    zIndex: 1,
+  },
+  {
+    label: "PROJECTO [002]",
+    title: "Desenvolvimento Intrínseco como Base da Transformação Social",
+    period: "Fev 2026 – Em curso",
+    scope: "Metodologia 2I's & Impacto Mensurável",
+    area: "Governança Consciente & Organizações",
+    image: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=1200&q=80",
+    zIndex: 2,
+  },
+  {
+    label: "PROJECTO [003]",
+    title: "Método 2I's como Motor de Impacto Sustentável",
+    period: "Fev 2026 – Em curso",
+    scope: "Metodologias Próprias Ekoloa",
+    area: "Governança & Cooperação Institucional",
+    image: "https://images.unsplash.com/photo-1560523159-4a9692d222ef?w=1200&q=80",
+    zIndex: 3,
+  },
+];
+
+function ProjectItem({ project }: { project: (typeof projects)[0] }) {
+  return (
+    <div
+      className="relative w-full overflow-hidden"
+      style={{
+        height: "100vh",
+        position: "sticky",
+        top: 0,
+        zIndex: project.zIndex,
+      }}
+    >
+      {/* Blurred full-screen background */}
+      <div
+        className="absolute inset-0"
+        style={{
+          backgroundImage: `url(${project.image})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          filter: "blur(3px)",
+          transform: "scale(1.05)",
+        }}
+      />
+      {/* Dark overlay */}
+      <div className="absolute inset-0 bg-black/70" />
+
+      {/* Content */}
+      <div
+        className="relative h-full flex items-center"
+        style={{ paddingLeft: "80px", paddingRight: "60px" }}
+      >
+        {/* Left text */}
+        <div className="flex-1 flex flex-col text-white max-w-[520px]">
+          <div
+            className="mb-6 text-white/50"
+            style={{
+              fontSize: "11px",
+              fontWeight: 700,
+              letterSpacing: "0.2em",
+              textTransform: "uppercase",
+            }}
+          >
+            {project.label}
+          </div>
+
+          <h2
+            className="font-bold leading-tight mb-14 text-white"
+            style={{ fontSize: "clamp(32px, 4vw, 56px)", letterSpacing: "-0.02em" }}
+          >
+            {project.title}
+          </h2>
+
+          <div className="flex flex-col gap-6 mb-14">
+            <div className="border-t border-white/15 pt-4">
+              <span
+                className="block text-white/50 mb-1"
+                style={{ fontSize: "10px", fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase" }}
+              >
+                PERÍODO
+              </span>
+              <span className="text-white text-lg font-medium">{project.period}</span>
+            </div>
+            <div className="border-t border-white/15 pt-4">
+              <span
+                className="block text-white/50 mb-1"
+                style={{ fontSize: "10px", fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase" }}
+              >
+                ÂMBITO
+              </span>
+              <span className="text-white text-lg font-medium">{project.scope}</span>
+            </div>
+            <div className="border-t border-b border-white/15 pt-4 pb-4">
+              <span
+                className="block text-white/50 mb-1"
+                style={{ fontSize: "10px", fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase" }}
+              >
+                ÁREA
+              </span>
+              <span className="text-white text-lg font-medium">{project.area}</span>
+            </div>
+          </div>
+
+          <a
+            href="#"
+            className="inline-flex items-center hover:opacity-70 transition-opacity"
+            style={{ fontSize: "11px", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "#F5A623" }}
+          >
+            VER PROJECTO COMPLETO ——→
+          </a>
+        </div>
+
+        {/* Right sharp highlight image */}
+        <div
+          className="flex-shrink-0 hidden lg:block"
+          style={{ width: "420px", height: "480px", overflow: "hidden" }}
+        >
+          <img
+            src={project.image}
+            alt={project.title}
+            style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+          />
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export function Projects() {
   return (
-    <section className="w-full bg-[#1C1C1C] text-white py-24 md:py-32 px-8 md:px-16 lg:px-24">
-      <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
-        
-        {/* Left Content */}
-        <motion.div 
-          initial={{ opacity: 0, x: -30 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="lg:w-1/2 flex flex-col"
-        >
-          <div className="text-[11px] font-semibold tracking-[0.2em] uppercase mb-8 opacity-60">
-            [PROJECT [001]
-          </div>
-          <h2 className="text-5xl md:text-[68px] font-bold leading-[1.05] tracking-tight mb-16">
-            Apartment construction
-          </h2>
-
-          <div className="flex flex-col gap-8 mb-16">
-            <div className="flex flex-col border-t border-white/10 pt-4">
-              <span className="text-[10px] font-bold tracking-[0.15em] uppercase text-white/50 mb-1">TIMELINE</span>
-              <span className="text-lg font-medium">Oct 2024 - Sep 2025</span>
-            </div>
-            <div className="flex flex-col border-t border-white/10 pt-4">
-              <span className="text-[10px] font-bold tracking-[0.15em] uppercase text-white/50 mb-1">COST</span>
-              <span className="text-lg font-medium">$1,270,000</span>
-            </div>
-            <div className="flex flex-col border-t border-white/10 pt-4 border-b pb-4">
-              <span className="text-[10px] font-bold tracking-[0.15em] uppercase text-white/50 mb-1">SCOPE</span>
-              <span className="text-lg font-medium">345 apartments</span>
-            </div>
-          </div>
-
-          <a href="#" className="inline-flex items-center text-[11px] font-bold tracking-[0.1em] uppercase text-[#F5A81C] hover:opacity-70 transition-opacity">
-            CLICK TO VIEW FULL PROJECT ——&rarr;
-          </a>
-        </motion.div>
-
-        {/* Right Image */}
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="lg:w-1/2 w-full h-[600px] md:h-[800px] relative group overflow-hidden"
-        >
-          <img 
-            src={projectImg} 
-            alt="Modern apartment building" 
-            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
-          />
-          <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-700" />
-        </motion.div>
-
+    <>
+      {/* Sticky scroll wrapper — total height forces scroll through all 3 */}
+      <div style={{ position: "relative" }}>
+        {projects.map((project) => (
+          <ProjectItem key={project.label} project={project} />
+        ))}
       </div>
-    </section>
+
+      {/* Final CTA — outside sticky */}
+      <div className="w-full bg-[#1C1C1C] flex justify-center items-center py-20">
+        <a
+          href="#"
+          className="hover:opacity-70 transition-opacity"
+          style={{
+            fontSize: "11px",
+            fontWeight: 700,
+            letterSpacing: "0.15em",
+            textTransform: "uppercase",
+            color: "#F5A623",
+            background: "none",
+            border: "none",
+          }}
+        >
+          VER TODO O IMPACTO EKOLOA →
+        </a>
+      </div>
+    </>
   );
 }
