@@ -17,8 +17,20 @@ export default function HomePage() {
       <Navbar />
       <Hero />
       <About />
-      <Process />
-      <Projects />
+
+      {/*
+        Bounded wrapper so Process sticky is scoped to this region only.
+        Process: sticky at top, z-index 0 — freezes in place as portfolio rises over it.
+        Projects: z-index 1 internally — slides up from below and covers Process completely.
+        Once this wrapper scrolls out, Process is gone and the rest of the page is normal.
+      */}
+      <div style={{ position: "relative" }}>
+        <div style={{ position: "sticky", top: 0, zIndex: 0 }}>
+          <Process />
+        </div>
+        <Projects />
+      </div>
+
       <Partners />
       <Services />
       <Testimonials />
