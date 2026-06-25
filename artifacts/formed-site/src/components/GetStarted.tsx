@@ -7,7 +7,7 @@ export function GetStarted() {
         position: "relative",
         minHeight: "60vh",
         backgroundImage:
-          "url('https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1800&q=80')",
+          "url('https://images.unsplash.com/photo-1580746738099-b3ec3a906f91?w=1800&q=80')",
         backgroundSize: "cover",
         backgroundPosition: "center center",
         overflow: "hidden",
@@ -79,7 +79,7 @@ export function GetStarted() {
             fontFamily: "'DM Sans','Inter',sans-serif",
           }}
         >
-          [08] GET STARTED
+          [08] INICIAR DIÁLOGO
         </div>
 
         {/* Heading */}
@@ -95,7 +95,7 @@ export function GetStarted() {
             letterSpacing: "-0.01em",
           }}
         >
-          Explore how Formed can bring your next development to life.
+          Explore como a Ekoloa pode transformar a sua instituição e gerar impacto social real.
         </h2>
 
         {/* CTA Button */}
@@ -133,7 +133,7 @@ export function GetStarted() {
                 alignItems: "center",
               }}
             >
-              START WORKING WITH US
+              INICIAR DIÁLOGO INSTITUCIONAL
             </div>
           </a>
         </div>
