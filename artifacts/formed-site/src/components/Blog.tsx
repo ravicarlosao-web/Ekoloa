@@ -4,26 +4,26 @@ import { motion } from "framer-motion";
 const articles = [
   {
     id: 1,
-    image: "https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1200&q=80",
+    image: "https://images.unsplash.com/photo-1509099836639-18ba1795216d?w=1200&q=80",
     objectPosition: "center center",
-    title: "Designing Apartment Developments for Long-Term Value",
-    date: "OCT 29, 2025",
+    title: "Causa Social e Governança Consciente: Uma Ligação Inseparável",
+    date: "09 FEV, 2026",
     featured: true,
   },
   {
     id: 2,
-    image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&q=80",
+    image: "https://images.unsplash.com/photo-1529390079861-591de354faf5?w=800&q=80",
     objectPosition: "center center",
-    title: "Managing Large-Scale Construction Projects Effectively",
-    date: "18 OCT 2025",
+    title: "Por que a Causa Social da Ekoloa não é Assistencialista",
+    date: "09 FEV, 2026",
     featured: false,
   },
   {
     id: 3,
-    image: "https://images.unsplash.com/photo-1464817739973-0128fe77aaa1?w=800&q=80",
+    image: "https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?w=800&q=80",
     objectPosition: "center center",
-    title: "The Rise of Mixed-Use Developments in Urban Areas",
-    date: "18 OCT 2025",
+    title: "Desenvolvimento Intrínseco como Causa Social Estruturante",
+    date: "09 FEV, 2026",
     featured: false,
   },
 ];
@@ -128,7 +128,7 @@ export function Blog() {
               letterSpacing: "-0.01em",
             }}
           >
-            Latest News & Updates
+            Últimas Notícias & Publicações
           </h2>
         </div>
 
@@ -145,7 +145,7 @@ export function Blog() {
             whiteSpace: "nowrap",
           }}
         >
-          VIEW ALL NEWS →
+          VER TODOS OS ARTIGOS →
         </a>
       </motion.div>
 
