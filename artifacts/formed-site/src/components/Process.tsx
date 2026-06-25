@@ -1,10 +1,30 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import processBgUrl from "@/assets/images/process-card.jpg";
 
 export function Process() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    // whileInView is unreliable inside position:sticky + overflow:hidden.
+    // Use a scroll listener that checks the section's real bounding rect instead.
+    const check = () => {
+      const el = sectionRef.current;
+      if (!el || visible) return;
+      const { top, bottom } = el.getBoundingClientRect();
+      if (top < window.innerHeight && bottom > 0) {
+        setVisible(true);
+      }
+    };
+    check(); // fire immediately in case already visible on mount
+    window.addEventListener("scroll", check, { passive: true });
+    return () => window.removeEventListener("scroll", check);
+  }, [visible]);
+
   return (
     <section
+      ref={sectionRef}
       className="w-full"
       style={{
         background: "#F0F0F0",
@@ -20,8 +40,7 @@ export function Process() {
       {/* ── Section header ─────────────────────────────────── */}
       <motion.div
         initial={{ opacity: 0, y: 16 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
+        animate={visible ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
         transition={{ duration: 0.7 }}
         style={{
           textAlign: "center",
@@ -75,9 +94,8 @@ export function Process() {
           </div>
           <motion.div
             initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0 }}
+            animate={visible ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
+            transition={{ duration: 0.7, delay: 0.1 }}
             style={{
               flex: 1,
               background: "#FFFFFF",
@@ -96,11 +114,11 @@ export function Process() {
               xmlns="http://www.w3.org/2000/svg"
             >
               <defs>
-                <pattern id="arch-grid" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+                <pattern id="process-arch-grid" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
                   <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#111111" strokeWidth="0.5" />
                 </pattern>
               </defs>
-              <rect width="100%" height="100%" fill="url(#arch-grid)" />
+              <rect width="100%" height="100%" fill="url(#process-arch-grid)" />
             </svg>
             <div style={{ position: "relative", zIndex: 1 }}>
               <div style={{ fontSize: 10, fontWeight: 500, letterSpacing: "0.12em", color: "#111111", textTransform: "uppercase", marginBottom: 12 }}>
@@ -123,9 +141,8 @@ export function Process() {
           </div>
           <motion.div
             initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.1 }}
+            animate={visible ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
             style={{
               flex: 1,
               position: "relative",
@@ -162,9 +179,8 @@ export function Process() {
           </div>
           <motion.div
             initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.2 }}
+            animate={visible ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
+            transition={{ duration: 0.7, delay: 0.3 }}
             style={{
               flex: 1,
               background: "#F5A623",

@@ -31,6 +31,25 @@ export function Projects() {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const slidesRef = useRef<(HTMLDivElement | null)[]>([null, null, null]);
+  // Cache vh — updated only on resize, never on scroll.
+  // Prevents jitter on mobile when browser chrome appears/disappears.
+  const vhRef = useRef(typeof window !== "undefined" ? window.innerHeight : 800);
+
+  useEffect(() => {
+    const updateVh = () => {
+      // Prefer visualViewport (stable on mobile — excludes browser chrome)
+      vhRef.current = window.visualViewport
+        ? window.visualViewport.height
+        : window.innerHeight;
+    };
+    updateVh();
+    window.addEventListener("resize", updateVh);
+    window.visualViewport?.addEventListener("resize", updateVh);
+    return () => {
+      window.removeEventListener("resize", updateVh);
+      window.visualViewport?.removeEventListener("resize", updateVh);
+    };
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -40,7 +59,7 @@ export function Projects() {
 
       const wrapperTop = wrapper.getBoundingClientRect().top;
       const wrapperHeight = wrapper.offsetHeight;
-      const vh = window.innerHeight;
+      const vh = vhRef.current; // stable — never recalculated per scroll
 
       // Phase 1 — wrapper hasn't reached viewport top yet (Process sticky still covering):
       // keep portfolio hidden below screen
