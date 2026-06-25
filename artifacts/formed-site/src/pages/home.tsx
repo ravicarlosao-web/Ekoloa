@@ -17,39 +17,8 @@ export default function HomePage() {
       <Navbar />
       <Hero />
       <About />
-
-      {/*
-        Transition zone: Process acts as a high-z sticky cover over Project 1.
-        - 200vh wrapper gives Process a 100vh "hang" window at the top.
-        - Projects is pulled up by 100vh so Project 1 sits behind Process during that hang.
-        - When the Process wrapper ends, Process slides off the top — revealing Project 1
-          already in place beneath it ("coming from above").
-        - Project 2 and 3 then rise from below in the normal stacking order.
-      */}
-      <div style={{ position: "relative" }}>
-
-        {/* Process: sticky at top with z-index 20, clipped to 100vh */}
-        <div style={{ height: "200vh" }}>
-          <div
-            style={{
-              position: "sticky",
-              top: 0,
-              height: "100vh",
-              zIndex: 20,
-              overflow: "hidden",
-            }}
-          >
-            <Process />
-          </div>
-        </div>
-
-        {/* Projects: pulled up 100vh to sit behind Process during its hang window */}
-        <div style={{ marginTop: "-100vh" }}>
-          <Projects />
-        </div>
-
-      </div>
-
+      <Process />
+      <Projects />
       <Partners />
       <Services />
       <Testimonials />
