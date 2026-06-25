@@ -73,7 +73,7 @@ export function GetStarted() {
             fontSize: 11,
             fontWeight: 400,
             letterSpacing: "0.15em",
-            color: "#F5A623",
+            color: "#E8401C",
             textTransform: "uppercase",
             marginBottom: 16,
             fontFamily: "'DM Sans','Inter',sans-serif",
@@ -114,7 +114,7 @@ export function GetStarted() {
             <div
               style={{
                 width: 4,
-                background: "#F5A623",
+                background: "#E8401C",
                 flexShrink: 0,
               }}
             />

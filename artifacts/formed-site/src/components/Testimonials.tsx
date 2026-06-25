@@ -33,7 +33,7 @@ function TestimonialCard({ quote, name, role }: { quote: string; name: string; r
   return (
     <div style={{ width: 360, minWidth: 360, height: 320, background: "#ffffff", padding: 36, display: "flex", flexDirection: "column", justifyContent: "space-between", flexShrink: 0 }}>
       <div>
-        <div style={{ fontSize: 48, lineHeight: 1, color: "#F5A623", marginBottom: 12, fontFamily: "Georgia,serif" }}>"</div>
+        <div style={{ fontSize: 48, lineHeight: 1, color: "#E8401C", marginBottom: 12, fontFamily: "Georgia,serif" }}>"</div>
         <p style={{ fontSize: 15, fontWeight: 400, color: "#111111", lineHeight: 1.6, fontStyle: "italic", margin: 0 }}>{quote}</p>
       </div>
       <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
@@ -75,7 +75,7 @@ const ROW1 = [
 
   <StatCard key="s1"
     stat="95%" description="Taxa de satisfação institucional alcançada nos programas de governança implementados"
-    bg="#F5A623" textColor="#111111" descColor="#333333" />,
+    bg="#E8401C" textColor="#111111" descColor="#333333" />,
 
   <TestimonialCard key="t3"
     quote="Do planeamento à implementação, a Ekoloa foi um parceiro confiável e proativo num programa de impacto social de múltiplas fases."
@@ -83,7 +83,7 @@ const ROW1 = [
 
   <StatCard key="s2"
     stat="+120" description="Instituições e líderes apoiados em programas de desenvolvimento organizacional e governança"
-    bg="#F5A623" textColor="#111111" descColor="#333333" />,
+    bg="#E8401C" textColor="#111111" descColor="#333333" />,
 ];
 
 const ROW2 = [
@@ -97,7 +97,7 @@ const ROW2 = [
 
   <StatCard key="s4"
     stat="3" description="Metodologias próprias desenvolvidas para transformação institucional e impacto social sustentável"
-    bg="#F5A623" textColor="#111111" descColor="#333333" />,
+    bg="#E8401C" textColor="#111111" descColor="#333333" />,
 
   <TestimonialCard key="t5"
     quote="A capacidade da Ekoloa de articular desenvolvimento humano com governança institucional distingue-a de qualquer outra organização com que colaborámos."
@@ -140,7 +140,7 @@ export function Testimonials() {
         transition={{ duration: 0.7 }}
         style={{ textAlign: "center", paddingLeft: 80, paddingRight: 80, marginBottom: 60 }}
       >
-        <div style={{ fontSize: 11, fontWeight: 400, letterSpacing: "0.15em", color: "#F5A623", textTransform: "uppercase", marginBottom: 20 }}>
+        <div style={{ fontSize: 11, fontWeight: 400, letterSpacing: "0.15em", color: "#E8401C", textTransform: "uppercase", marginBottom: 20 }}>
           [05] TESTEMUNHOS
         </div>
         <h2 style={{

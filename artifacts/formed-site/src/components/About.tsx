@@ -172,16 +172,16 @@ export function About() {
         aria-hidden
       >
         <div style={{ display: "flex", gap: 20 }}>
-          <span style={{ fontSize: 18, color: "#F5A623", lineHeight: 1 }}>+</span>
+          <span style={{ fontSize: 18, color: "#E8401C", lineHeight: 1 }}>+</span>
         </div>
         <div style={{ display: "flex", gap: 20 }}>
-          <span style={{ fontSize: 18, color: "#F5A623", lineHeight: 1 }}>+</span>
-          <span style={{ fontSize: 18, color: "#F5A623", lineHeight: 1 }}>+</span>
+          <span style={{ fontSize: 18, color: "#E8401C", lineHeight: 1 }}>+</span>
+          <span style={{ fontSize: 18, color: "#E8401C", lineHeight: 1 }}>+</span>
         </div>
         <div style={{ display: "flex", gap: 20 }}>
-          <span style={{ fontSize: 18, color: "#F5A623", lineHeight: 1 }}>+</span>
-          <span style={{ fontSize: 18, color: "#F5A623", lineHeight: 1 }}>+</span>
-          <span style={{ fontSize: 18, color: "#F5A623", lineHeight: 1 }}>+</span>
+          <span style={{ fontSize: 18, color: "#E8401C", lineHeight: 1 }}>+</span>
+          <span style={{ fontSize: 18, color: "#E8401C", lineHeight: 1 }}>+</span>
+          <span style={{ fontSize: 18, color: "#E8401C", lineHeight: 1 }}>+</span>
         </div>
       </div>
     </section>

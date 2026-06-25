@@ -44,7 +44,7 @@ function AccordionItem({ q, a, isOpen, onToggle }: {
         <span style={{ fontSize: 17, fontWeight: 400, color: "#111111", lineHeight: 1.4, paddingRight: 24 }}>
           {q}
         </span>
-        <span style={{ fontSize: 22, fontWeight: 300, color: "#F5A623", flexShrink: 0, lineHeight: 1, transition: "transform 0.25s ease", display: "inline-block", transform: isOpen ? "rotate(45deg)" : "rotate(0deg)" }}>
+        <span style={{ fontSize: 22, fontWeight: 300, color: "#E8401C", flexShrink: 0, lineHeight: 1, transition: "transform 0.25s ease", display: "inline-block", transform: isOpen ? "rotate(45deg)" : "rotate(0deg)" }}>
           +
         </span>
       </button>
@@ -75,9 +75,9 @@ export function Faqs() {
     <section style={{ background: "#EFEFEF", position: "relative", overflow: "hidden" }}>
 
       {/* Decorative crosses */}
-      <div aria-hidden style={{ position: "absolute", top: 40, right: 48, fontSize: 14, color: "#F5A623", opacity: 0.6, userSelect: "none" }}>+</div>
-      <div aria-hidden style={{ position: "absolute", top: 120, right: 80, fontSize: 14, color: "#F5A623", opacity: 0.6, userSelect: "none" }}>+</div>
-      <div aria-hidden style={{ position: "absolute", bottom: 60, right: 56, fontSize: 14, color: "#F5A623", opacity: 0.6, userSelect: "none" }}>+</div>
+      <div aria-hidden style={{ position: "absolute", top: 40, right: 48, fontSize: 14, color: "#E8401C", opacity: 0.6, userSelect: "none" }}>+</div>
+      <div aria-hidden style={{ position: "absolute", top: 120, right: 80, fontSize: 14, color: "#E8401C", opacity: 0.6, userSelect: "none" }}>+</div>
+      <div aria-hidden style={{ position: "absolute", bottom: 60, right: 56, fontSize: 14, color: "#E8401C", opacity: 0.6, userSelect: "none" }}>+</div>
 
       <div style={{ display: "flex", position: "relative" }}>
 
@@ -106,7 +106,7 @@ export function Faqs() {
 
               {/* Button with yellow left bar */}
               <div style={{ display: "inline-flex", alignItems: "stretch" }}>
-                <div style={{ width: 4, background: "#F5A623", flexShrink: 0 }} />
+                <div style={{ width: 4, background: "#E8401C", flexShrink: 0 }} />
                 <button style={{
                   background: "#ffffff", border: "none", padding: "14px 28px",
                   fontSize: 11, letterSpacing: "0.12em", fontWeight: 600, color: "#111111",

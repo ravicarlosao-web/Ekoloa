@@ -14,7 +14,7 @@ function NavLink({ href, children }: { href: string; children: React.ReactNode }
         display: "block",
         fontSize: 18,
         fontWeight: 400,
-        color: hovered ? "#F5A623" : "#ffffff",
+        color: hovered ? "#E8401C" : "#ffffff",
         lineHeight: 2.2,
         textDecoration: "none",
         transition: "color 0.2s ease",

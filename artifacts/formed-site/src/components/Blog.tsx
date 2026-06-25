@@ -62,7 +62,7 @@ function ArticleCard({ article }: { article: typeof articles[0] }) {
         style={{
           fontSize: article.featured ? 22 : 18,
           fontWeight: 400,
-          color: hovered ? "#F5A623" : "#111111",
+          color: hovered ? "#E8401C" : "#111111",
           marginTop: article.featured ? 20 : 16,
           lineHeight: 1.4,
           fontFamily: "'DM Sans','Inter',sans-serif",
@@ -76,7 +76,7 @@ function ArticleCard({ article }: { article: typeof articles[0] }) {
         style={{
           fontSize: 10,
           letterSpacing: "0.12em",
-          color: "#F5A623",
+          color: "#E8401C",
           fontWeight: 400,
           marginTop: 10,
           textTransform: "uppercase",
@@ -110,7 +110,7 @@ export function Blog() {
               fontSize: 11,
               fontWeight: 400,
               letterSpacing: "0.15em",
-              color: "#F5A623",
+              color: "#E8401C",
               textTransform: "uppercase",
               marginBottom: 8,
             }}

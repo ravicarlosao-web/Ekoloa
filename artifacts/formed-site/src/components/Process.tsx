@@ -90,7 +90,7 @@ export function Process() {
         {/* ══ Card 1 — White ══════════════════════════════════ */}
         <div style={{ flex: 1, display: "flex", flexDirection: "column", marginTop: 40 }}>
           <div style={{ display: "flex", justifyContent: "center" }}>
-            <div style={{ width: 1, height: 24, background: "#F5A623" }} />
+            <div style={{ width: 1, height: 24, background: "#E8401C" }} />
           </div>
           <motion.div
             initial={{ opacity: 0, y: 24 }}
@@ -137,7 +137,7 @@ export function Process() {
         {/* ══ Card 2 — Dark / image ═══════════════════════════ */}
         <div style={{ flex: 1, display: "flex", flexDirection: "column", marginTop: 0 }}>
           <div style={{ display: "flex", justifyContent: "center" }}>
-            <div style={{ width: 1, height: 24, background: "#F5A623" }} />
+            <div style={{ width: 1, height: 24, background: "#E8401C" }} />
           </div>
           <motion.div
             initial={{ opacity: 0, y: 24 }}
@@ -175,7 +175,7 @@ export function Process() {
         {/* ══ Card 3 — Yellow ═════════════════════════════════ */}
         <div style={{ flex: 1, display: "flex", flexDirection: "column", marginTop: 20 }}>
           <div style={{ display: "flex", justifyContent: "center" }}>
-            <div style={{ width: 1, height: 24, background: "#F5A623" }} />
+            <div style={{ width: 1, height: 24, background: "#E8401C" }} />
           </div>
           <motion.div
             initial={{ opacity: 0, y: 24 }}
@@ -183,7 +183,7 @@ export function Process() {
             transition={{ duration: 0.7, delay: 0.3 }}
             style={{
               flex: 1,
-              background: "#F5A623",
+              background: "#E8401C",
               display: "flex",
               flexDirection: "column",
               justifyContent: "flex-end",

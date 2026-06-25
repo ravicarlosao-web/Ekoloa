@@ -1,0 +1,67 @@
+Analisando a logo da Ekoloa vejo claramente:
+Cores da logo:
+
+Laranja/Vermelho: #E8401C ou próximo (cor quente, laranja-avermelhado)
+Azul/Roxo escuro: #2E2D8F ou próximo (azul-índigo escuro)
+Branco: #FFFFFF (texto "EKOLOA")
+
+
+Estas cores são completamente diferentes do âmbar #F5A623 que está no site actual. Precisamos de decidir a estratégia:
+
+
+MUDANÇA DE IDENTIDADE VISUAL — EKOLOA
+PALETA ACTUAL → NOVA PALETA
+Substituir em todo o projecto as seguintes cores:
+Cor ActualNova CorUso#F5A623 (âmbar)#E8401C (laranja Ekoloa)Cor de marca principal#F5A81C (--primary)#E8401CVariável CSS principalAmarelo nos cards#E8401CDestaques e CTAs
+VARIÁVEIS CSS — ACTUALIZAR
+css:root {
+  --primary: #E8401C;        /* Laranja Ekoloa */
+  --primary-dark: #C4320F;   /* Laranja escuro (hover) */
+  --secondary: #2E2D8F;      /* Azul-índigo Ekoloa */
+  --accent: #1A1A1A;         /* Antracite — manter */
+  --background: #EBEBEB;     /* Cinza global — manter */
+  --text-primary: #111111;   /* Preto — manter */
+  --text-secondary: #555555; /* Cinza texto — manter */
+  --white: #FFFFFF;          /* Branco — manter */
+}
+COMPONENTES A ACTUALIZAR
+Substituir #F5A623 por #E8401C em:
+
+Todas as tags [LAND ACQUISITION], [FEASIBILITY STUDIES] etc.
+Label "[01] ABOUT US", "[02] OUR PROCESS" etc.
+Ícone "+" do accordion FAQ
+Barra vertical do botão "GET IN TOUCH"
+Link "VER PROJECTO COMPLETO ——→"
+Cruzes decorativas + nas secções
+Linhas de conector verticais entre secções
+Hover states da grid de pilares
+Label "[05] TESTEMUNHOS", "[07] BLOG" etc.
+Bordas dos cards do portfólio
+
+Substituir amarelo por laranja nos CARDS:
+
+Card amarelo da Metodologia (Step 03): fundo #E8401C
+Card amarelo do Hero: fundo #E8401C
+Cards amarelos dos Testimonials: fundo #E8401C
+
+Adicionar azul #2E2D8F como cor secundária em:
+
+Hover dos links do footer
+Bordas de destaque em alguns elementos (opcional)
+Pode usar para diferenciar labels de secção vs labels de card
+
+MANTER INALTERADO
+
+Fundo global #EBEBEB — manter
+Preto #111111 — manter
+Branco #FFFFFF — manter
+Texto #555555 — manter
+Secções escuras #1A1A1A / #1C1C1C — manter
+Fonte Inter — manter
+
+VERIFICAR CONTRASTE
+O laranja #E8401C sobre branco tem bom contraste.
+
+O laranja #E8401C sobre preto/escuro também funciona bem.
+
+O azul #2E2D8F usar apenas sobre branco ou cinza claro para garantir legibilidade.

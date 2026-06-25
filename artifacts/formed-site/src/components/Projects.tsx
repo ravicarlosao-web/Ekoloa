@@ -204,7 +204,7 @@ export function Projects() {
 
                   <a
                     href="#"
-                    style={{ display: "inline-flex", alignItems: "center", fontSize: "11px", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "#F5A623", textDecoration: "none", marginTop: "12px" }}
+                    style={{ display: "inline-flex", alignItems: "center", fontSize: "11px", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "#E8401C", textDecoration: "none", marginTop: "12px" }}
                     onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.7")}
                     onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
                   >
@@ -241,7 +241,7 @@ export function Projects() {
       >
         <a
           href="#"
-          style={{ fontSize: "11px", fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase", color: "#F5A623", textDecoration: "none" }}
+          style={{ fontSize: "11px", fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase", color: "#E8401C", textDecoration: "none" }}
           onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.7")}
           onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
         >

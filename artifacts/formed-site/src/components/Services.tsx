@@ -25,7 +25,7 @@ function Tag({ label }: { label: string }) {
         fontSize: 10,
         fontWeight: 500,
         letterSpacing: "0.12em",
-        color: "#F5A623",
+        color: "#E8401C",
         textTransform: "uppercase",
         whiteSpace: "nowrap",
       }}
@@ -42,7 +42,7 @@ function ServiceLabel({ index }: { index: string }) {
         fontSize: 11,
         fontWeight: 400,
         letterSpacing: "0.12em",
-        color: "#F5A623",
+        color: "#E8401C",
         marginBottom: 16,
         textTransform: "uppercase",
       }}
@@ -61,7 +61,7 @@ export function Services() {
         {...fadeUp(0)}
         style={{ textAlign: "center", marginBottom: 80, paddingLeft: 80, paddingRight: 80 }}
       >
-        <div style={{ fontSize: 11, fontWeight: 400, letterSpacing: "0.15em", color: "#F5A623", textTransform: "uppercase", marginBottom: 20 }}>
+        <div style={{ fontSize: 11, fontWeight: 400, letterSpacing: "0.15em", color: "#E8401C", textTransform: "uppercase", marginBottom: 20 }}>
           [04] AS NOSSAS ÁREAS
         </div>
         <h2 style={{ fontSize: "clamp(32px, 3.8vw, 52px)", fontWeight: 300, lineHeight: 1.2, color: "#ffffff", letterSpacing: "-0.01em", fontFamily: "'DM Sans','Inter',sans-serif", margin: 0 }}>

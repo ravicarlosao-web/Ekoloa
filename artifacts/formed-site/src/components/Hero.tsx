@@ -9,8 +9,8 @@ function CornerCross({ style }: { style: React.CSSProperties }) {
   return (
     <span className="absolute pointer-events-none" style={style} aria-hidden>
       <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-        <line x1="7" y1="0" x2="7" y2="14" stroke="#F5A623" strokeWidth="1.2" />
-        <line x1="0" y1="7" x2="14" y2="7" stroke="#F5A623" strokeWidth="1.2" />
+        <line x1="7" y1="0" x2="7" y2="14" stroke="#E8401C" strokeWidth="1.2" />
+        <line x1="0" y1="7" x2="14" y2="7" stroke="#E8401C" strokeWidth="1.2" />
       </svg>
     </span>
   );
@@ -158,7 +158,7 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
             className="relative text-black flex-shrink-0"
             style={{
-              background: "#F5A623",
+              background: "#E8401C",
               width: "clamp(280px, 29%, 390px)",
               padding: "32px 36px 36px",
             }}
