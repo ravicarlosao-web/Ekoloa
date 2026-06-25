@@ -5,8 +5,17 @@ import processBgUrl from "@/assets/images/process-card.jpg";
 export function Process() {
   return (
     <section
-      className="w-full overflow-hidden"
-      style={{ background: "#F0F0F0", paddingTop: 96, paddingBottom: 80 }}
+      className="w-full"
+      style={{
+        background: "#F0F0F0",
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        paddingTop: 48,
+        paddingBottom: 32,
+        boxSizing: "border-box",
+        overflow: "hidden",
+      }}
     >
       {/* ── Section header ─────────────────────────────────── */}
       <motion.div
@@ -14,7 +23,13 @@ export function Process() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.7 }}
-        style={{ textAlign: "center", marginBottom: 48, paddingLeft: 80, paddingRight: 80 }}
+        style={{
+          textAlign: "center",
+          marginBottom: 28,
+          paddingLeft: 80,
+          paddingRight: 80,
+          flexShrink: 0,
+        }}
       >
         <div
           style={{
@@ -23,14 +38,14 @@ export function Process() {
             letterSpacing: "0.15em",
             color: "#111111",
             textTransform: "uppercase",
-            marginBottom: 20,
+            marginBottom: 16,
           }}
         >
           [02] A NOSSA METODOLOGIA
         </div>
         <h2
           style={{
-            fontSize: "clamp(36px, 3.8vw, 52px)",
+            fontSize: "clamp(28px, 3vw, 48px)",
             fontWeight: 300,
             lineHeight: 1.2,
             color: "#111111",
@@ -43,14 +58,20 @@ export function Process() {
         </h2>
       </motion.div>
 
-      {/* ── Decorative vertical connectors + cards ─────────── */}
-      <div style={{ display: "flex", alignItems: "flex-start", width: "100%" }}>
-
+      {/* ── Cards row — fills remaining height ──────────────── */}
+      <div
+        style={{
+          display: "flex",
+          alignItems: "stretch",
+          width: "100%",
+          flex: 1,
+          minHeight: 0,
+        }}
+      >
         {/* ══ Card 1 — White ══════════════════════════════════ */}
-        <div style={{ flex: 1, marginTop: 80, display: "flex", flexDirection: "column" }}>
-          {/* Vertical line connector */}
-          <div style={{ display: "flex", justifyContent: "center", marginBottom: 0 }}>
-            <div style={{ width: 1, height: 40, background: "#F5A623" }} />
+        <div style={{ flex: 1, display: "flex", flexDirection: "column", marginTop: 40 }}>
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <div style={{ width: 1, height: 24, background: "#F5A623" }} />
           </div>
           <motion.div
             initial={{ opacity: 0, y: 24 }}
@@ -58,27 +79,20 @@ export function Process() {
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0 }}
             style={{
-              height: 520,
+              flex: 1,
               background: "#FFFFFF",
               position: "relative",
               overflow: "hidden",
               display: "flex",
               flexDirection: "column",
               justifyContent: "flex-end",
-              padding: "0 44px 52px",
+              padding: "0 40px 40px",
+              minHeight: 0,
             }}
           >
-            {/* SVG architectural grid pattern */}
             <svg
               aria-hidden
-              style={{
-                position: "absolute",
-                inset: 0,
-                width: "100%",
-                height: "100%",
-                opacity: 0.07,
-                pointerEvents: "none",
-              }}
+              style={{ position: "absolute", inset: 0, width: "100%", height: "100%", opacity: 0.07, pointerEvents: "none" }}
               xmlns="http://www.w3.org/2000/svg"
             >
               <defs>
@@ -88,40 +102,14 @@ export function Process() {
               </defs>
               <rect width="100%" height="100%" fill="url(#arch-grid)" />
             </svg>
-
             <div style={{ position: "relative", zIndex: 1 }}>
-              <div
-                style={{
-                  fontSize: 10,
-                  fontWeight: 500,
-                  letterSpacing: "0.12em",
-                  color: "#111111",
-                  textTransform: "uppercase",
-                  marginBottom: 14,
-                }}
-              >
+              <div style={{ fontSize: 10, fontWeight: 500, letterSpacing: "0.12em", color: "#111111", textTransform: "uppercase", marginBottom: 12 }}>
                 STEP [01]
               </div>
-              <h3
-                style={{
-                  fontSize: 26,
-                  fontWeight: 500,
-                  color: "#111111",
-                  lineHeight: 1.2,
-                  marginBottom: 16,
-                }}
-              >
+              <h3 style={{ fontSize: 22, fontWeight: 500, color: "#111111", lineHeight: 1.2, marginBottom: 12 }}>
                 Diagnóstico Institucional
               </h3>
-              <p
-                style={{
-                  fontSize: 14,
-                  fontWeight: 400,
-                  color: "#555555",
-                  lineHeight: 1.6,
-                  margin: 0,
-                }}
-              >
+              <p style={{ fontSize: 13, fontWeight: 400, color: "#555555", lineHeight: 1.6, margin: 0 }}>
                 Começamos por compreender a realidade da sua organização, identificar desafios estruturais e definir prioridades estratégicas com clareza e rigor técnico.
               </p>
             </div>
@@ -129,10 +117,9 @@ export function Process() {
         </div>
 
         {/* ══ Card 2 — Dark / image ═══════════════════════════ */}
-        <div style={{ flex: 1, marginTop: 0, display: "flex", flexDirection: "column" }}>
-          {/* Vertical line connector */}
+        <div style={{ flex: 1, display: "flex", flexDirection: "column", marginTop: 0 }}>
           <div style={{ display: "flex", justifyContent: "center" }}>
-            <div style={{ width: 1, height: 40, background: "#F5A623" }} />
+            <div style={{ width: 1, height: 24, background: "#F5A623" }} />
           </div>
           <motion.div
             initial={{ opacity: 0, y: 24 }}
@@ -140,60 +127,28 @@ export function Process() {
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.1 }}
             style={{
-              height: 620,
+              flex: 1,
               position: "relative",
               overflow: "hidden",
               display: "flex",
               flexDirection: "column",
               justifyContent: "flex-end",
-              padding: "0 44px 52px",
+              padding: "0 40px 40px",
               backgroundImage: `url(${processBgUrl})`,
               backgroundSize: "cover",
               backgroundPosition: "center",
+              minHeight: 0,
             }}
           >
-            {/* Dark overlay */}
-            <div
-              aria-hidden
-              style={{
-                position: "absolute",
-                inset: 0,
-                background: "rgba(0,0,0,0.60)",
-              }}
-            />
+            <div aria-hidden style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.60)" }} />
             <div style={{ position: "relative", zIndex: 1 }}>
-              <div
-                style={{
-                  fontSize: 10,
-                  fontWeight: 500,
-                  letterSpacing: "0.12em",
-                  color: "#ffffff",
-                  textTransform: "uppercase",
-                  marginBottom: 14,
-                }}
-              >
+              <div style={{ fontSize: 10, fontWeight: 500, letterSpacing: "0.12em", color: "#ffffff", textTransform: "uppercase", marginBottom: 12 }}>
                 STEP [02]
               </div>
-              <h3
-                style={{
-                  fontSize: 26,
-                  fontWeight: 500,
-                  color: "#ffffff",
-                  lineHeight: 1.2,
-                  marginBottom: 16,
-                }}
-              >
+              <h3 style={{ fontSize: 22, fontWeight: 500, color: "#ffffff", lineHeight: 1.2, marginBottom: 12 }}>
                 Cooperação & Implementação
               </h3>
-              <p
-                style={{
-                  fontSize: 14,
-                  fontWeight: 400,
-                  color: "rgba(255,255,255,0.75)",
-                  lineHeight: 1.6,
-                  margin: 0,
-                }}
-              >
+              <p style={{ fontSize: 13, fontWeight: 400, color: "rgba(255,255,255,0.75)", lineHeight: 1.6, margin: 0 }}>
                 As nossas equipas acompanham cada fase do programa com transparência, responsabilidade e foco em resultados institucionais mensuráveis.
               </p>
             </div>
@@ -201,10 +156,9 @@ export function Process() {
         </div>
 
         {/* ══ Card 3 — Yellow ═════════════════════════════════ */}
-        <div style={{ flex: 1, marginTop: 40, display: "flex", flexDirection: "column" }}>
-          {/* Vertical line connector */}
+        <div style={{ flex: 1, display: "flex", flexDirection: "column", marginTop: 20 }}>
           <div style={{ display: "flex", justifyContent: "center" }}>
-            <div style={{ width: 1, height: 40, background: "#F5A623" }} />
+            <div style={{ width: 1, height: 24, background: "#F5A623" }} />
           </div>
           <motion.div
             initial={{ opacity: 0, y: 24 }}
@@ -212,46 +166,22 @@ export function Process() {
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.2 }}
             style={{
-              height: 560,
+              flex: 1,
               background: "#F5A623",
               display: "flex",
               flexDirection: "column",
               justifyContent: "flex-end",
-              padding: "0 44px 52px",
+              padding: "0 40px 40px",
+              minHeight: 0,
             }}
           >
-            <div
-              style={{
-                fontSize: 10,
-                fontWeight: 500,
-                letterSpacing: "0.12em",
-                color: "#111111",
-                textTransform: "uppercase",
-                marginBottom: 14,
-              }}
-            >
+            <div style={{ fontSize: 10, fontWeight: 500, letterSpacing: "0.12em", color: "#111111", textTransform: "uppercase", marginBottom: 12 }}>
               STEP [03]
             </div>
-            <h3
-              style={{
-                fontSize: 26,
-                fontWeight: 500,
-                color: "#111111",
-                lineHeight: 1.2,
-                marginBottom: 16,
-              }}
-            >
+            <h3 style={{ fontSize: 22, fontWeight: 500, color: "#111111", lineHeight: 1.2, marginBottom: 12 }}>
               Impacto & Certificação
             </h3>
-            <p
-              style={{
-                fontSize: 14,
-                fontWeight: 400,
-                color: "#333333",
-                lineHeight: 1.6,
-                marginBottom: 36,
-              }}
-            >
+            <p style={{ fontSize: 13, fontWeight: 400, color: "#333333", lineHeight: 1.6, marginBottom: 28 }}>
               Entregamos resultados estruturados e permanecemos parceiros de confiança, apoiando a sua organização na certificação SIGIS e no crescimento sustentável.
             </p>
             <div>
@@ -262,7 +192,7 @@ export function Process() {
                   fontSize: 11,
                   fontWeight: 600,
                   letterSpacing: "0.12em",
-                  padding: "14px 28px",
+                  padding: "12px 24px",
                   border: "none",
                   borderRadius: 0,
                   textTransform: "uppercase",
