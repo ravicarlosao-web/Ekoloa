@@ -26,7 +26,7 @@ export function Process() {
             marginBottom: 20,
           }}
         >
-          [02] OUR PROCESS
+          [02] A NOSSA METODOLOGIA
         </div>
         <h2
           style={{
@@ -39,7 +39,7 @@ export function Process() {
             margin: 0,
           }}
         >
-          How you'll work with us
+          Como trabalhamos consigo
         </h2>
       </motion.div>
 
@@ -111,7 +111,7 @@ export function Process() {
                   marginBottom: 16,
                 }}
               >
-                Discovery & Planning
+                Diagnóstico Institucional
               </h3>
               <p
                 style={{
@@ -122,8 +122,7 @@ export function Process() {
                   margin: 0,
                 }}
               >
-                We begin by understanding your vision, requirements, and site
-                constraints to define a clear, achievable project plan.
+                Começamos por compreender a realidade da sua organização, identificar desafios estruturais e definir prioridades estratégicas com clareza e rigor técnico.
               </p>
             </div>
           </motion.div>
@@ -184,7 +183,7 @@ export function Process() {
                   marginBottom: 16,
                 }}
               >
-                Design & Delivery
+                Cooperação & Implementação
               </h3>
               <p
                 style={{
@@ -195,8 +194,7 @@ export function Process() {
                   margin: 0,
                 }}
               >
-                Our teams manage every stage of construction with precision,
-                transparency, and a focus on quality and efficiency.
+                As nossas equipas acompanham cada fase do programa com transparência, responsabilidade e foco em resultados institucionais mensuráveis.
               </p>
             </div>
           </motion.div>
@@ -243,7 +241,7 @@ export function Process() {
                 marginBottom: 16,
               }}
             >
-              Launch & Support
+              Impacto & Certificação
             </h3>
             <p
               style={{
@@ -254,8 +252,7 @@ export function Process() {
                 marginBottom: 36,
               }}
             >
-              We hand over a completed development and remain a trusted partner
-              as your project moves into its next phase.
+              Entregamos resultados estruturados e permanecemos parceiros de confiança, apoiando a sua organização na certificação SIGIS e no crescimento sustentável.
             </p>
             <div>
               <button
@@ -276,7 +273,7 @@ export function Process() {
                 onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.85")}
                 onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
               >
-                START YOUR PROJECT
+                INICIAR DIÁLOGO
               </button>
             </div>
           </motion.div>
