@@ -1,22 +1,53 @@
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useEffect, useRef, useState } from "react";
+import { motion, useInView } from "framer-motion";
 
 const EASE: [number, number, number, number] = [0.25, 0.1, 0.25, 1];
 
 const stats = [
   {
-    number: "15+",
+    target: 15,
+    suffix: "+",
     description: "Years of experience delivering complex property developments",
   },
   {
-    number: "132",
+    target: 132,
+    suffix: "",
     description: "Residential and mixed-use projects successfully completed",
   },
   {
-    number: "37K+",
+    target: 37,
+    suffix: "K+",
     description: "Homes built to support growing communities worldwide",
   },
 ];
+
+function CountUp({ target, suffix, duration = 1.8 }: { target: number; suffix: string; duration?: number }) {
+  const [count, setCount] = useState(0);
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, margin: "0px 0px -60px 0px" });
+  const started = useRef(false);
+
+  useEffect(() => {
+    if (!inView || started.current) return;
+    started.current = true;
+
+    const startTime = performance.now();
+    const step = (now: number) => {
+      const elapsed = (now - startTime) / 1000;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setCount(Math.round(eased * target));
+      if (progress < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }, [inView, target, duration]);
+
+  return (
+    <div ref={ref}>
+      {count}{suffix}
+    </div>
+  );
+}
 
 export function About() {
   return (
@@ -67,7 +98,7 @@ export function About() {
         <div className="lg:w-2/5 flex flex-col">
           {stats.map((stat, i) => (
             <motion.div
-              key={stat.number}
+              key={stat.target}
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -88,7 +119,7 @@ export function About() {
                   fontFamily: "'DM Sans', 'Inter', sans-serif",
                 }}
               >
-                {stat.number}
+                <CountUp target={stat.target} suffix={stat.suffix} duration={1.6 + i * 0.2} />
               </div>
               <p
                 style={{
@@ -139,16 +170,13 @@ export function About() {
         }}
         aria-hidden
       >
-        {/* Row 1: 1 cross */}
         <div style={{ display: "flex", gap: 20 }}>
           <span style={{ fontSize: 18, color: "#F5A623", lineHeight: 1 }}>+</span>
         </div>
-        {/* Row 2: 2 crosses */}
         <div style={{ display: "flex", gap: 20 }}>
           <span style={{ fontSize: 18, color: "#F5A623", lineHeight: 1 }}>+</span>
           <span style={{ fontSize: 18, color: "#F5A623", lineHeight: 1 }}>+</span>
         </div>
-        {/* Row 3: 3 crosses */}
         <div style={{ display: "flex", gap: 20 }}>
           <span style={{ fontSize: 18, color: "#F5A623", lineHeight: 1 }}>+</span>
           <span style={{ fontSize: 18, color: "#F5A623", lineHeight: 1 }}>+</span>
