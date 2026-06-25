@@ -29,17 +29,35 @@ const projects = [
 
 export function Projects() {
   const wrapperRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const slidesRef = useRef<(HTMLDivElement | null)[]>([null, null, null]);
 
   useEffect(() => {
     const handleScroll = () => {
+      const methodology = document.querySelector(".section-methodology") as HTMLElement;
       const wrapper = wrapperRef.current;
-      if (!wrapper) return;
+      const container = containerRef.current;
+      if (!methodology || !wrapper || !container) return;
 
-      const wrapperTop = wrapper.getBoundingClientRect().top;
-      const wrapperHeight = wrapper.offsetHeight;
+      const methodologyBottom = methodology.getBoundingClientRect().bottom;
       const vh = window.innerHeight;
 
+      // Phase 1 — methodology still visible: keep portfolio fully hidden below screen
+      if (methodologyBottom > 0) {
+        container.style.transform = "translateY(100%)";
+        return;
+      }
+
+      // Phase 2 — methodology has exited: drive portfolio entry + internal slides
+      const wrapperTop = wrapper.getBoundingClientRect().top;
+      const wrapperHeight = wrapper.offsetHeight;
+
+      // Entry: bring the sticky container from translateY(100%) → translateY(0%)
+      const containerEntry = Math.max(0, Math.min(1, -wrapperTop / vh));
+      const containerY = (1 - containerEntry) * 100;
+      container.style.transform = `translateY(${containerY}%)`;
+
+      // Slide stacking: driven by overall progress through the wrapper
       const totalProgress = Math.max(0, Math.min(1,
         -wrapperTop / (wrapperHeight - vh)
       ));
@@ -63,34 +81,38 @@ export function Projects() {
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
-
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
     <>
-      {/* Portfolio wrapper: 4×100vh gives scroll room for 3 slides + entry */}
+      {/* Wrapper: 100vh entry + 100vh per slide = 4×100vh total */}
       <div
         ref={wrapperRef}
+        className="portfolio-wrapper"
         style={{
           position: "relative",
           height: "calc(100vh * 4)",
-          zIndex: 1,
+          zIndex: 10,
         }}
       >
-        {/* Sticky container — holds all slides in view while wrapper scrolls */}
+        {/* Sticky container — starts off-screen below, JS drives it up */}
         <div
+          ref={containerRef}
+          className="portfolio-sticky-container"
           style={{
             position: "sticky",
             top: 0,
             height: "100vh",
             overflow: "hidden",
+            transform: "translateY(100%)",
           }}
         >
           {projects.map((project, index) => (
             <div
               key={project.label}
               ref={(el) => { slidesRef.current[index] = el; }}
+              className="project-slide"
               style={{
                 position: "absolute",
                 top: 0,
@@ -115,15 +137,9 @@ export function Projects() {
                 }}
               />
               {/* Dark overlay */}
-              <div
-                style={{
-                  position: "absolute",
-                  inset: 0,
-                  backgroundColor: "rgba(0,0,0,0.70)",
-                }}
-              />
+              <div style={{ position: "absolute", inset: 0, backgroundColor: "rgba(0,0,0,0.70)" }} />
 
-              {/* Two-zone grid layout */}
+              {/* Two-zone grid */}
               <div
                 style={{
                   position: "relative",
@@ -132,7 +148,7 @@ export function Projects() {
                   gridTemplateColumns: "55% 45%",
                 }}
               >
-                {/* Left zone — all text */}
+                {/* Left — text */}
                 <div
                   style={{
                     display: "flex",
@@ -145,107 +161,32 @@ export function Projects() {
                     color: "white",
                   }}
                 >
-                  <div
-                    style={{
-                      fontSize: "11px",
-                      fontWeight: 700,
-                      letterSpacing: "0.2em",
-                      textTransform: "uppercase",
-                      color: "rgba(255,255,255,0.45)",
-                      marginBottom: "20px",
-                    }}
-                  >
+                  <div style={{ fontSize: "11px", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.45)", marginBottom: "20px" }}>
                     {project.label}
                   </div>
-
-                  <h2
-                    style={{
-                      fontSize: "50px",
-                      fontWeight: 700,
-                      lineHeight: 1.1,
-                      color: "white",
-                      marginBottom: "32px",
-                      letterSpacing: "-0.02em",
-                    }}
-                  >
+                  <h2 style={{ fontSize: "50px", fontWeight: 700, lineHeight: 1.1, color: "white", marginBottom: "32px", letterSpacing: "-0.02em" }}>
                     {project.title}
                   </h2>
+                  <div style={{ borderBottom: "1px solid rgba(255,255,255,0.15)", margin: "0 0 24px 0" }} />
 
-                  <div
-                    style={{
-                      borderBottom: "1px solid rgba(255,255,255,0.15)",
-                      margin: "0 0 24px 0",
-                    }}
-                  />
-
-                  <div style={{ display: "flex", flexDirection: "column" }}>
-                    <div style={{ marginBottom: "20px" }}>
-                      <div
-                        style={{
-                          fontSize: "10px",
-                          letterSpacing: "0.15em",
-                          color: "rgba(255,255,255,0.45)",
-                          fontWeight: 400,
-                          textTransform: "uppercase",
-                          marginBottom: "4px",
-                        }}
-                      >
-                        PERÍODO
+                  {[
+                    { label: "PERÍODO", value: project.period },
+                    { label: "ÂMBITO", value: project.scope },
+                    { label: "ÁREA", value: project.area },
+                  ].map((field) => (
+                    <div key={field.label} style={{ marginBottom: "20px" }}>
+                      <div style={{ fontSize: "10px", letterSpacing: "0.15em", color: "rgba(255,255,255,0.45)", fontWeight: 400, textTransform: "uppercase", marginBottom: "4px" }}>
+                        {field.label}
                       </div>
                       <div style={{ fontSize: "16px", color: "white", fontWeight: 400 }}>
-                        {project.period}
+                        {field.value}
                       </div>
                     </div>
-
-                    <div style={{ marginBottom: "20px" }}>
-                      <div
-                        style={{
-                          fontSize: "10px",
-                          letterSpacing: "0.15em",
-                          color: "rgba(255,255,255,0.45)",
-                          fontWeight: 400,
-                          textTransform: "uppercase",
-                          marginBottom: "4px",
-                        }}
-                      >
-                        ÂMBITO
-                      </div>
-                      <div style={{ fontSize: "16px", color: "white", fontWeight: 400 }}>
-                        {project.scope}
-                      </div>
-                    </div>
-
-                    <div style={{ marginBottom: "32px" }}>
-                      <div
-                        style={{
-                          fontSize: "10px",
-                          letterSpacing: "0.15em",
-                          color: "rgba(255,255,255,0.45)",
-                          fontWeight: 400,
-                          textTransform: "uppercase",
-                          marginBottom: "4px",
-                        }}
-                      >
-                        ÁREA
-                      </div>
-                      <div style={{ fontSize: "16px", color: "white", fontWeight: 400 }}>
-                        {project.area}
-                      </div>
-                    </div>
-                  </div>
+                  ))}
 
                   <a
                     href="#"
-                    style={{
-                      display: "inline-flex",
-                      alignItems: "center",
-                      fontSize: "11px",
-                      fontWeight: 700,
-                      letterSpacing: "0.1em",
-                      textTransform: "uppercase",
-                      color: "#F5A623",
-                      textDecoration: "none",
-                    }}
+                    style={{ display: "inline-flex", alignItems: "center", fontSize: "11px", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "#F5A623", textDecoration: "none", marginTop: "12px" }}
                     onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.7")}
                     onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
                   >
@@ -253,25 +194,12 @@ export function Projects() {
                   </a>
                 </div>
 
-                {/* Right zone — sharp highlight image */}
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                >
+                {/* Right — sharp highlight image */}
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
                   <img
                     src={project.image}
                     alt={project.title}
-                    style={{
-                      width: "280px",
-                      height: "480px",
-                      objectFit: "cover",
-                      display: "block",
-                      borderRadius: 0,
-                      flexShrink: 0,
-                    }}
+                    style={{ width: "280px", height: "480px", objectFit: "cover", display: "block", borderRadius: 0, flexShrink: 0 }}
                   />
                 </div>
               </div>
@@ -280,7 +208,7 @@ export function Projects() {
         </div>
       </div>
 
-      {/* Final CTA — outside the sticky portfolio wrapper */}
+      {/* CTA — outside the sticky wrapper */}
       <div
         style={{
           width: "100%",
@@ -295,14 +223,7 @@ export function Projects() {
       >
         <a
           href="#"
-          style={{
-            fontSize: "11px",
-            fontWeight: 700,
-            letterSpacing: "0.15em",
-            textTransform: "uppercase",
-            color: "#F5A623",
-            textDecoration: "none",
-          }}
+          style={{ fontSize: "11px", fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase", color: "#F5A623", textDecoration: "none" }}
           onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.7")}
           onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
         >

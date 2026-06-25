@@ -1,0 +1,86 @@
+CORRIGIR TIMING DO SCROLL — PORTFÓLIO SÓ SOBE QUANDO METODOLOGIA TERMINAR
+PROBLEMA ACTUAL
+O Portfólio começa a subir antes da secção "A Nossa Metodologia" chegar ao fim. Isso acontece porque o portfolio-wrapper está a começar muito cedo no DOM ou o cálculo do scroll está errado.
+SOLUÇÃO — CORRIGIR O TRIGGER
+O Portfólio só deve começar a subir quando o último pixel da secção Metodologia sair do ecrã pelo topo. Ou seja:
+
+Metodologia ocupa todo o ecrã → utilizador faz scroll até ao fim dela → só então o Portfólio começa a subir
+
+javascriptwindow.addEventListener('scroll', () => {
+  const methodology = document.querySelector('.section-methodology');
+  const wrapper = document.querySelector('.portfolio-wrapper');
+  const vh = window.innerHeight;
+
+  // Limite: o portfólio SÓ começa quando a metodologia
+  // saiu completamente do ecrã pelo topo
+  const methodologyBottom = methodology.getBoundingClientRect().bottom;
+
+  // Enquanto a metodologia ainda está visível, não fazer nada
+  if (methodologyBottom > 0) {
+    // Portfólio fica escondido abaixo do ecrã
+    document.querySelector('.portfolio-sticky-container')
+      .style.transform = 'translateY(100%)';
+    return;
+  }
+
+  // A partir daqui a metodologia saiu — animar o portfólio
+  const wrapperTop = wrapper.getBoundingClientRect().top;
+  const wrapperHeight = wrapper.offsetHeight;
+
+  const totalProgress = Math.max(0, Math.min(1,
+    -wrapperTop / (wrapperHeight - vh)
+  ));
+
+  // Primeiro: trazer o container todo para o ecrã
+  const containerEntry = Math.max(0, Math.min(1,
+    -wrapperTop / vh
+  ));
+  const containerY = (1 - containerEntry) * 100;
+  document.querySelector('.portfolio-sticky-container')
+    .style.transform = `translateY(${containerY}%)`;
+
+  // Depois: animar os slides internos
+  const slides = document.querySelectorAll('.project-slide');
+  const numSlides = slides.length;
+
+  slides.forEach((slide, index) => {
+    if (index === 0) {
+      slide.style.transform = 'translateY(0)';
+      return;
+    }
+
+    const slideProgress = Math.max(0, Math.min(1,
+      (totalProgress * numSlides) - index
+    ));
+
+    const yPos = (1 - slideProgress) * 100;
+    slide.style.transform = `translateY(${yPos}%)`;
+  });
+});
+CSS ADICIONAL — PORTFÓLIO COMEÇA FORA DO ECRÃ
+css/* O container começa completamente abaixo do ecrã */
+.portfolio-sticky-container {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+  transform: translateY(100%); /* começa escondido */
+  transition: none; /* SEM transition — controlado pelo scroll */
+}
+
+/* Wrapper tem espaço suficiente para todos os slides */
+.portfolio-wrapper {
+  position: relative;
+  /* 100vh entrada + 100vh por cada slide */
+  height: calc(100vh * 4);
+  z-index: 10;
+  /* Garantir que fica depois da metodologia no DOM */
+  margin-top: 0;
+}
+
+/* Metodologia fica por baixo do portfólio */
+.section-methodology {
+  position: relative;
+  z-index: 1;
+  /* NÃO usar sticky aqui — scroll normal */
+}
