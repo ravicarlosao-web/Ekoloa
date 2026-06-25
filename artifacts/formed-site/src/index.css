@@ -1,4 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap');
+
+@keyframes scroll-left {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+@keyframes scroll-right {
+  0%   { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+.marquee-left  { animation: scroll-left  40s linear infinite; }
+.marquee-right { animation: scroll-right 40s linear infinite; }
 @import "tailwindcss";
 @import "tw-animate-css";
 @plugin "@tailwindcss/typography";

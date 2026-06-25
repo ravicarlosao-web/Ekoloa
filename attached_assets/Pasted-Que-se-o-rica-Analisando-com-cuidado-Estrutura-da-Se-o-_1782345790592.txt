@@ -1,0 +1,71 @@
+Que seção rica! Analisando com cuidado:
+Estrutura da Seção "Testimonials":
+É um carrossel/marquee horizontal com 2 linhas de cards que se movem em direções opostas (efeito infinite scroll). Os cards têm 3 tipos: branco (depoimento), preto (estatística), amarelo (estatística).
+
+Prompt para o Replit:
+
+
+ADICIONAR SEÇÃO 7 — TESTIMONIALS
+Fundo: #EFEFEF. Padding-top: 80px.
+CABEÇALHO
+
+Label "[05] TESTIMONIALS": centralizado, 11px, letter-spacing 0.15em, cor #F5A623, weight 400
+Título: "We support our clients at every stage, delivering projects that meet goals, timelines, and expectations."
+52px, font-weight 300, text-align center, cor #111111, line-height 1.2, max-width 900px, margin: 0 auto, margin-bottom 60px
+
+MARQUEE — 2 LINHAS DE CARDS ANIMADAS
+Duas linhas de cards em infinite scroll horizontal automático:
+
+Linha 1: move da direita para a esquerda (animation: scroll-left 40s linear infinite)
+Linha 2: move da esquerda para a direita (animation: scroll-right 40s linear infinite)
+Pausar animação no hover: animation-play-state: paused quando mouse sobre a linha
+Cada linha tem os cards duplicados para criar loop contínuo sem cortes
+Gap entre cards: 16px
+Altura de cada card: ~320px
+Largura de cada card: ~360px (fixo, não responsivo)
+Overflow: hidden na linha, sem scrollbar visível
+
+css@keyframes scroll-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+@keyframes scroll-right {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+TIPOS DE CARD
+TIPO A — Depoimento (fundo branco #FFFFFF)
+
+Padding: 36px
+Ícone de aspas " no topo: font-size 48px, cor #F5A623, line-height 1, margin-bottom 12px
+Texto da citação: font-size 17px, font-weight 400, cor #111111, line-height 1.6, italic
+Rodapé: foto circular (40px × 40px, border-radius 50%) + nome em maiúsculas (11px, letter-spacing 0.12em, weight 600, cor #111111) + cargo/empresa (11px, letter-spacing 0.1em, cor #888888), tudo numa linha com gap 12px
+
+TIPO B — Estatística (fundo preto #111111)
+
+Padding: 36px
+Número grande: font-size 56px, font-weight 400, cor branco, line-height 1
+Descrição: font-size 15px, cor rgba(255,255,255,0.65), line-height 1.5, margin-top 12px
+Rodapé: logo parceiro (ícone + nome), cor branco, font-size 16px, weight 500, posicionado no fundo do card
+
+TIPO C — Estatística (fundo amarelo #F5A623)
+
+Padding: 36px
+Número grande: font-size 56px, font-weight 400, cor #111111
+Descrição: font-size 15px, cor #333333, line-height 1.5, margin-top 12px
+Rodapé: logo parceiro, cor #111111, posicionado no fundo do card
+
+CONTEÚDO DOS CARDS — LINHA 1
+
+Branco — "Formed delivered our development on time and to an exceptional standard. Their attention to detail made the entire process seamless." — JAMES PORTER, DIRECTOR, NORTHFIELD
+Amarelo — 99% / "Defect-free handover rate achieved for Stonebridge Estates" / logo Fourpoints
+Preto — "From planning through to completion, Formed were a reliable and proactive partner on a complex multi-phase project." — SARAH MITCHELL, HEAD OF PROPERTY, URBANCORE
+Branco — "Their ability to manage scale without compromising quality sets Formed apart from other contractors we've worked with." — DANIEL HUGHES, COMMERCIAL MANAGER, CRESTVIEW
+
+CONTEÚDO DOS CARDS — LINHA 2
+
+Preto — £120m / "Construction value delivered for UrbanCore Developments" / logo Fourpoints
+Branco — "Formed delivered our development on time and to an exceptional standard. Their attention to detail made the entire process seamless." — JAMES PORTER, DIRECTOR, NORTHFIELD
+Amarelo — 15% / "Cost savings achieved for Westmark Capital" / logo Codecraft_
+Branco — "Formed brought structure and clarity to a demanding development schedule while consistently exceeding expectations." — MICHAEL GRANT, OPERATIONS DIRECTOR, SUMMIT
+Preto — 100% / "Planning approval success rate for Harbourstone Developments" / logo Fourpoints
