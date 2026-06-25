@@ -6,6 +6,8 @@ function NavLink({ href, children }: { href: string; children: React.ReactNode }
   return (
     <a
       href={href}
+      target="_blank"
+      rel="noopener noreferrer"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       style={{
@@ -72,7 +74,8 @@ export function Footer() {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
-          style={{ flex: "0 0 30%", display: "flex", flexDirection: "column", justifyContent: "space-between", minHeight: 260 }}>
+          style={{ flex: "0 0 30%", display: "flex", flexDirection: "column", justifyContent: "space-between", minHeight: 260 }}
+        >
           <div
             style={{
               fontSize: 28,
@@ -82,7 +85,7 @@ export function Footer() {
               letterSpacing: "-0.01em",
             }}
           >
-            FORMED ®
+            EKOLOA ®
           </div>
           <div
             style={{
@@ -93,9 +96,7 @@ export function Footer() {
               fontFamily: "'DM Sans','Inter',sans-serif",
             }}
           >
-            128 Piccadilly,<br />
-            London W1J 7PY,<br />
-            United Kingdom
+            Luanda, Angola
           </div>
         </motion.div>
 
@@ -121,10 +122,12 @@ export function Footer() {
             style={{ padding: 32, borderRight: "1px solid rgba(255,255,255,0.12)" }}
           >
             <div style={colLabel}>SOCIAL</div>
-            <NavLink href="#">Instagram</NavLink>
-            <NavLink href="#">Twitter</NavLink>
-            <NavLink href="#">LinkedIn</NavLink>
-            <NavLink href="#">TikTok</NavLink>
+            <NavLink href="https://www.instagram.com/ekoloa_mentoria_e_consultoria">Instagram</NavLink>
+            <NavLink href="https://x.com/ekoloa_ao">X / Twitter</NavLink>
+            <NavLink href="https://www.linkedin.com/in/ekoloa-mentoria-e-consultoria-163443274">LinkedIn</NavLink>
+            <NavLink href="http://www.tiktok.com/@ekoloaoficial">TikTok</NavLink>
+            <NavLink href="https://www.youtube.com/@ekoloa_mentoria_consultoria">YouTube</NavLink>
+            <NavLink href="https://www.facebook.com/ekoloamentoriaconsultoria">Facebook</NavLink>
           </motion.div>
 
           {/* QUICK LINKS */}
@@ -136,10 +139,12 @@ export function Footer() {
             style={{ padding: 32, borderRight: "1px solid rgba(255,255,255,0.12)" }}
           >
             <div style={colLabel}>QUICK LINKS</div>
-            <NavLink href="#">About</NavLink>
-            <NavLink href="#">Projects</NavLink>
+            <NavLink href="#">Sobre Nós</NavLink>
+            <NavLink href="#">Metodologia</NavLink>
             <NavLink href="#">Blog</NavLink>
-            <NavLink href="#">Contact</NavLink>
+            <NavLink href="#">Contacto</NavLink>
+            <NavLink href="#">Cooperação</NavLink>
+            <NavLink href="#">Impacto Ekoloa</NavLink>
           </motion.div>
 
           {/* CONTACT */}
@@ -151,8 +156,8 @@ export function Footer() {
             style={{ padding: 32 }}
           >
             <div style={colLabel}>CONTACT</div>
-            <NavLink href="mailto:hello@formed.com">hello@formed.com</NavLink>
-            <NavLink href="tel:+13055550145">(305) 555-0145</NavLink>
+            <NavLink href="mailto:geral@ekoloa.co.ao">geral@ekoloa.co.ao</NavLink>
+            <NavLink href="tel:+244924975472">+244 924 975 472</NavLink>
           </motion.div>
         </motion.div>
       </div>
@@ -169,7 +174,6 @@ export function Footer() {
           gap: 16,
         }}
       >
-        {/* Centre — copyright */}
         <span
           style={{
             fontSize: 12,
@@ -177,13 +181,12 @@ export function Footer() {
             fontFamily: "'DM Sans','Inter',sans-serif",
           }}
         >
-          © 2026 Formed. All rights reserved.
+          © 2026 Ekoloa. Todos os direitos reservados.
         </span>
 
-        {/* Right — legal links */}
         <div style={{ display: "flex", gap: 32 }}>
-          <BottomLink href="#">Privacy &amp; cookies</BottomLink>
-          <BottomLink href="#">Terms &amp; conditions</BottomLink>
+          <BottomLink href="#">Política de Privacidade</BottomLink>
+          <BottomLink href="#">Termos de Utilização</BottomLink>
         </div>
       </div>
     </footer>
