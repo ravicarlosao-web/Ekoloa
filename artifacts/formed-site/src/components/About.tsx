@@ -5,23 +5,26 @@ const EASE: [number, number, number, number] = [0.25, 0.1, 0.25, 1];
 
 const stats = [
   {
-    target: 15,
-    suffix: "+",
-    description: "Years of experience delivering complex property developments",
-  },
-  {
-    target: 132,
+    prefix: "+",
+    target: 6,
     suffix: "",
-    description: "Residential and mixed-use projects successfully completed",
+    description: "Anos de experiência em governança, desenvolvimento humano e impacto social",
   },
   {
-    target: 37,
-    suffix: "K+",
-    description: "Homes built to support growing communities worldwide",
+    prefix: "",
+    target: 120,
+    suffix: "+",
+    description: "Instituições, líderes e organizações apoiados em Angola e na região",
+  },
+  {
+    prefix: "",
+    target: 3,
+    suffix: "",
+    description: "Metodologias próprias desenvolvidas para transformação institucional sustentável",
   },
 ];
 
-function CountUp({ target, suffix, duration = 1.8 }: { target: number; suffix: string; duration?: number }) {
+function CountUp({ prefix = "", target, suffix, duration = 1.8 }: { prefix?: string; target: number; suffix: string; duration?: number }) {
   const [count, setCount] = useState(0);
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "0px 0px -60px 0px" });
@@ -44,7 +47,7 @@ function CountUp({ target, suffix, duration = 1.8 }: { target: number; suffix: s
 
   return (
     <div ref={ref}>
-      {count}{suffix}
+      {prefix}{count}{suffix}
     </div>
   );
 }
@@ -75,7 +78,7 @@ export function About() {
               marginBottom: 32,
             }}
           >
-            [01] ABOUT US
+            [01] SOBRE NÓS
           </div>
           <h2
             style={{
@@ -88,9 +91,7 @@ export function About() {
               margin: 0,
             }}
           >
-            From concept to completion, We deliver small and large scale
-            property developments with a focus on high quality, efficiency,
-            and impact.
+            Do diagnóstico ao impacto, desenvolvemos pessoas, instituições e sociedades com governança consciente.
           </h2>
         </motion.div>
 
@@ -119,7 +120,7 @@ export function About() {
                   fontFamily: "'DM Sans', 'Inter', sans-serif",
                 }}
               >
-                <CountUp target={stat.target} suffix={stat.suffix} duration={1.6 + i * 0.2} />
+                <CountUp prefix={stat.prefix} target={stat.target} suffix={stat.suffix} duration={1.6 + i * 0.2} />
               </div>
               <p
                 style={{
@@ -150,7 +151,7 @@ export function About() {
           fontWeight: 400,
         }}
       >
-        [2018 – 2026]
+        [2019 – 2026]
       </div>
 
       {/* ── Bottom-centre decorative crosses ───────────────── */}
