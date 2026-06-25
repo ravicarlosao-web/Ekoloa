@@ -40,7 +40,7 @@ export function Navbar() {
           transition: "color 0.35s ease",
         }}
       >
-        FORMED®
+        EKOLOA®
       </div>
       <button
         style={{ background: "none", border: "none", cursor: "pointer", padding: 4 }}

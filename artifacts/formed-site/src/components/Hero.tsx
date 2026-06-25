@@ -1,17 +1,19 @@
 import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 
-const VIDEOS = ["/hero1.mp4", "/hero2.mp4", "/hero3.mp4"];
+const IMAGES = [
+  "https://images.unsplash.com/photo-1531545514256-b1400bc00f31?w=1920&q=80",
+  "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=1920&q=80",
+  "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1920&q=80",
+  "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=1920&q=80",
+];
+
 const SWITCH_INTERVAL = 5000;
-const CROSSFADE_S = 1.5;
+const CROSSFADE_S = 1.4;
 
 function CornerCross({ style }: { style: React.CSSProperties }) {
   return (
-    <span
-      className="absolute pointer-events-none"
-      style={style}
-      aria-hidden
-    >
+    <span className="absolute pointer-events-none" style={style} aria-hidden>
       <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
         <line x1="7" y1="0" x2="7" y2="14" stroke="#F5A623" strokeWidth="1.2" />
         <line x1="0" y1="7" x2="14" y2="7" stroke="#F5A623" strokeWidth="1.2" />
@@ -22,76 +24,26 @@ function CornerCross({ style }: { style: React.CSSProperties }) {
 
 export function Hero() {
   const [current, setCurrent] = useState(0);
-  const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
-  const transitioning = useRef(false);
-  const currentRef = useRef(0);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  // Keep currentRef in sync
-  useEffect(() => { currentRef.current = current; }, [current]);
-
-  const advance = () => {
-    if (transitioning.current) return;
-    transitioning.current = true;
-    const next = (currentRef.current + 1) % VIDEOS.length;
-    // Pre-roll next video so it's ready
-    const nextVid = videoRefs.current[next];
-    if (nextVid) {
-      nextVid.currentTime = 0;
-      nextVid.play().catch(() => {});
-    }
-    setCurrent(next);
-    // After crossfade, pause the old video and reset flag
-    setTimeout(() => {
-      const old = videoRefs.current[currentRef.current === next
-        ? (next + VIDEOS.length - 1) % VIDEOS.length
-        : currentRef.current];
-      if (old) { old.pause(); old.currentTime = 0; }
-      transitioning.current = false;
-    }, CROSSFADE_S * 1000 + 100);
-  };
-
-  // Start first video; attach timeupdate listener to trigger early crossfade
   useEffect(() => {
-    videoRefs.current.forEach((v, i) => {
-      if (!v) return;
-      if (i === 0) { v.play().catch(() => {}); }
-      else { v.pause(); }
-    });
-
-    const handleTimeUpdate = () => {
-      const v = videoRefs.current[currentRef.current];
-      if (!v || !v.duration) return;
-      const remaining = v.duration - v.currentTime;
-      if (remaining <= CROSSFADE_S + 0.1) {
-        advance();
-      }
-    };
-
-    // Attach listener to all videos (only fires meaningfully on the active one)
-    const cleanup = videoRefs.current.map((v) => {
-      if (!v) return () => {};
-      v.addEventListener("timeupdate", handleTimeUpdate);
-      return () => v.removeEventListener("timeupdate", handleTimeUpdate);
-    });
-
-    return () => cleanup.forEach((fn) => fn());
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+    timerRef.current = setInterval(() => {
+      setCurrent((c) => (c + 1) % IMAGES.length);
+    }, SWITCH_INTERVAL);
+    return () => { if (timerRef.current) clearInterval(timerRef.current); };
+  }, []);
 
   return (
     <section id="hero" className="relative w-full overflow-hidden text-white" style={{ height: "100dvh" }}>
 
-      {/* ── Video crossfade background ────────────────────────── */}
+      {/* ── Image crossfade background ─────────────────────── */}
       <div className="absolute inset-0 z-0">
-        {VIDEOS.map((src, i) => (
-          <video
+        {IMAGES.map((src, i) => (
+          <div
             key={src}
-            ref={(el) => { videoRefs.current[i] = el; }}
-            src={src}
-            muted
-            playsInline
-            preload="auto"
-            className="absolute inset-0 w-full h-full object-cover object-center"
+            className="absolute inset-0 bg-center bg-cover"
             style={{
+              backgroundImage: `url(${src})`,
               opacity: i === current ? 1 : 0,
               transition: `opacity ${CROSSFADE_S}s ease-in-out`,
               willChange: "opacity",
@@ -102,9 +54,8 @@ export function Hero() {
         <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.55)" }} />
       </div>
 
-      {/* ── Architectural grid lines ──────────────────────────── */}
+      {/* ── Architectural grid lines ──────────────────────── */}
       <div className="absolute inset-0 z-[1] pointer-events-none" aria-hidden>
-        {/* Vertical lines */}
         {[27, 55, 73].map((pct) => (
           <div
             key={pct}
@@ -112,14 +63,37 @@ export function Hero() {
             style={{ left: `${pct}%`, width: 1, background: "rgba(255,255,255,0.12)" }}
           />
         ))}
-        {/* Horizontal line — divides title area from card area */}
         <div
           className="absolute left-0 right-0"
           style={{ top: "58%", height: 1, background: "rgba(255,255,255,0.15)" }}
         />
       </div>
 
-      {/* ── Content wrapper ───────────────────────────────────── */}
+      {/* ── Slide indicator dots ──────────────────────────── */}
+      <div
+        className="absolute z-10 flex gap-2"
+        style={{ bottom: 28, right: 40 }}
+        aria-hidden
+      >
+        {IMAGES.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setCurrent(i)}
+            style={{
+              width: i === current ? 22 : 7,
+              height: 7,
+              borderRadius: 4,
+              background: i === current ? "#F5A623" : "rgba(255,255,255,0.45)",
+              border: "none",
+              cursor: "pointer",
+              padding: 0,
+              transition: "width 0.35s ease, background 0.35s ease",
+            }}
+          />
+        ))}
+      </div>
+
+      {/* ── Content wrapper ────────────────────────────────── */}
       <div className="relative z-10 flex flex-col h-full w-full">
 
         {/* Upper block: label + headline */}
@@ -129,7 +103,6 @@ export function Hero() {
           transition={{ duration: 0.9, delay: 0.15, ease: [0.25, 0.1, 0.25, 1] }}
           style={{ paddingTop: 120, paddingLeft: 80, paddingRight: 80 }}
         >
-          {/* "// CONSTRUCTION & DEVELOPMENT" */}
           <p
             className="uppercase text-white"
             style={{
@@ -140,10 +113,9 @@ export function Hero() {
               opacity: 0.85,
             }}
           >
-            // CONSTRUCTION &amp; DEVELOPMENT
+            // GOVERNANÇA &amp; TRANSFORMAÇÃO SOCIAL
           </p>
 
-          {/* Main headline — weight 300 (light) */}
           <h1
             className="text-white"
             style={{
@@ -154,20 +126,19 @@ export function Hero() {
               maxWidth: "75%",
             }}
           >
-            Crafting the next generation of properties and communities
+            Governança para a<br />Transformação Social
           </h1>
         </motion.div>
 
-        {/* Flex spacer pushes cards to bottom */}
         <div className="flex-1" />
 
-        {/* ── Bottom info strip ─────────────────────────────────── */}
+        {/* ── Bottom info strip ──────────────────────────────── */}
         <div className="flex w-full items-stretch">
 
           {/* Left spacer (~27%) */}
           <div className="hidden lg:block" style={{ flexShrink: 0, width: "27%" }} />
 
-          {/* ── Yellow card ───────────────────────────────────── */}
+          {/* ── Yellow card ─────────────────────────────────── */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
@@ -179,7 +150,6 @@ export function Hero() {
               padding: "32px 36px 36px",
             }}
           >
-            {/* Corner cross marks (+) — 4 corners */}
             <CornerCross style={{ top: -7, left: -7 }} />
             <CornerCross style={{ top: -7, right: -7 }} />
             <CornerCross style={{ bottom: -7, left: -7 }} />
@@ -195,7 +165,7 @@ export function Hero() {
                 marginBottom: 20,
               }}
             >
-              [01] LATEST UPDATE
+              [01] ÚLTIMA ATUALIZAÇÃO
             </p>
             <h3
               style={{
@@ -206,7 +176,7 @@ export function Hero() {
                 marginBottom: 36,
               }}
             >
-              Designing Apartment Developments for Long-Term Value
+              Causa Social e Governança Consciente: Uma Ligação Inseparável
             </h3>
             <a
               href="#"
@@ -219,14 +189,14 @@ export function Hero() {
                 textDecoration: "none",
               }}
             >
-              READ MORE &nbsp;&rarr;
+              LER MAIS &nbsp;&rarr;
             </a>
           </motion.div>
 
           {/* Middle flex spacer */}
           <div className="flex-1 hidden lg:block" />
 
-          {/* ── Work With Us ────────────────────────────────────── */}
+          {/* ── Trabalhe Connosco ───────────────────────────── */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
@@ -247,7 +217,7 @@ export function Hero() {
                 marginBottom: 14,
               }}
             >
-              [02] WORK WITH US
+              [02] TRABALHE CONNOSCO
             </p>
             <p
               style={{
@@ -258,7 +228,7 @@ export function Hero() {
                 marginBottom: 28,
               }}
             >
-              Partner with Formed to bring your next development to life
+              Parceria com a Ekoloa para transformar instituições e gerar impacto social real
             </p>
             <div>
               <button
@@ -278,7 +248,7 @@ export function Hero() {
                 onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.85")}
                 onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
               >
-                START YOUR PROJECT
+                INICIAR DIÁLOGO
               </button>
             </div>
           </motion.div>
