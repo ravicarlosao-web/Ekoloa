@@ -17,8 +17,8 @@ export default function HomePage() {
       <Process />
       <Projects />
       <Partners />
-      <Testimonials />
       <Services />
+      <Testimonials />
       <Footer />
     </main>
   );
