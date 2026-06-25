@@ -1,6 +1,6 @@
 {
-  "buildCommand": "pnpm --filter @workspace/formed-site build",
-  "outputDirectory": "public",
+  "buildCommand": "pnpm --filter @workspace/formed-site build && cp -r artifacts/formed-site/dist/public ./vercel-out",
+  "outputDirectory": "vercel-out",
   "installCommand": "pnpm install",
   "framework": null,
   "rewrites": [
