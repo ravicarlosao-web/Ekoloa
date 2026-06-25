@@ -1,0 +1,41 @@
+ALTERAR CONTEÚDO — SEÇÃO FAQS
+COLUNA ESQUERDA
+
+Label: manter [06] FAQS
+Título: substituir por "Respondendo às suas questões"
+Subtítulo: substituir STILL LOOKING FOR ANSWERS? por AINDA TEM DÚVIDAS?
+Texto: substituir por: "Entre em contacto através do nosso formulário e ajudamo-lo a encontrar as respostas certas"
+Botão: substituir GET IN TOUCH por ENTRAR EM CONTACTO
+
+
+PERGUNTAS DO ACCORDION — substituir todas as 6:
+Pergunta 1:
+
+"Em que áreas a Ekoloa actua?"
+
+(Resposta expandida): "A Ekoloa actua em 5 pilares estratégicos: Desenvolvimento Humano & Liderança, Educação, Cultura & Conhecimento, Desenvolvimento Organizacional, Impacto Social & Sustentabilidade, e Governança & Cooperação Institucional."
+Pergunta 2:
+
+"A Ekoloa trabalha directamente com governos e instituições públicas?"
+
+(Resposta): "Sim. A Ekoloa é parceira estratégica de governos, ministérios e organismos públicos, apoiando a implementação de programas estruturados de governança, cooperação interinstitucional e desenvolvimento humano."
+Pergunta 3:
+
+"O que é o SIGIS e como funciona a certificação?"
+
+(Resposta): "O SIGIS é o Sistema Integrado de Governança e Impacto Social da Ekoloa. A certificação SIGIS reconhece instituições que demonstram maturidade, compromisso e impacto real nos seus processos de governança e desenvolvimento."
+Pergunta 4:
+
+"Onde a Ekoloa opera?"
+
+(Resposta): "A Ekoloa está sediada em Luanda, Angola, e actua a nível nacional e regional, com visão de expansão para o contexto internacional alinhada aos Objectivos de Desenvolvimento Sustentável."
+Pergunta 5:
+
+"Como a Ekoloa garante o impacto social dos seus programas?"
+
+(Resposta): "Através de metodologias próprias, sistemas de monitorização estruturados e indicadores mensuráveis, a Ekoloa assegura que cada iniciativa gera resultados reais, transparentes e sustentáveis."
+Pergunta 6:
+
+"Como podemos iniciar uma parceria com a Ekoloa?"
+
+(Resposta): "Pode iniciar o diálogo institucional através do nosso formulário de contacto. A Ekoloa analisa e responde a todas as solicitações num prazo máximo de 48 horas úteis."

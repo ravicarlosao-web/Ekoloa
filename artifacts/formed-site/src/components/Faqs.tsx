@@ -3,28 +3,28 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const FAQS = [
   {
-    q: "What types of projects does Formed specialise in?",
-    a: "Formed specialises in large-scale residential, mixed-use, and commercial developments. We work across property development, design & planning, construction management, and infrastructure — delivering projects from initial land acquisition through to final handover.",
+    q: "Em que áreas a Ekoloa actua?",
+    a: "A Ekoloa actua em 5 pilares estratégicos: Desenvolvimento Humano & Liderança, Educação, Cultura & Conhecimento, Desenvolvimento Organizacional, Impacto Social & Sustentabilidade, e Governança & Cooperação Institucional.",
   },
   {
-    q: "Does Formed manage projects from start to finish?",
-    a: "Yes. We offer end-to-end project delivery, covering every phase from feasibility studies and planning approvals through to construction oversight and final handover. Clients can also engage us for specific phases depending on their needs.",
+    q: "A Ekoloa trabalha directamente com governos e instituições públicas?",
+    a: "Sim. A Ekoloa é parceira estratégica de governos, ministérios e organismos públicos, apoiando a implementação de programas estruturados de governança, cooperação interinstitucional e desenvolvimento humano.",
   },
   {
-    q: "How does Formed ensure projects stay on time and on budget?",
-    a: "We use rigorous programme control and cost management systems throughout every project. Our construction management teams are embedded on-site, providing real-time oversight and proactive problem-solving to prevent delays and cost overruns.",
+    q: "O que é o SIGIS e como funciona a certificação?",
+    a: "O SIGIS é o Sistema Integrado de Governança e Impacto Social da Ekoloa. A certificação SIGIS reconhece instituições que demonstram maturidade, compromisso e impacto real nos seus processos de governança e desenvolvimento.",
   },
   {
-    q: "Where does Formed operate?",
-    a: "Formed operates primarily across the UK and Ireland, with experience delivering major projects in London, the South East, and key regional cities. We also have the capacity to support international projects on a case-by-case basis.",
+    q: "Onde a Ekoloa opera?",
+    a: "A Ekoloa está sediada em Luanda, Angola, e actua a nível nacional e regional, com visão de expansão para o contexto internacional alinhada aos Objectivos de Desenvolvimento Sustentável.",
   },
   {
-    q: "How does Formed approach sustainability and compliance?",
-    a: "Sustainability and compliance are embedded into our design and construction processes from day one. We work closely with planning authorities, sustainability consultants, and our supply chain to ensure every project meets current regulations and environmental standards.",
+    q: "Como a Ekoloa garante o impacto social dos seus programas?",
+    a: "Através de metodologias próprias, sistemas de monitorização estruturados e indicadores mensuráveis, a Ekoloa assegura que cada iniciativa gera resultados reais, transparentes e sustentáveis.",
   },
   {
-    q: "How can we start a project with Formed?",
-    a: "The easiest way to get started is to reach out via our contact form or call us directly. Our team will arrange an initial consultation to understand your project requirements and outline how we can support you.",
+    q: "Como podemos iniciar uma parceria com a Ekoloa?",
+    a: "Pode iniciar o diálogo institucional através do nosso formulário de contacto. A Ekoloa analisa e responde a todas as solicitações num prazo máximo de 48 horas úteis.",
   },
 ];
 
@@ -93,15 +93,15 @@ export function Faqs() {
               [06] FAQS
             </div>
             <h2 style={{ fontSize: 48, fontWeight: 300, color: "#111111", lineHeight: 1.2, margin: 0, fontFamily: "'DM Sans','Inter',sans-serif" }}>
-              Answering your questions
+              Respondendo às suas questões
             </h2>
 
             <div style={{ marginTop: 40 }}>
               <div style={{ fontSize: 10, fontWeight: 500, letterSpacing: "0.15em", color: "#111111", textTransform: "uppercase" }}>
-                STILL LOOKING FOR ANSWERS?
+                AINDA TEM DÚVIDAS?
               </div>
               <p style={{ fontSize: 14, color: "#555555", lineHeight: 1.6, marginTop: 8, marginBottom: 24 }}>
-                Get in touch via our contact form and we'll help you answer them
+                Entre em contacto através do nosso formulário e ajudamo-lo a encontrar as respostas certas
               </p>
 
               {/* Button with yellow left bar */}
@@ -113,7 +113,7 @@ export function Faqs() {
                   cursor: "pointer", fontFamily: "'DM Sans','Inter',sans-serif",
                   textTransform: "uppercase", borderRadius: 0,
                 }}>
-                  GET IN TOUCH
+                  ENTRAR EM CONTACTO
                 </button>
               </div>
             </div>
