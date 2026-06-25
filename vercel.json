@@ -1,6 +1,6 @@
 {
   "buildCommand": "pnpm --filter @workspace/formed-site build",
-  "outputDirectory": "artifacts/formed-site/dist/public",
+  "outputDirectory": "public",
   "installCommand": "pnpm install",
   "framework": null,
   "rewrites": [
