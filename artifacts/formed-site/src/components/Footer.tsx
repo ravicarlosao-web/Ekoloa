@@ -151,38 +151,6 @@ export function Footer() {
           gap: 16,
         }}
       >
-        {/* Left — avatar + designer credit */}
-        <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-          <div
-            style={{
-              width: 32,
-              height: 32,
-              borderRadius: "50%",
-              background: "rgba(255,255,255,0.15)",
-              flexShrink: 0,
-              overflow: "hidden",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              fontSize: 12,
-              color: "rgba(255,255,255,0.6)",
-              fontWeight: 600,
-              fontFamily: "'DM Sans','Inter',sans-serif",
-            }}
-          >
-            JJ
-          </div>
-          <span
-            style={{
-              fontSize: 12,
-              color: "rgba(255,255,255,0.45)",
-              fontFamily: "'DM Sans','Inter',sans-serif",
-            }}
-          >
-            Designed by JJ Gerrish
-          </span>
-        </div>
-
         {/* Centre — copyright */}
         <span
           style={{
