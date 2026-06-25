@@ -33,18 +33,20 @@ const projects = [
 function ProjectItem({ project }: { project: (typeof projects)[0] }) {
   return (
     <div
-      className="relative w-full overflow-hidden"
       style={{
-        height: "100vh",
         position: "sticky",
         top: 0,
+        height: "100vh",
+        width: "100%",
+        overflow: "hidden",
         zIndex: project.zIndex,
       }}
     >
-      {/* Blurred full-screen background */}
+      {/* Blurred full-screen background — separate element */}
       <div
-        className="absolute inset-0"
         style={{
+          position: "absolute",
+          inset: 0,
           backgroundImage: `url(${project.image})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
@@ -53,82 +55,170 @@ function ProjectItem({ project }: { project: (typeof projects)[0] }) {
         }}
       />
       {/* Dark overlay */}
-      <div className="absolute inset-0 bg-black/70" />
-
-      {/* Content */}
       <div
-        className="relative h-full flex items-center"
-        style={{ paddingLeft: "80px", paddingRight: "60px" }}
+        style={{
+          position: "absolute",
+          inset: 0,
+          backgroundColor: "rgba(0,0,0,0.70)",
+        }}
+      />
+
+      {/* Two-zone grid layout */}
+      <div
+        style={{
+          position: "relative",
+          height: "100%",
+          display: "grid",
+          gridTemplateColumns: "55% 45%",
+        }}
       >
-        {/* Left text */}
-        <div className="flex-1 flex flex-col text-white max-w-[520px]">
+        {/* Left zone — all text */}
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            paddingLeft: "80px",
+            paddingTop: "80px",
+            paddingRight: "48px",
+            paddingBottom: "80px",
+            color: "white",
+          }}
+        >
+          {/* Label */}
           <div
-            className="mb-6 text-white/50"
             style={{
               fontSize: "11px",
               fontWeight: 700,
               letterSpacing: "0.2em",
               textTransform: "uppercase",
+              color: "rgba(255,255,255,0.45)",
+              marginBottom: "20px",
             }}
           >
             {project.label}
           </div>
 
+          {/* Title */}
           <h2
-            className="font-bold leading-tight mb-14 text-white"
-            style={{ fontSize: "clamp(32px, 4vw, 56px)", letterSpacing: "-0.02em" }}
+            style={{
+              fontSize: "50px",
+              fontWeight: 700,
+              lineHeight: 1.1,
+              color: "white",
+              marginBottom: "32px",
+              letterSpacing: "-0.02em",
+            }}
           >
             {project.title}
           </h2>
 
-          <div className="flex flex-col gap-6 mb-14">
-            <div className="border-t border-white/15 pt-4">
-              <span
-                className="block text-white/50 mb-1"
-                style={{ fontSize: "10px", fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase" }}
+          {/* Separator */}
+          <div
+            style={{
+              borderBottom: "1px solid rgba(255,255,255,0.15)",
+              margin: "0 0 24px 0",
+            }}
+          />
+
+          {/* Data fields */}
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            <div style={{ marginBottom: "20px" }}>
+              <div
+                style={{
+                  fontSize: "10px",
+                  letterSpacing: "0.15em",
+                  color: "rgba(255,255,255,0.45)",
+                  fontWeight: 400,
+                  textTransform: "uppercase",
+                  marginBottom: "4px",
+                }}
               >
                 PERÍODO
-              </span>
-              <span className="text-white text-lg font-medium">{project.period}</span>
+              </div>
+              <div style={{ fontSize: "16px", color: "white", fontWeight: 400 }}>
+                {project.period}
+              </div>
             </div>
-            <div className="border-t border-white/15 pt-4">
-              <span
-                className="block text-white/50 mb-1"
-                style={{ fontSize: "10px", fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase" }}
+
+            <div style={{ marginBottom: "20px" }}>
+              <div
+                style={{
+                  fontSize: "10px",
+                  letterSpacing: "0.15em",
+                  color: "rgba(255,255,255,0.45)",
+                  fontWeight: 400,
+                  textTransform: "uppercase",
+                  marginBottom: "4px",
+                }}
               >
                 ÂMBITO
-              </span>
-              <span className="text-white text-lg font-medium">{project.scope}</span>
+              </div>
+              <div style={{ fontSize: "16px", color: "white", fontWeight: 400 }}>
+                {project.scope}
+              </div>
             </div>
-            <div className="border-t border-b border-white/15 pt-4 pb-4">
-              <span
-                className="block text-white/50 mb-1"
-                style={{ fontSize: "10px", fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase" }}
+
+            <div style={{ marginBottom: "32px" }}>
+              <div
+                style={{
+                  fontSize: "10px",
+                  letterSpacing: "0.15em",
+                  color: "rgba(255,255,255,0.45)",
+                  fontWeight: 400,
+                  textTransform: "uppercase",
+                  marginBottom: "4px",
+                }}
               >
                 ÁREA
-              </span>
-              <span className="text-white text-lg font-medium">{project.area}</span>
+              </div>
+              <div style={{ fontSize: "16px", color: "white", fontWeight: 400 }}>
+                {project.area}
+              </div>
             </div>
           </div>
 
+          {/* Link */}
           <a
             href="#"
-            className="inline-flex items-center hover:opacity-70 transition-opacity"
-            style={{ fontSize: "11px", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "#F5A623" }}
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              fontSize: "11px",
+              fontWeight: 700,
+              letterSpacing: "0.1em",
+              textTransform: "uppercase",
+              color: "#F5A623",
+              textDecoration: "none",
+              opacity: 1,
+              transition: "opacity 0.2s",
+            }}
+            onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.7")}
+            onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
           >
             VER PROJECTO COMPLETO ——→
           </a>
         </div>
 
-        {/* Right sharp highlight image */}
+        {/* Right zone — highlight image only */}
         <div
-          className="flex-shrink-0 hidden lg:block"
-          style={{ width: "420px", height: "480px", overflow: "hidden" }}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
         >
           <img
             src={project.image}
             alt={project.title}
-            style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+            style={{
+              width: "280px",
+              height: "480px",
+              objectFit: "cover",
+              display: "block",
+              borderRadius: 0,
+              flexShrink: 0,
+            }}
           />
         </div>
       </div>
@@ -139,27 +229,36 @@ function ProjectItem({ project }: { project: (typeof projects)[0] }) {
 export function Projects() {
   return (
     <>
-      {/* Sticky scroll wrapper — total height forces scroll through all 3 */}
-      <div style={{ position: "relative" }}>
+      <div className="projects-container" style={{ position: "relative" }}>
         {projects.map((project) => (
           <ProjectItem key={project.label} project={project} />
         ))}
       </div>
 
-      {/* Final CTA — outside sticky */}
-      <div className="w-full bg-[#1C1C1C] flex justify-center items-center py-20">
+      {/* Final CTA — outside sticky stack */}
+      <div
+        style={{
+          width: "100%",
+          backgroundColor: "#1C1C1C",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          padding: "80px 0",
+        }}
+      >
         <a
           href="#"
-          className="hover:opacity-70 transition-opacity"
           style={{
             fontSize: "11px",
             fontWeight: 700,
             letterSpacing: "0.15em",
             textTransform: "uppercase",
             color: "#F5A623",
-            background: "none",
-            border: "none",
+            textDecoration: "none",
+            transition: "opacity 0.2s",
           }}
+          onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.7")}
+          onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
         >
           VER TODO O IMPACTO EKOLOA →
         </a>
