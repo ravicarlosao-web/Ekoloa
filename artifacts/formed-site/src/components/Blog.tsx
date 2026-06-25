@@ -1,29 +1,27 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import blog1 from "@/assets/images/blog-1.png";
-import blog2 from "@/assets/images/blog-2.png";
 
 const articles = [
   {
     id: 1,
-    image: blog1,
-    objectPosition: "20% center",
+    image: "https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1200&q=80",
+    objectPosition: "center center",
     title: "Designing Apartment Developments for Long-Term Value",
     date: "OCT 29, 2025",
     featured: true,
   },
   {
     id: 2,
-    image: blog1,
-    objectPosition: "72% 40%",
+    image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&q=80",
+    objectPosition: "center center",
     title: "Managing Large-Scale Construction Projects Effectively",
     date: "18 OCT 2025",
     featured: false,
   },
   {
     id: 3,
-    image: blog2,
-    objectPosition: "82% 20%",
+    image: "https://images.unsplash.com/photo-1464817739973-0128fe77aaa1?w=800&q=80",
+    objectPosition: "center center",
     title: "The Rise of Mixed-Use Developments in Urban Areas",
     date: "18 OCT 2025",
     featured: false,
@@ -93,7 +91,6 @@ function ArticleCard({ article }: { article: typeof articles[0] }) {
 export function Blog() {
   return (
     <section style={{ background: "#EFEFEF", padding: "80px 80px" }}>
-      {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: 16 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -152,7 +149,6 @@ export function Blog() {
         </a>
       </motion.div>
 
-      {/* Grid */}
       <motion.div
         initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -165,14 +161,9 @@ export function Blog() {
           marginTop: 48,
         }}
       >
-        {/* Featured article */}
         <ArticleCard article={articles[0]} />
-
-        {/* Right column — 2 stacked articles */}
-        <div style={{ display: "contents" }}>
-          <ArticleCard article={articles[1]} />
-          <ArticleCard article={articles[2]} />
-        </div>
+        <ArticleCard article={articles[1]} />
+        <ArticleCard article={articles[2]} />
       </motion.div>
     </section>
   );
