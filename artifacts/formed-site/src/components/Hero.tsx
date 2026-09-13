@@ -241,7 +241,7 @@ export function Hero() {
                 marginBottom: 28,
               }}
             >
-              Parceria com a Ekoloa para transformar instituições e gerar impacto social real
+              Parceria com a Kourse para transformar instituições e gerar impacto social real
             </p>
             <div>
               <button

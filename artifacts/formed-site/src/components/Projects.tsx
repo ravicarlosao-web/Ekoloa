@@ -21,7 +21,7 @@ const projects = [
     label: "PROJECTO [003]",
     title: "Método 2I's como Motor de Impacto Sustentável",
     period: "Fev 2026 – Em curso",
-    scope: "Metodologias Próprias Ekoloa",
+    scope: "Metodologias Próprias Kourse",
     area: "Governança & Cooperação Institucional",
     image: "https://images.unsplash.com/photo-1560523159-4a9692d222ef?w=1200&q=80",
   },
@@ -245,7 +245,7 @@ export function Projects() {
           onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.7")}
           onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
         >
-          VER TODO O IMPACTO EKOLOA →
+          VER TODO O IMPACTO Kourse →
         </a>
       </div>
     </>

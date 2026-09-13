@@ -95,7 +95,7 @@ export function GetStarted() {
             letterSpacing: "-0.01em",
           }}
         >
-          Explore como a Ekoloa pode transformar a sua instituição e gerar impacto social real.
+          Explore como a Kourse pode transformar a sua instituição e gerar impacto social real.
         </h2>
 
         {/* CTA Button */}

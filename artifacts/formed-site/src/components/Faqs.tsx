@@ -3,28 +3,28 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const FAQS = [
   {
-    q: "Em que áreas a Ekoloa actua?",
-    a: "A Ekoloa actua em 5 pilares estratégicos: Desenvolvimento Humano & Liderança, Educação, Cultura & Conhecimento, Desenvolvimento Organizacional, Impacto Social & Sustentabilidade, e Governança & Cooperação Institucional.",
+    q: "Em que áreas a Kourse actua?",
+    a: "A Kourse actua em 5 pilares estratégicos: Desenvolvimento Humano & Liderança, Educação, Cultura & Conhecimento, Desenvolvimento Organizacional, Impacto Social & Sustentabilidade, e Governança & Cooperação Institucional.",
   },
   {
-    q: "A Ekoloa trabalha directamente com governos e instituições públicas?",
-    a: "Sim. A Ekoloa é parceira estratégica de governos, ministérios e organismos públicos, apoiando a implementação de programas estruturados de governança, cooperação interinstitucional e desenvolvimento humano.",
+    q: "A Kourse trabalha directamente com governos e instituições públicas?",
+    a: "Sim. A Kourse é parceira estratégica de governos, ministérios e organismos públicos, apoiando a implementação de programas estruturados de governança, cooperação interinstitucional e desenvolvimento humano.",
   },
   {
     q: "O que é o SIGIS e como funciona a certificação?",
-    a: "O SIGIS é o Sistema Integrado de Governança e Impacto Social da Ekoloa. A certificação SIGIS reconhece instituições que demonstram maturidade, compromisso e impacto real nos seus processos de governança e desenvolvimento.",
+    a: "O SIGIS é o Sistema Integrado de Governança e Impacto Social da Kourse. A certificação SIGIS reconhece instituições que demonstram maturidade, compromisso e impacto real nos seus processos de governança e desenvolvimento.",
   },
   {
-    q: "Onde a Ekoloa opera?",
-    a: "A Ekoloa está sediada em Luanda, Angola, e actua a nível nacional e regional, com visão de expansão para o contexto internacional alinhada aos Objectivos de Desenvolvimento Sustentável.",
+    q: "Onde a Kourse opera?",
+    a: "A Kourse está sediada em Luanda, Angola, e actua a nível nacional e regional, com visão de expansão para o contexto internacional alinhada aos Objectivos de Desenvolvimento Sustentável.",
   },
   {
-    q: "Como a Ekoloa garante o impacto social dos seus programas?",
-    a: "Através de metodologias próprias, sistemas de monitorização estruturados e indicadores mensuráveis, a Ekoloa assegura que cada iniciativa gera resultados reais, transparentes e sustentáveis.",
+    q: "Como a Kourse garante o impacto social dos seus programas?",
+    a: "Através de metodologias próprias, sistemas de monitorização estruturados e indicadores mensuráveis, a Kourse assegura que cada iniciativa gera resultados reais, transparentes e sustentáveis.",
   },
   {
-    q: "Como podemos iniciar uma parceria com a Ekoloa?",
-    a: "Pode iniciar o diálogo institucional através do nosso formulário de contacto. A Ekoloa analisa e responde a todas as solicitações num prazo máximo de 48 horas úteis.",
+    q: "Como podemos iniciar uma parceria com a Kourse?",
+    a: "Pode iniciar o diálogo institucional através do nosso formulário de contacto. A Kourse analisa e responde a todas as solicitações num prazo máximo de 48 horas úteis.",
   },
 ];
 

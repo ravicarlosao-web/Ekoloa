@@ -14,7 +14,7 @@ const articles = [
     id: 2,
     image: "https://images.unsplash.com/photo-1529390079861-591de354faf5?w=800&q=80",
     objectPosition: "center center",
-    title: "Por que a Causa Social da Ekoloa não é Assistencialista",
+    title: "Por que a Causa Social da Kourse não é Assistencialista",
     date: "09 FEV, 2026",
     featured: false,
   },

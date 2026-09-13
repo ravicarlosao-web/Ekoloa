@@ -1,13 +1,13 @@
 import React, { useRef } from "react";
 import { motion } from "framer-motion";
 
-/* ── Ekoloa logo ─────────────────────────────────────────────── */
-function EkoloaLogo({ color = "#111111" }: { color?: string }) {
+/* ── Kourse logo ─────────────────────────────────────────────── */
+function KourseLogo({ color = "#111111" }: { color?: string }) {
   return (
     <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
       <span style={{ fontSize: 18, lineHeight: 1, color }}>⬡</span>
       <span style={{ fontSize: 15, fontWeight: 600, color, letterSpacing: "0.08em", fontFamily: "'DM Sans','Inter',sans-serif" }}>
-        Ekoloa
+        Kourse
       </span>
     </div>
   );
@@ -58,7 +58,7 @@ function StatCard({ stat, description, bg, textColor, descColor }: {
         <div style={{ fontSize: 56, fontWeight: 400, color: textColor, lineHeight: 1 }}>{stat}</div>
         <div style={{ fontSize: 14, color: descColor, lineHeight: 1.5, marginTop: 12 }}>{description}</div>
       </div>
-      <EkoloaLogo color={logoColor} />
+      <KourseLogo color={logoColor} />
     </div>
   );
 }
@@ -66,11 +66,11 @@ function StatCard({ stat, description, bg, textColor, descColor }: {
 /* ── Card data ───────────────────────────────────────────────── */
 const ROW1 = [
   <TestimonialCard key="t1"
-    quote="A Ekoloa trouxe clareza estratégica à nossa organização. A abordagem estruturada e ética transformou a forma como tomamos decisões institucionais."
+    quote="A Kourse trouxe clareza estratégica à nossa organização. A abordagem estruturada e ética transformou a forma como tomamos decisões institucionais."
     name="Carlos Manuel" role="Director Executivo, Instituto Nacional" />,
 
   <TestimonialCard key="t2"
-    quote="O diagnóstico institucional realizado pela Ekoloa foi determinante para identificarmos fragilidades e avançarmos com um plano de governança sólido."
+    quote="O diagnóstico institucional realizado pela Kourse foi determinante para identificarmos fragilidades e avançarmos com um plano de governança sólido."
     name="Ana Ferreira" role="Gestora de Programas, Organismo Público" />,
 
   <StatCard key="s1"
@@ -78,7 +78,7 @@ const ROW1 = [
     bg="#E8401C" textColor="#111111" descColor="#333333" />,
 
   <TestimonialCard key="t3"
-    quote="Do planeamento à implementação, a Ekoloa foi um parceiro confiável e proativo num programa de impacto social de múltiplas fases."
+    quote="Do planeamento à implementação, a Kourse foi um parceiro confiável e proativo num programa de impacto social de múltiplas fases."
     name="Joaquim Santos" role="Coordenador de Projecto, Ministério" />,
 
   <StatCard key="s2"
@@ -92,7 +92,7 @@ const ROW2 = [
     bg="#111111" textColor="#ffffff" descColor="rgba(255,255,255,0.65)" />,
 
   <TestimonialCard key="t4"
-    quote="A Ekoloa trouxe estrutura e rigor a um programa exigente, superando consistentemente as nossas expectativas em termos de impacto."
+    quote="A Kourse trouxe estrutura e rigor a um programa exigente, superando consistentemente as nossas expectativas em termos de impacto."
     name="Marta Lopes" role="Directora de Operações, Organização Social" />,
 
   <StatCard key="s4"
@@ -100,11 +100,11 @@ const ROW2 = [
     bg="#E8401C" textColor="#111111" descColor="#333333" />,
 
   <TestimonialCard key="t5"
-    quote="A capacidade da Ekoloa de articular desenvolvimento humano com governança institucional distingue-a de qualquer outra organização com que colaborámos."
+    quote="A capacidade da Kourse de articular desenvolvimento humano com governança institucional distingue-a de qualquer outra organização com que colaborámos."
     name="Pedro Nkosi" role="Líder Institucional, Sector Público" />,
 
   <StatCard key="s5"
-    stat="100%" description="Taxa de aprovação nos processos de certificação SIGIS acompanhados pela Ekoloa"
+    stat="100%" description="Taxa de aprovação nos processos de certificação SIGIS acompanhados pela Kourse"
     bg="#111111" textColor="#ffffff" descColor="rgba(255,255,255,0.65)" />,
 ];
 

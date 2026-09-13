@@ -85,7 +85,7 @@ export function Footer() {
               letterSpacing: "-0.01em",
             }}
           >
-            EKOLOA ®
+            Kourse ®
           </div>
           <div
             style={{
@@ -122,12 +122,12 @@ export function Footer() {
             style={{ padding: 32, borderRight: "1px solid rgba(255,255,255,0.12)" }}
           >
             <div style={colLabel}>SOCIAL</div>
-            <NavLink href="https://www.instagram.com/ekoloa_mentoria_e_consultoria">Instagram</NavLink>
-            <NavLink href="https://x.com/ekoloa_ao">X / Twitter</NavLink>
-            <NavLink href="https://www.linkedin.com/in/ekoloa-mentoria-e-consultoria-163443274">LinkedIn</NavLink>
-            <NavLink href="http://www.tiktok.com/@ekoloaoficial">TikTok</NavLink>
-            <NavLink href="https://www.youtube.com/@ekoloa_mentoria_consultoria">YouTube</NavLink>
-            <NavLink href="https://www.facebook.com/ekoloamentoriaconsultoria">Facebook</NavLink>
+            <NavLink href="https://www.instagram.com/kourse_mentoria_e_consultoria">Instagram</NavLink>
+            <NavLink href="https://x.com/kourse_ao">X / Twitter</NavLink>
+            <NavLink href="https://www.linkedin.com/in/kourse-mentoria-e-consultoria-163443274">LinkedIn</NavLink>
+            <NavLink href="http://www.tiktok.com/@kourseoficial">TikTok</NavLink>
+            <NavLink href="https://www.youtube.com/@kourse_mentoria_consultoria">YouTube</NavLink>
+            <NavLink href="https://www.facebook.com/koursementoriaconsultoria">Facebook</NavLink>
           </motion.div>
 
           {/* QUICK LINKS */}
@@ -144,7 +144,7 @@ export function Footer() {
             <NavLink href="#">Blog</NavLink>
             <NavLink href="#">Contacto</NavLink>
             <NavLink href="#">Cooperação</NavLink>
-            <NavLink href="#">Impacto Ekoloa</NavLink>
+            <NavLink href="#">Impacto Kourse</NavLink>
           </motion.div>
 
           {/* CONTACT */}
@@ -156,7 +156,7 @@ export function Footer() {
             style={{ padding: 32 }}
           >
             <div style={colLabel}>CONTACT</div>
-            <NavLink href="mailto:geral@ekoloa.co.ao">geral@ekoloa.co.ao</NavLink>
+            <NavLink href="mailto:geral@kourse.co.ao">geral@kourse.co.ao</NavLink>
             <NavLink href="tel:+244924975472">+244 924 975 472</NavLink>
           </motion.div>
         </motion.div>
@@ -181,7 +181,7 @@ export function Footer() {
             fontFamily: "'DM Sans','Inter',sans-serif",
           }}
         >
-          © 2026 Ekoloa. Todos os direitos reservados.
+          © 2026 Kourse. Todos os direitos reservados.
         </span>
 
         <div style={{ display: "flex", gap: 32 }}>
